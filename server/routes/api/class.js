@@ -1,25 +1,20 @@
 const express = require('express');
 const router = express.Router() ;
 
-
 const { Soldier,User } = require('../../models');
 
-router.get('/', async (req,res)=> {
-    const allSoldiers = await Soldier.findAll();
-    res.json(allSoldiers);
-})
 
-router.get("/:soldierId", async (req, res) => {
+router.get("/:classId", async (req, res) => {
     try {
-        const classSoldiers = await Soldier.findAll({ where:{id: req.params.soldierId} });
+        const classSoldiers = await Soldier.findAll({ where:{classId: req.params.classId} });
         res.json(classSoldiers);
     } catch (e) { res.json({ error: e.message }); }
- });
-  
+  });
+
 
  router.post("/", async (req, res) => {
-    const newSoldier = await Soldier.create(req.body);
-    res.json(newSoldier);
+    const newClass = await User.create(req.body);
+    res.json(newClass);
   });
   
   router.patch("/:soldierId", async (req, res) => {
@@ -34,5 +29,4 @@ router.get("/:soldierId", async (req, res) => {
     res.json({ deleted: true });
   });
 
-module.exports = router ;
-
+  module.exports = router ;
