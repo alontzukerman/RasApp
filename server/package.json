@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "up": "npm run down && npx sequelize db:migrate && npx sequelize db:seed:all",
-    "down": "npx sequelize db:migrate:undo:all"
+    "down": "npx sequelize db:migrate:undo:all",
+    "dev": "nodemon ./index.js localhost 8080"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +18,8 @@
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }

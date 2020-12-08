@@ -8,5 +8,29 @@ router.get('/', async (req,res)=> {
     res.json(allUsers);
 })
 
+router.get("/:userId", async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.userId);
+        res.json(user);
+    } catch (e) { res.json({ error: e.message }); }
+ });
+  
+
+ router.post("/", async (req, res) => {
+    const newUser = await User.create(req.body);
+    res.json(newUser);
+ });
+  
+  router.patch("/:userId", async (req, res) => {
+    const user = await User.findByPk(req.params.userId);
+    await user.update(req.body);
+    res.json(user);
+  });
+  
+  router.delete("/:userId", async (req, res) => {
+    const user = await Soldier.findByPk(req.params.userId);
+    await user.destroy();
+    res.json({ deleted: true });
+  });
 
 module.exports = router ;
