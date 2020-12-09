@@ -43,9 +43,9 @@ module.exports = {
       birthday: {
         type: Sequelize.DATEONLY
       },
-      commandId: {
+      roleId: {
         type: Sequelize.INTEGER,
-        field: 'command_id'
+        field: 'role_id'
       },
       draftDate: {
         type: Sequelize.DATEONLY,
