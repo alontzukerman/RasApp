@@ -6,7 +6,7 @@ module.exports = {
       "Soldiers",
       [
         {
-          id: 8900000,
+          id:1,
           first_name: "רועי",
           last_name: "כפרי",
           // "email":"",
@@ -22,7 +22,7 @@ module.exports = {
           release_date: "2022-09-09",
         },
         {
-          id: 8900001,
+          id:2,
           first_name: "יוסי",
           last_name: "כהן",
           // "email":"",
@@ -38,7 +38,7 @@ module.exports = {
           release_date: "2022-09-09",
         },
         {
-          id: 8900002,
+          id:3,
           first_name: "משה",
           last_name: "נחום",
           // "email":"",
@@ -54,7 +54,7 @@ module.exports = {
           release_date: "2022-09-09",
         },
         {
-          id: 8900003,
+          id: 4,
           first_name: "אביאל",
           last_name: "לוי",
           // "email":"",
@@ -70,7 +70,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900004,
+          id: 5,
           first_name: "שחר",
           last_name: "אליהו",
           // "email":"",
@@ -86,7 +86,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900005,
+          id: 6,
           first_name: "איתי",
           last_name: "ששון",
           // "email":"",
@@ -102,7 +102,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900006,
+          id: 7,
           first_name: "ערן",
           last_name: "דהן",
           // "email":"",
@@ -118,7 +118,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900007,
+          id: 8,
           first_name: "ליעם",
           last_name: "קלס",
           // "email":"",
@@ -134,7 +134,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900008,
+          id: 9,
           first_name: "גלעד",
           last_name: "יבנה",
           // "email":"",
@@ -150,7 +150,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900009,
+          id: 10,
           first_name: "גל",
           last_name: "מושקוביץ",
           // "email":"",
@@ -166,7 +166,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900010,
+          id: 11,
           first_name: "זך",
           last_name: "ב'זה",
           // "email":"",
@@ -182,7 +182,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900011,
+          id: 12,
           first_name: "צח",
           last_name: "עובדיה",
           // "email":"",
@@ -198,7 +198,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900012,
+          id: 13,
           first_name: "טל",
           last_name: "פיבן",
           // "email":"",
@@ -214,13 +214,13 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900013,
+          id: 14,
           first_name: "אורי",
           last_name: "שש",
           // "email":"",
           phone_number: "050-3929383",
           birthday: "2001-04-09",
-          address: "נתניה",
+          address: "עוטף עזה",
           pluga_id: 1,
           platoon_id: 2,
           class_id: 5,
@@ -230,7 +230,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900014,
+          id: 15,
           first_name: "איתי",
           last_name: "ברנד",
           // "email":"",
@@ -246,7 +246,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900015,
+          id: 16,
           first_name: "יוני",
           last_name: "גולדברג",
           // "email":"",
@@ -262,7 +262,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900016,
+          id: 17,
           first_name: "עמרי",
           last_name: "זילברשטיין",
           // "email":"",
@@ -278,7 +278,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900017,
+          id: 18,
           first_name: "ניר",
           last_name: "כהנה",
           // "email":"",
@@ -294,7 +294,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900018,
+          id: 19,
           first_name: "ניר",
           last_name: "כהנה",
           // "email":"",
@@ -310,7 +310,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900019,
+          id: 20,
           first_name: "ירון",
           last_name: "יטבת",
           // "email":"",
@@ -326,7 +326,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900020,
+          id: 21,
           first_name: "דוד",
           last_name: "דיהמנד",
           // "email":"",
@@ -342,7 +342,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900021,
+          id: 22,
           first_name: "מיכאל",
           last_name: "בלנסקי",
           // "email":"",
@@ -358,7 +358,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900022,
+          id: 23,
           first_name: "רועי",
           last_name: "כרמלי",
           // "email":"",
@@ -374,7 +374,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900023,
+          id: 24,
           first_name: "רועי",
           last_name: "דאמרי",
           // "email":"",
@@ -390,7 +390,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900024,
+          id: 25,
           first_name: "תומר",
           last_name: "בבילה",
           // "email":"",
@@ -406,7 +406,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900025,
+          id: 26,
           first_name: "רועי",
           last_name: "שנייצר",
           // "email":"",
@@ -422,7 +422,7 @@ module.exports = {
           release_date: "2022-07-09",
         },
         {
-          id: 8900026,
+          id: 27,
           first_name: "אלון",
           last_name: "ברוק",
           // "email":"",
