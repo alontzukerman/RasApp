@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  platoon.init({
+  Platoon.init({
     plugaId:{
-     DataTypes:INTEGER,
+     type: DataTypes.INTEGER,
      field:'pluga_id'
     },
     platoonName:{
-      DataTypes:STRING,
+      type: DataTypes.STRING,
       field:'platoon_name'
     },
   }, {
