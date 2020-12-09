@@ -14,7 +14,7 @@ module.exports = {
       //  "class_id":,
        "phone_number":"053-5303521",
        "birthday":"1998-07-02",
-       "command_id":3,
+       "role_id":3,
        "draft_date":"2017-03-13",
        "release_date":"2019-11-12",
        "address":"מרדכי מקלף 8, מודיעין"
@@ -30,7 +30,7 @@ module.exports = {
       //  "class_id":,
        "phone_number":"050-2554767",
        "birthday":"1998-10-04",
-       "command_id":2,
+       "role_id":2,
        "draft_date":"2017-07-23",
        "release_date":"2020-03-12",
        "address":"אחים ישראלית 15, פתח תקווה"

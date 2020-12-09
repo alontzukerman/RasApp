@@ -41,9 +41,9 @@ module.exports = (sequelize, DataTypes) => {
       field: 'phone_number'
     },
     birthday: DataTypes.DATEONLY,
-    commandId: {
+    roleId: {
       type: DataTypes.INTEGER,
-      field: 'command_id'
+      field: 'role_id'
     },
     draftDate: {
       type: DataTypes.DATEONLY,

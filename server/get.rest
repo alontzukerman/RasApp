@@ -1,2 +1,4 @@
-get http://localhost:8080/playlists/2
+get http://localhost:8080/api/class/2
+
+
 Content-Type: application/json
