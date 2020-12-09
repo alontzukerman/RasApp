@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
   };
   Class.init({
     plugaId:{
-     type: DataTypes.INTEGER,
+     DataTypes:INTEGER,
      field:'pluga_id'
     },
     platoonId:{
-      type: DataTypes.INTEGER,
+      DataTypes:INTEGER,
       field:'platoon_id'
     },
     className:{
-      type: DataTypes.STRING,
+      DataTypes:STRING,
       field:'class_name'
     },
   

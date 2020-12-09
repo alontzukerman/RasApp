@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Pakal.init({
     pakalName:{
-      type: DataTypes.STRING,
+      DataTypes:STRING,
       field:'pakal_name'
     },
   }, {

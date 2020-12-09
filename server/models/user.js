@@ -45,10 +45,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       field: 'role_id'
     },
-    rankId: {
-      type: DataTypes.INTEGER,
-      field: 'rank_id'
-    },
     draftDate: {
       type: DataTypes.DATEONLY,
       field: 'draft_date'

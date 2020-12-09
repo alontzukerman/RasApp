@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
   CertificationPerSoldier.init(
     {
       certificationId: {
-        type: DataTypes.INTEGER,
+        DataTypes: INTEGER,
         field: "certification_id",
       },
       soldierId: {
-        type: DataTypes.INTEGER,
+        DataTypes: INTEGER,
         field: "soldier_id",
       },
     },

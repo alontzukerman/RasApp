@@ -13,10 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  Rank.init(
-  {
+  Rank.init({
     rankName:{
-      type: DataTypes.STRING,
+      DataTypes:STRING,
       field:'rank_name'
     }
   }, {

@@ -1,4 +1,4 @@
-get http://localhost:8080/api/soldiers
+get http://localhost:8080/api/class/2
 
 
 Content-Type: application/json
