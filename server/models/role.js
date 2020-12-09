@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  Rank.init({
+  Role.init({
     rankName:{
-      DataTypes:STRING,
+      type: DataTypes.STRING,
       field:'role_name'
     },
     roleShort:{
-      DataTypes:STRING,
+      type: DataTypes.STRING,
       field:'role_short'
     }
   }, {

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Certification.init({
     certificationName:{
-      DataTypes:STRING,
+      type: DataTypes.STRING,
       field:'certification_name'
     },
   }, {
