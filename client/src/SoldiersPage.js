@@ -16,7 +16,7 @@ function SoldiersPage() {
     //     setSoldiers(data);
     // }
     const getPlatoonSoldiers = async (platoonId) => {
-        const { data } = await axios.get(`/api/soldiers/platoon/${platoonId}`);
+        const { data } = await axios.get(`/api/platoons/soldiers/${platoonId}`);
         setSoldiers(data);
     }
     useEffect(()=>{

@@ -23,9 +23,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       field:'platoon_name'
     },
+    createdAt: {
+      field: "created_at",
+      type: DataTypes.DATE,
+      defaultValue: Date.now()
+    },
+    updatedAt: {
+      field: "updated_at",
+      type: DataTypes.DATE,
+      defaultValue: Date.now()
+    }
   }, {
     sequelize,
-    modelName: 'platoon',
+    modelName: 'Platoon',
   });
   return Platoon;
 };

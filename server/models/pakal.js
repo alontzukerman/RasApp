@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     pakalName:{
       type: DataTypes.STRING,
       field:'pakal_name'
-    },
+    }
   }, {
     sequelize,
     modelName: 'Pakal',

@@ -11,18 +11,6 @@ module.exports = {
       examName: {
         type: Sequelize.STRING,
         field:'exam_name'
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field:'created_at',
-        defaultValue: new Date
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field:'updated_at',
-        defaultValue: new Date
       }
     });
   },

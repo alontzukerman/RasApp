@@ -26,11 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     className:{
       type: DataTypes.STRING,
       field:'class_name'
-    },
-  
+    }  
   }, {
     sequelize,
-    modelName: 'class',
+    modelName: 'Class',
   });
   return Class;
 };

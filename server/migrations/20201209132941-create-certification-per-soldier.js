@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.DATE,
         field: "updated_at",
         defaultValue: new Date(),
-      },
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
