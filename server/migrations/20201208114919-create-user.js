@@ -1,80 +1,79 @@
-"use strict";
+'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Users", {
+    await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       firstName: {
         type: Sequelize.STRING,
-        field: "first_name",
+        field: 'first_name'
       },
       lastName: {
         type: Sequelize.STRING,
-        field: "last_name",
+        field: 'last_name'
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       plugaId: {
         type: Sequelize.INTEGER,
-        field: "pluga_id",
+        field: 'pluga_id'
       },
       platoonId: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        field: "platoon_id",
+        field: 'platoon_id'
       },
       classId: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        field: "class_id",
+        field: 'class_id'
       },
       phoneNumber: {
         type: Sequelize.STRING,
-        field: "phone_number",
+        field: 'phone_number'
       },
       birthday: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.DATEONLY
       },
       roleId: {
         type: Sequelize.INTEGER,
-        field: "role_id",
+        field: 'role_id'
       },
-      rankId: { type: Sequelize.INTEGER, field: "rank_id" },
       draftDate: {
         type: Sequelize.DATEONLY,
-        field: "draft_date",
+        field: 'draft_date'
       },
       releaseDate: {
         type: Sequelize.DATEONLY,
-        field: "release_date",
+        field: 'release_date'
       },
       address: {
         type: Sequelize.STRING,
-        field: "address",
+        field: 'address'
       },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,
-        field: "created_at",
-        defaultValue: new Date(),
+        field: 'created_at',
+        defaultValue: new Date
       },
       updatedAt: {
         allowNull: true,
         type: Sequelize.DATE,
-        field: "updated_at",
-        defaultValue: new Date(),
-      },
+        field: 'updated_at',
+        defaultValue: new Date
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Users");
-  },
+    await queryInterface.dropTable('Users');
+  }
 };

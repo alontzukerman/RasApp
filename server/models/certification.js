@@ -10,17 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.Soldier, {
-        foreignKey: "soldierId",
-      });
-      this.belongsTo(models.Certification, {
-        foreignKey: "certificationId",
-      });
+      // this.hasMany(models.Songs,
+      //   {
+      //     foreignKey:"albumId",
+      //   });
+      // this.belongsTo(models.Artists,
+      //   {
+      //     foreignKey:"artistId",
+      //   }); 
+      //    }    
         }
   };
   Certification.init({
     certificationName:{
-      type: DataTypes.STRING,
+      DataTypes:STRING,
       field:'certification_name'
     },
   }, {

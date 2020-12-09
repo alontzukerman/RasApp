@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Exam.init({
     examName:{
-      type: DataTypes.STRING,
+      DataTypes:STRING,
       field:'exam_name'
     },
   }, {
