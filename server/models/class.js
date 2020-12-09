@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models.Soldier, {
+        foreignKey: "id",
+      });
     }
   };
   Class.init({
@@ -26,7 +28,17 @@ module.exports = (sequelize, DataTypes) => {
     className:{
       type: DataTypes.STRING,
       field:'class_name'
-    }  
+    } ,
+    createdAt: {
+      field: "created_at",
+      type: DataTypes.DATE,
+      defaultValue: Date.now()
+    },
+    updatedAt: {
+      field: "updated_at",
+      type: DataTypes.DATE,
+      defaultValue: Date.now()
+    } 
   }, {
     sequelize,
     modelName: 'Class',

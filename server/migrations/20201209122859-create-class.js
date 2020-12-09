@@ -20,6 +20,18 @@ module.exports = {
       className: {
         type: Sequelize.STRING,
         field:'class_name'
+      },
+      createdAt: {
+        allowNull: true,
+        type: Sequelize.DATE,
+        field: 'created_at',
+        defaultValue: new Date
+      },
+      updatedAt: {
+        allowNull: true,
+        type: Sequelize.DATE,
+        field: 'updated_at',
+        defaultValue: new Date
       }
     });
   },

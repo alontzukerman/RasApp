@@ -6,7 +6,7 @@ module.exports = {
       "Users",
       [
         {
-          id: 8405282,
+          id: 1,
           first_name: "אלון",
           last_name: "צוקרמן",
           email: "alontzukerman@gmail.com",
@@ -23,7 +23,7 @@ module.exports = {
           address: "מרדכי מקלף 8, מודיעין",
         },
         {
-          id: 8401345,
+          id: 2,
           first_name: "יאיר",
           last_name: "צבר",
           email: "yairish13@gmail.com",
