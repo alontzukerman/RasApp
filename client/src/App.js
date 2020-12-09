@@ -3,7 +3,8 @@ import {BrowserRouter as Router , Switch , Route} from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import HomePage from './HomePage';
-import InformationPage from './InformationPage';
+import SoldiersPage from './SoldiersPage';
+import OneSoldierPage from './OneSoldierPage';
 function App() {
   return (
     <Router>
@@ -13,8 +14,11 @@ function App() {
           <Route path="/" exact>
             <HomePage />
           </Route>
-          <Route path="/information" exact>
-            <InformationPage />
+          <Route path="/soldiers" exact>
+            <SoldiersPage />
+          </Route>
+          <Route path="/soldier/:soldierId" exact>
+            <OneSoldierPage />
           </Route>
         </Switch>
       </AppContainer>
@@ -23,6 +27,9 @@ function App() {
 }
 
 const AppContainer = styled.div`
-  background-color: #333 ;
+  height: 100vh ;
+  width: 100vw ;
+  overflow-y: scroll ;
+  background-color: #888 ;
 `;
 export default App;

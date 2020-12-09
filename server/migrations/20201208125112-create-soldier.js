@@ -46,9 +46,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         field: 'rank_id'
       },
-      roleId: {
+      pakalId: {
+        allowNull: true,
         type: Sequelize.INTEGER,
-        field: 'role_id'
+        field: 'pakal_id'
       },
       draftDate: {
         type: Sequelize.DATEONLY,
