@@ -21,7 +21,7 @@ module.exports = {
         field: 'ptor_id'
       },
       startDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         field: 'start_date'
       },
       givenDays: {
