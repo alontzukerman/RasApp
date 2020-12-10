@@ -11,18 +11,6 @@ module.exports = {
       rankName: {
         type: Sequelize.STRING,
         field:'rank_name'
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field:'created_at',
-        defaultValue: new Date
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field:'updated_at',
-        defaultValue: new Date
       }
     });
   },
