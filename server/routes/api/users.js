@@ -1,12 +1,21 @@
 const express = require('express');
 const router = express.Router() ;
 
-const { User } = require('../../models');
+const { User,Role } = require('../../models');
 
-router.get('/', async (req,res)=> {
-    const allUsers = await User.findAll();
-    res.json(allUsers);
-})
+// router.get('/', async (req,res)=> {
+//     const allUsers = await User.findAll();
+//     res.json(allUsers);
+// })
+
+router.get("/", async (req, res) => {
+try {  
+  const allUsers = await User.findAll({
+    include:[Role]
+  });
+  res.json(allUsers);
+} catch (e) { res.json({ error: e.message });}
+});
 
 router.get("/:userId", async (req, res) => {
     try {

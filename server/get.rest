@@ -1,2 +1,2 @@
-get http://localhost:8080/api/platoons/soldiers/3
+get http://localhost:8080/api/ptors/soldier/1
 Content-Type: application/json

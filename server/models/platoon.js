@@ -11,7 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models.User,{
+        foreignKey:'platoonId'
+      })
+      this.hasMany(models.Soldier,{
+        foreignKey:'platoonId'
+      })
     }
   };
   Platoon.init({

@@ -11,9 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.CertificationPerSoldier, {
-        foreignKey: "soldierId",
-      });
-      this.belongsTo(models.Certification, {
         foreignKey: "certificationId",
       });
         }
@@ -26,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Certification',
+    timestamps:false,
   });
   return Certification;
 };
