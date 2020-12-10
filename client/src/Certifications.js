@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
 import styled from 'styled-components';
+import CertificationRow from './CertificationRow';
 
 const customStyles = {
     content : {
@@ -26,9 +27,9 @@ function Certifications({soldierId}) {
     function openModal() {
         setIsOpen(true);
     }
-    function closeModal(){
-          createCertification(selectCurrent.current.value)
-          setIsOpen(false);
+    function closeModal(bool){
+        bool && createCertification(selectCurrent.current.value)
+        setIsOpen(false);
     }
     const getCertificationsBySoldierId = async () => {
         const { data } = await axios.get(`/api/certifications/soldier/${soldierId}`);
@@ -58,7 +59,7 @@ function Certifications({soldierId}) {
             <Button onClick={openModal}>+</Button>
             {
             myCertifications.map((certification,i)=>{
-                return <div>{certification.Certification.certificationName}</div>
+                return <CertificationRow certification={certification} />
             })
             }
             <Modal
@@ -69,7 +70,8 @@ function Certifications({soldierId}) {
             contentLabel="CreateCertification"
             >
                 <h2>Create New Certification</h2>
-                <button onClick={()=>closeModal()}>SUBMIT</button>
+                <button onClick={()=>closeModal(false)}>CLOSE</button>
+                <button onClick={()=>closeModal(true)}>SUBMIT</button>
                 <form>
                     <select ref={selectCurrent}>
                         {

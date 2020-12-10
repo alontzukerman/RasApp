@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
 import styled from 'styled-components';
+import ExamRow from './ExamRow';
 
 const customStyles = {
     content : {
@@ -27,11 +28,9 @@ function Exams({soldierId}) {
     function openModal() {
         setIsOpen(true);
     }
-    function closeModal(){
-        console.log('select',selectCurrent.current)
-        console.log('mark',inputMark.current)
-          createExams(selectCurrent.current.value,inputMark.current.value)
-          setIsOpen(false);
+    function closeModal(bool){
+        bool && createExams(selectCurrent.current.value,inputMark.current.value)
+        setIsOpen(false);
     }
     const getExamsBySoldierId = async () => {
         const { data } = await axios.get(`/api/exams/soldier/${soldierId}`);
@@ -60,7 +59,7 @@ function Exams({soldierId}) {
             <Button onClick={openModal}>+</Button>
             {
             myExams.map((exam,i)=>{
-                return <div>{exam.Exam.examName}</div>
+                return <ExamRow exam={exam} />
             })
             }
             <Modal
@@ -71,7 +70,8 @@ function Exams({soldierId}) {
             contentLabel="CreateExam"
             >
                 <h2>Create New Exam</h2>
-                <button onClick={closeModal}>SUBMIT</button>
+                <button onClick={()=>closeModal(false)}>CLOSE</button>
+                <button onClick={()=>closeModal(true)}>SUBMIT</button>
                 <form>
                     <select ref={selectCurrent}>
                         {

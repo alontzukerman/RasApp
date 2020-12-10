@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import styled from "styled-components";
+import PtorRow from './PtorRow';
 
 const customStyles = {
   content: {
@@ -27,9 +28,9 @@ function Ptors({ soldierId }) {
   function openModal() {
     setIsOpen(true);
   }
-  function closeModal() {
+  function closeModal(bool) {
     //   console.log()
-    createPtor(selectCurrent.current.value,inputDate.current.value,inputDays.current.value);
+    bool && createPtor(selectCurrent.current.value,inputDate.current.value,inputDays.current.value);
     setIsOpen(false);
   }
   const getPtorsBySoldierId = async () => {
@@ -60,7 +61,7 @@ function Ptors({ soldierId }) {
       <Title>פטורים</Title>
       <Button onClick={openModal}>+</Button>
       {myPtors.map((ptor, i) => {
-        return <div>{ptor.Ptor.ptorName}</div>;
+        return <PtorRow ptor={ptor} />
       })}
       <Modal
         isOpen={modalIsOpen}
@@ -70,7 +71,8 @@ function Ptors({ soldierId }) {
         contentLabel="CreatePtor"
       >
         <h2>Create New Ptor</h2>
-        <button onClick={closeModal}>SUBMIT</button>
+        <button onClick={()=>closeModal(false)}>CLOSE</button>
+        <button onClick={()=>closeModal(true)}>SUBMIT</button>
         <form>
           <select ref={selectCurrent}>
             {ptors.map((ptor, i) => {
