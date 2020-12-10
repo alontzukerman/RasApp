@@ -1,7 +1,10 @@
-import React , { useEffect, useState } from 'react';
+import React , { useEffect, useState , useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import Certifications from './Certifications';
+import Exams from './Exams';
+import Ptors from './Ptors';
 
 function OneSoldierPage() {
 
@@ -10,12 +13,10 @@ function OneSoldierPage() {
 
     const getSoldierById = async () => {
         const { data } = await axios.get(`/api/soldiers/${soldierId}`);
-        console.log(data);
-        setSoldier(data[0]);
+        setSoldier(data);
     }
-
     useEffect(()=>{
-        getSoldierById() ;
+        getSoldierById();
     },[])
     return (
         <SoldierContainer>
@@ -27,15 +28,9 @@ function OneSoldierPage() {
                 <Tab>{soldier.birthday}</Tab>
                 <Tab>{soldier.address}</Tab>
             </Tabs>
-            <ParaCon>
-                <Title>הסמכות</Title>
-            </ParaCon>
-            <ParaCon>
-                <Title>בחנים</Title>
-            </ParaCon>
-            <ParaCon>
-                <Title>פטורים</Title>
-            </ParaCon>
+            <Certifications soldierId={soldierId} />
+            <Exams soldierId={soldierId} />
+            <Ptors soldierId={soldierId} />
         </SoldierContainer>
     )
 }
@@ -62,20 +57,5 @@ const Tab = styled.div`
     padding: 0.5em ;
     
 `;
-const ParaCon = styled.div`
-    min-height: 15vh ;
-    width: 90vw ;
-    margin-top: 2vh ;
-    border: 1px solid white ;
-`;
-const Title = styled.div`
-    width: 100% ;
-    height: 3vh ;
-    background-color: #444 ;
-    padding: 0.5em 0 ;
-    float: right ;
-    display: flex ;
-    justify-content: flex-end ;
-    align-items: center ;
-`;
+
 export default OneSoldierPage
