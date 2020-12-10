@@ -39,7 +39,7 @@ router.patch("/:ptorId", async (req, res) => {
 });
 
 router.delete("/:ptorId", async (req, res) => {
-  const ptor = await Soldier.findByPk(req.params.ptorId);
+  const ptor = await PtorPerSoldier.findByPk(req.params.ptorId);
   await ptor.destroy();
   res.json({ deleted: true });
 });

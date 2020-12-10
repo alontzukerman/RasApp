@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router() ;
 
-const { Exam,exam,Role,ExamPerSoldier } = require('../../models');
+const { Exam,ExamPerSoldier } = require('../../models');
 
 
 router.get("/", async (req, res) => {
@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:examId", async (req, res) => {
-  const exam = await Soldier.findByPk(req.params.examId);
+  const exam = await ExamPerSoldier.findByPk(req.params.examId);
   await exam.destroy();
   res.json({ deleted: true });
 });

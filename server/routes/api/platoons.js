@@ -30,7 +30,7 @@ router.get("/soldiers/:platoonId", async (req, res) => {
   });
   
   router.delete("/:platoonId", async (req, res) => {
-    const platoon = await Soldier.findByPk(req.params.platoonId);
+    const platoon = await Platoon.findByPk(req.params.platoonId);
     await platoon.destroy();
     res.json({ deleted: true });
   });

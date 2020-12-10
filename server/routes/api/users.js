@@ -37,7 +37,7 @@ router.get("/:userId", async (req, res) => {
   });
   
   router.delete("/:userId", async (req, res) => {
-    const user = await Soldier.findByPk(req.params.userId);
+    const user = await User.findByPk(req.params.userId);
     await user.destroy();
     res.json({ deleted: true });
   });

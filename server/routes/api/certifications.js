@@ -26,5 +26,17 @@ router.get("/", async (req, res) => {
     res.json(newCertification);
  });
 
+ router.patch("/:certificationId", async (req, res) => {
+  const certification = await User.findByPk(req.params.certificationId);
+  await certification.update(req.body);
+  res.json(certification);
+});
+
+router.delete("/:certificationId", async (req, res) => {
+  const certification = await certificationPerSoldier.findByPk(req.params.certificationId);
+  await certification.destroy();
+  res.json({ deleted: true });
+});
+
 
 module.exports = router;

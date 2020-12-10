@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
   res.json(newClass);
 });
 
-router.patch("/:soldierId", async (req, res) => {
+router.patch("/:", async (req, res) => {
   const soldier = await Soldier.findByPk(req.params.soldierId);
   await soldier.update(req.body);
   res.json(soldier);
