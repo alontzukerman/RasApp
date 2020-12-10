@@ -15,18 +15,6 @@ module.exports = {
       roleShort:{
         type: Sequelize.STRING,
         field:'role_short'
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field:'created_at',
-        defaultValue: new Date
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field:'updated_at',
-        defaultValue: new Date
       }
     });
   },

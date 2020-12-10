@@ -5,14 +5,16 @@ const router = express.Router() ;
 const { Soldier,User } = require('../../models');
 
 router.get('/', async (req,res)=> {
+  try{
     const allSoldiers = await Soldier.findAll();
     res.json(allSoldiers);
+  } catch(e){res.json({ error: e.message }); }
 })
 
-router.get("/:soldierId", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
-        const classSoldiers = await Soldier.findAll({ where:{id: req.params.soldierId} });
-        res.json(classSoldiers);
+        const specificSoldier = await Soldier.findByPk(req.params.id);
+        res.json(specificSoldier);
     } catch (e) { res.json({ error: e.message }); }
  });
   
