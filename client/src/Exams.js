@@ -28,6 +28,8 @@ function Exams({soldierId}) {
         setIsOpen(true);
     }
     function closeModal(){
+        console.log('select',selectCurrent.current)
+        console.log('mark',inputMark.current)
           createExams(selectCurrent.current.value,inputMark.current.value)
           setIsOpen(false);
     }
@@ -58,7 +60,7 @@ function Exams({soldierId}) {
             <Button onClick={openModal}>+</Button>
             {
             myExams.map((exam,i)=>{
-                return <div>{exam.examName}</div>
+                return <div>{exam.Exam.examName}</div>
             })
             }
             <Modal
@@ -71,10 +73,10 @@ function Exams({soldierId}) {
                 <h2>Create New Exam</h2>
                 <button onClick={closeModal}>SUBMIT</button>
                 <form>
-                    <select>
+                    <select ref={selectCurrent}>
                         {
                             exams.map((exam,i)=>{
-                                return <option value={`${exam.examName}`}>
+                                return <option value={`${exam.id}`}>
                                     {exam.examName}
                                 </option>
                             })

@@ -28,6 +28,7 @@ function Ptors({ soldierId }) {
     setIsOpen(true);
   }
   function closeModal() {
+    //   console.log()
     createPtor(selectCurrent.current.value,inputDate.current.value,inputDays.current.value);
     setIsOpen(false);
   }
@@ -59,7 +60,7 @@ function Ptors({ soldierId }) {
       <Title>פטורים</Title>
       <Button onClick={openModal}>+</Button>
       {myPtors.map((ptor, i) => {
-        return <div>{ptor.ptorName}</div>;
+        return <div>{ptor.Ptor.ptorName}</div>;
       })}
       <Modal
         isOpen={modalIsOpen}
@@ -71,10 +72,10 @@ function Ptors({ soldierId }) {
         <h2>Create New Ptor</h2>
         <button onClick={closeModal}>SUBMIT</button>
         <form>
-          <select>
+          <select ref={selectCurrent}>
             {ptors.map((ptor, i) => {
               return (
-                <option value={`${ptor.ptorName}`}>{ptor.ptorName}</option>
+                <option value={`${ptor.id}`}>{ptor.ptorName}</option>
               );
             })}
           </select>

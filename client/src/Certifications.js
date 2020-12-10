@@ -31,7 +31,8 @@ function Certifications({soldierId}) {
           setIsOpen(false);
     }
     const getCertificationsBySoldierId = async () => {
-        const { data } = await axios.get(`/api/certifitions/soldier/${soldierId}`);
+        const { data } = await axios.get(`/api/certifications/soldier/${soldierId}`);
+        console.log(data);
         setMyCertifications(data);
     }
     const createCertification = async (certificationId) => {
@@ -57,7 +58,7 @@ function Certifications({soldierId}) {
             <Button onClick={openModal}>+</Button>
             {
             myCertifications.map((certification,i)=>{
-                return <div>{certification.certificationName}</div>
+                return <div>{certification.Certification.certificationName}</div>
             })
             }
             <Modal
@@ -73,7 +74,7 @@ function Certifications({soldierId}) {
                     <select ref={selectCurrent}>
                         {
                             certifications.map((certification,i)=>{
-                                return <option value={`${certification.certificationName}`}>
+                                return <option value={`${certification.id}`}>
                                     {certification.certificationName}
                                 </option>
                             })
