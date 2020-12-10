@@ -14,9 +14,25 @@ router.get("/soldiers/:platoonId", async (req, res) => {
         const platoonSoldiers = await Soldier.findAll({ 
             where: { platoonId: req.params.platoonId } 
         });
-        console.log(platoonSoldiers);
         res.json(platoonSoldiers);
     } catch (e) { res.json({ error: e.message }); }
+  });
+
+  router.post("/", async (req, res) => {
+    const newPlatoon = await Platoon.create(req.body);
+    res.json(newPlatoon);
+  });
+
+  router.patch("/:platoonId", async (req, res) => {
+    const platoon = await platoon.findByPk(req.params.platoonId);
+    await platoon.update(req.body);
+    res.json(platoon);
+  });
+  
+  router.delete("/:platoonId", async (req, res) => {
+    const platoon = await Soldier.findByPk(req.params.platoonId);
+    await platoon.destroy();
+    res.json({ deleted: true });
   });
 
   module.exports = router ;

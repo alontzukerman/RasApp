@@ -32,4 +32,16 @@ router.post("/", async (req, res) => {
   res.json(newPtor);
 });
 
+router.patch("/:ptorId", async (req, res) => {
+  const ptor = await User.findByPk(req.params.ptorId);
+  await ptor.update(req.body);
+  res.json(ptor);
+});
+
+router.delete("/:ptorId", async (req, res) => {
+  const ptor = await Soldier.findByPk(req.params.ptorId);
+  await ptor.destroy();
+  res.json({ deleted: true });
+});
+
 module.exports = router;
