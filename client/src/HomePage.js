@@ -6,7 +6,7 @@ function HomePage() {
 
     return (
         <HomePageContainer>
-            <PageButton>Notes</PageButton>
+            <PageButton onClick={()=>history.push('/notes')}>Notes</PageButton>
             <PageButton>Calender</PageButton>
             <PageButton onClick={()=>history.push('/soldiers')}>Soldiers</PageButton>
             <PageButton>Stuff</PageButton>

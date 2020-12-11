@@ -3,8 +3,9 @@ import {BrowserRouter as Router , Switch , Route} from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import HomePage from './HomePage';
-import SoldiersPage from './SoldiersPage';
-import OneSoldierPage from './OneSoldierPage';
+import SoldiersPage from './components/SoldiersPage';
+import OneSoldierPage from './components/OneSoldierPage';
+import Notes from './components/Notes';
 function App() {
   return (
     <Router>
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route path="/soldier/:soldierId" exact>
             <OneSoldierPage />
+          </Route>
+          <Route path="/notes" exact>
+            <Notes />
           </Route>
         </Switch>
       </AppContainer>

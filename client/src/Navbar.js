@@ -3,13 +3,21 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+    const style = {
+        color: "white",
+        textDecoration: "none",
+      };
+    
     return (
         <Nav>
-            <Link to="/">
+            <Link style={style} to="/">
                 Home
             </Link>
-            <Link to="/soldiers">
+            <Link style={style} to="/soldiers">
                 Soldiers
+            </Link>
+            <Link style={style} to="/notes">
+                Notes
             </Link>
         </Nav>
     )

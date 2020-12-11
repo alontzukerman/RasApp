@@ -1,10 +1,14 @@
-import React from 'react'
+import React,{ useEffect, useState, useRef} from 'react'
+import axios from 'axios'
+import Modal from 'react-modal';
+import styled from 'styled-components';
+import NoteRow from './NoteRow';
 
-function Notes() {
+function Notes({userId}) {
     const selectCurrent = useRef(null);
     const inputMark = useRef(null);
     const [notes,setNotes] = useState([]);
-    const [myExams,setMyExams] = useState([]);
+    const [myNotes,setMyNotes] = useState([]);
     const [modalIsOpen,setIsOpen] = useState(false);
 
     // function openModal() {
@@ -24,21 +28,40 @@ function Notes() {
             title: title,
             noteContent: noteContent,
     }
-        const response = await axios.post(`/api/exams`,newExam);
+        const response = await axios.post(`/api/notes`,newNote);
         console.log(response);
     }
-    const getInfoAbout = async () => {
-        const { data } = await axios.get(`/api/exams`);
-        setExams(data);
-    }
     useEffect(()=>{
-        getExamsBySoldierId();
+        getNotesByUserId();
     },[])
     return (
         <div>
+            <SoldiersContainer>
+            {/* <ButtonsCon>
+            {
+                myNotes && 
+                myNotes .map((note,i)=>{
+                    return <button onClick={()=>getPlatoonSoldiers(platoon.id)}>{platoon.platoonName}</button>
+                })
+            }
+            </ButtonsCon> */}
+            {
+                myNotes.map((note,i)=>{
+                    return <NoteRow note={note} key={i} /> ;
+                })
+            }
+        </SoldiersContainer>
             
         </div>
     )
 }
+
+const SoldiersContainer = styled.div`
+    display: flex ;
+    flex-direction: column ;
+    align-items: center ;
+`;
+
+const ButtonsCon = styled.div``;
 
 export default Notes
