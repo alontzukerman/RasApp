@@ -6,6 +6,7 @@ import HomePage from './HomePage';
 import SoldiersPage from './components/SoldiersPage';
 import OneSoldierPage from './components/OneSoldierPage';
 import Notes from './components/Notes';
+import NohehutPage from './components/NohehutPage';
 function App() {
   return (
     <Router>
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/notes" exact>
             <Notes />
+          </Route>
+          <Route path="/nohehut" exact>
+            <NohehutPage />
           </Route>
         </Switch>
       </AppContainer>
