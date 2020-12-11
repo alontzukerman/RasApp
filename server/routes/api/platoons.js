@@ -24,7 +24,7 @@ router.get("/soldiers/:platoonId", async (req, res) => {
   });
 
   router.patch("/:platoonId", async (req, res) => {
-    const platoon = await platoon.findByPk(req.params.platoonId);
+    const platoon = await Platoon.findByPk(req.params.platoonId);
     await platoon.update(req.body);
     res.json(platoon);
   });

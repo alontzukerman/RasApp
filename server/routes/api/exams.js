@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
  });
 
  router.patch("/:examId", async (req, res) => {
-  const exam = await exam.findByPk(req.params.examId);
+  const exam = await Exam.findByPk(req.params.examId);
   await exam.update(req.body);
   res.json(exam);
 });

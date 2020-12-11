@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 });
 
 router.delete("/:certificationId", async (req, res) => {
-  const certification = await certificationPerSoldier.findByPk(req.params.certificationId);
+  const certification = await CertificationPerSoldier.findByPk(req.params.certificationId);
   await certification.destroy();
   res.json({ deleted: true });
 });

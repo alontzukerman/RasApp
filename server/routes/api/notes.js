@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
  });
 
  router.patch("/:noteId", async (req, res) => {
-  const note = await note.findByPk(req.params.noteId);
+  const note = await Note.findByPk(req.params.noteId);
   await note.update(req.body);
   res.json(note);
 });
