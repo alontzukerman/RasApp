@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import HomeIcon from "@material-ui/icons/Home";
+import { Link,NavLink } from 'react-router-dom';
+import './NavBar.css'
 
 function Navbar() {
     const style = {
@@ -9,24 +11,31 @@ function Navbar() {
       };
     
     return (
-        <Nav>
-            <Link style={style} to="/">
-                Home
-            </Link>
-            <Link style={style} to="/soldiers">
-                Soldiers
-            </Link>
-            <Link style={style} to="/notes">
-                Notes
-            </Link>
-        </Nav>
+        <nav>
+        <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/">
+        <div className="homenav">
+          <span>Home</span>
+          <HomeIcon/>
+        </div>
+      </NavLink>
+      <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/soldiers">
+        <div className="homenav">
+          Soldiers
+        </div>
+      </NavLink>
+      <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/notes">
+        <div className="homenav">
+          Notes
+        </div>
+      </NavLink>
+      </nav>
     )
 }
 
 
-const Nav = styled.div`
-    background-color: #333 ;
-    position: sticky ;
-    top: 0 ;
-`;
+// const Nav = styled.div`
+//     background-color: #333 ;
+//     position: sticky ;
+//     top: 0 ;
+// `;
 export default Navbar
