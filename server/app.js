@@ -12,6 +12,7 @@ app.use('/api/exams', require('./routes/api/exams'));
 app.use('/api/ptors', require('./routes/api/ptors'));
 app.use('/api/classes', require('./routes/api/classes'));
 app.use('/api/notes', require('./routes/api/notes'));
+app.use('/api/missings', require('./routes/api/missings'));
 
 
 

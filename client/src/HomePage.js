@@ -9,7 +9,7 @@ function HomePage() {
             <PageButton onClick={()=>history.push('/notes')}>Notes</PageButton>
             <PageButton>Calender</PageButton>
             <PageButton onClick={()=>history.push('/soldiers')}>Soldiers</PageButton>
-            <PageButton>Stuff</PageButton>
+            <PageButton onClick={()=>history.push('/nohehut')}>Nohehut</PageButton>
         </HomePageContainer>
 
     )
