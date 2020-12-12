@@ -28,6 +28,11 @@ function Navbar() {
           Notes
         </div>
       </NavLink>
+      <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/nohehut">
+        <div className="homenav">
+          Nohehut
+        </div>
+      </NavLink>
       </nav>
     )
 }

@@ -15,9 +15,17 @@ function NohehutPage() {
 
     const [soldiers,setSoldiers] = useState([]);
     const [missings,setMissings] = useState([]);
+    const [filledSoldiers,setFilledSoldiers] = useState([])
     const [bool,setBool] = useState(false);
     const [nohehut,setNohehut] = useState(new Map());
     console.log(nohehut);
+
+    const isFilled = async () => {
+        const { data } = await axios.get(`/api/missings/daily/${currentDate}`);
+        console.log(data);
+        setFilledSoldiers(data);
+
+    }
     const getSoldiers = async () => {
         const { data } = await axios.get(`/api/soldiers`);
         setSoldiers(data);
@@ -29,6 +37,8 @@ function NohehutPage() {
     const sendNohehut = async () => {
         let nohehutArray = Array.from(nohehut).map(([name,value])=>(value));
         console.log(nohehutArray);
+        const response = await axios.post(`/api/missings/daily`,nohehutArray);
+        console.log(response);
     }
     const handleChange = (soldierId,missingId) => {
         nohehut.set(soldierId,{soldierId: soldierId,missingId: missingId, date:currentDate})
@@ -45,11 +55,12 @@ function NohehutPage() {
         }
     }
     useEffect(()=>{
+        isFilled();
         getSoldiers();
         getMissings();
     },[]);
     return (
-        <div>
+        <NohPage>
             {
                 soldiers && missings &&
                 soldiers.map((soldier,i)=>{
@@ -57,16 +68,29 @@ function NohehutPage() {
                         key={i} 
                         soldier={soldier} 
                         missings={missings}
+                        isFilled={filledSoldiers.filter((row)=>row.soldierId === soldier.id)}
                         handleChange={handleChange}
                         />
                 })
             }
-            <button onClick={()=>handleSubmit()}>submit</button>
+            <Button onClick={()=>handleSubmit()}>submit</Button>
             {
                 bool && <div>{'חייב למלא את כל החיילים'}</div>
             }
-        </div>
+        </NohPage>
     )
 }
 
+const NohPage = styled.div`
+
+    width: 100% ;
+    display: flex ;
+    flex-direction: column ;
+    justify-content: center ;
+    align-items: center ;
+
+`;
+const Button = styled.button`
+
+`;
 export default NohehutPage

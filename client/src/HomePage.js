@@ -16,6 +16,8 @@ function HomePage() {
 }
 
 const HomePageContainer = styled.div`
+    height: 100%;
+    width: 100% ;
     display: grid ;
     grid-template-columns: 1fr 1fr ;
     grid-gap: 5vh ;
