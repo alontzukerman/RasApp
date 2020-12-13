@@ -32,6 +32,12 @@ router.post("/daily", async (req, res) => {
     res.json({ error: e.message });
   }
 });
-
+router.patch("/daily", async (req, res) => {
+  const missing = await MissingPerSoldier.findOne({
+    where: {soldierId: req.body.soldierId, date: req.body.date}
+  })
+  await missing.update(req.body);
+  res.json(missing);
+});
 
 module.exports = router;

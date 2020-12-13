@@ -12,19 +12,16 @@ const currentDate =
     (new Date().getDate());
     
 function NohehutPage() {
-
     const [soldiers,setSoldiers] = useState([]);
     const [missings,setMissings] = useState([]);
     const [filledSoldiers,setFilledSoldiers] = useState([])
     const [bool,setBool] = useState(false);
     const [nohehut,setNohehut] = useState(new Map());
-    console.log(nohehut);
 
     const isFilled = async () => {
         const { data } = await axios.get(`/api/missings/daily/${currentDate}`);
-        console.log(data);
+        // console.log(data);
         setFilledSoldiers(data);
-
     }
     const getSoldiers = async () => {
         const { data } = await axios.get(`/api/soldiers`);
@@ -48,10 +45,8 @@ function NohehutPage() {
             setBool(false);
             setNohehut(nohehut);
             sendNohehut();
-            console.log("true",nohehut)
-        }else {    
+        } else {    
             setBool(true);        
-            console.log("false",nohehut)
         }
     }
     useEffect(()=>{
@@ -73,7 +68,7 @@ function NohehutPage() {
                         />
                 })
             }
-            <Button onClick={()=>handleSubmit()}>submit</Button>
+            <Button onClick={()=>handleSubmit()}>שלח</Button>
             {
                 bool && <div>{'חייב למלא את כל החיילים'}</div>
             }

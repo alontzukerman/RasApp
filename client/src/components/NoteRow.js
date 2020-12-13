@@ -20,9 +20,9 @@ const NotRow = styled.div`
     height: 10vh ;
     width: 90vw ;
     background-color: #fff ;
-    border: 2px Noteid black ;
+    border: 2px solid black ;
     display: flex ;
-    flex-direction: row-reverse ;
+    flex-direction: row ;
     justify-content: space-between ;
     align-items: center ;
     padding: 0.5em ;

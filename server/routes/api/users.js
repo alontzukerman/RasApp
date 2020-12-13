@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router() ;
 
-const { User,Role } = require('../../models');
+const { User,Role,Rank,Class,Platoon } = require('../../models');
 
 // router.get('/', async (req,res)=> {
 //     const allUsers = await User.findAll();
@@ -19,7 +19,12 @@ try {
 
 router.get("/:userId", async (req, res) => {
     try {
-        const user = await User.findByPk(req.params.userId);
+        // const user = await User.findByPk( req.params.userId);
+        const user = await User.findOne({
+          where: {id: req.params.userId},
+          attributes: ['id','firstName','lastName','address','phoneNumber','email'],
+          include: [Role,Rank,Class,Platoon]
+        })
         res.json(user);
     } catch (e) { res.json({ error: e.message }); }
  });
