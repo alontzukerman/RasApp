@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import SoldierRow from './SoldierRow';
+import SoldierRow from '../components/SoldierRow';
 function SoldiersPage() {
 
     const [platoons,setPlatoons] = useState() ;

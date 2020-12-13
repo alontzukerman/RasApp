@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import NohehutRow from './NohehutRow';
+import NohehutRow from '../components/NohehutRow';
 
 
 const currentDate = 
