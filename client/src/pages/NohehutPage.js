@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
-import NohehutRow from './NohehutRow';
+import NohehutRow from '../components/NohehutRow';
 
 
 const currentDate = 
@@ -12,12 +12,17 @@ const currentDate =
     (new Date().getDate());
     
 function NohehutPage() {
-
     const [soldiers,setSoldiers] = useState([]);
     const [missings,setMissings] = useState([]);
+    const [filledSoldiers,setFilledSoldiers] = useState([])
     const [bool,setBool] = useState(false);
     const [nohehut,setNohehut] = useState(new Map());
-    console.log(nohehut);
+
+    const isFilled = async () => {
+        const { data } = await axios.get(`/api/missings/daily/${currentDate}`);
+        // console.log(data);
+        setFilledSoldiers(data);
+    }
     const getSoldiers = async () => {
         const { data } = await axios.get(`/api/soldiers`);
         setSoldiers(data);
@@ -29,6 +34,8 @@ function NohehutPage() {
     const sendNohehut = async () => {
         let nohehutArray = Array.from(nohehut).map(([name,value])=>(value));
         console.log(nohehutArray);
+        const response = await axios.post(`/api/missings/daily`,nohehutArray);
+        console.log(response);
     }
     const handleChange = (soldierId,missingId) => {
         nohehut.set(soldierId,{soldierId: soldierId,missingId: missingId, date:currentDate})
@@ -38,18 +45,17 @@ function NohehutPage() {
             setBool(false);
             setNohehut(nohehut);
             sendNohehut();
-            console.log("true",nohehut)
-        }else {    
+        } else {    
             setBool(true);        
-            console.log("false",nohehut)
         }
     }
     useEffect(()=>{
+        isFilled();
         getSoldiers();
         getMissings();
     },[]);
     return (
-        <div>
+        <NohPage>
             {
                 soldiers && missings &&
                 soldiers.map((soldier,i)=>{
@@ -57,16 +63,29 @@ function NohehutPage() {
                         key={i} 
                         soldier={soldier} 
                         missings={missings}
+                        isFilled={filledSoldiers.filter((row)=>row.soldierId === soldier.id)}
                         handleChange={handleChange}
                         />
                 })
             }
-            <button onClick={()=>handleSubmit()}>submit</button>
+            <Button onClick={()=>handleSubmit()}>שלח</Button>
             {
                 bool && <div>{'חייב למלא את כל החיילים'}</div>
             }
-        </div>
+        </NohPage>
     )
 }
 
+const NohPage = styled.div`
+
+    width: 100% ;
+    display: flex ;
+    flex-direction: column ;
+    justify-content: center ;
+    align-items: center ;
+
+`;
+const Button = styled.button`
+
+`;
 export default NohehutPage

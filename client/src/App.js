@@ -2,11 +2,12 @@ import React from 'react' ;
 import {BrowserRouter as Router , Switch , Route} from 'react-router-dom';
 import styled from 'styled-components';
 import Navbar from './Navbar';
-import HomePage from './HomePage';
-import SoldiersPage from './components/SoldiersPage';
-import OneSoldierPage from './components/OneSoldierPage';
-import Notes from './components/Notes';
-import NohehutPage from './components/NohehutPage';
+import HomePage from './pages/HomePage';
+import SoldiersPage from './pages/SoldiersPage';
+import OneSoldierPage from './pages/OneSoldierPage';
+import NotesPage from './pages/NotesPage';
+import NohehutPage from './pages/NohehutPage';
+import ProfilePage from './pages/ProfilePage';
 function App() {
   return (
     <Router>
@@ -23,10 +24,13 @@ function App() {
             <OneSoldierPage />
           </Route>
           <Route path="/notes" exact>
-            <Notes />
+            <NotesPage />
           </Route>
           <Route path="/nohehut" exact>
             <NohehutPage />
+          </Route>
+          <Route path="/profile" exact>
+            <ProfilePage />
           </Route>
         </Switch>
       </AppContainer>

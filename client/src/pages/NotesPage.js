@@ -2,9 +2,9 @@ import React,{ useEffect, useState, useRef} from 'react'
 import axios from 'axios'
 import Modal from 'react-modal';
 import styled from 'styled-components';
-import NoteRow from './NoteRow';
+import NoteRow from '../components/NoteRow';
 
-function Notes({userId}) {
+function NotesPage({userId}) {
     const selectCurrent = useRef(null);
     const inputMark = useRef(null);
     const [notes,setNotes] = useState([]);
@@ -64,4 +64,4 @@ const SoldiersContainer = styled.div`
 
 const ButtonsCon = styled.div``;
 
-export default Notes
+export default NotesPage

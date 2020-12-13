@@ -99,9 +99,8 @@ const Title = styled.div`
     height: 3vh ;
     background-color: #444 ;
     padding: 0.5em 0 ;
-    float: right ;
     display: flex ;
-    justify-content: flex-end ;
+    justify-content: flex-start ;
     align-items: center ;
 `;
 

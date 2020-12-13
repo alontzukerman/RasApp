@@ -16,7 +16,7 @@ function PtorRow({ptor}) {
 }
 const Row = styled.div`
     display: flex ;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-between;
 `;
 
