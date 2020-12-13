@@ -17,7 +17,7 @@ module.exports = {
           phone_number: "053-5303521",
           birthday: "1998-07-02",
           role_id: 3,
-          rank_id:3,
+          rank_id:4,
           draft_date: "2017-03-13",
           release_date: "2019-11-12",
           address: "מרדכי מקלף 8, מודיעין",

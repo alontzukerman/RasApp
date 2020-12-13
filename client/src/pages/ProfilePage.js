@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ReactWhatsapp from "react-whatsapp";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import styled from "styled-components";
+
 function ProfilePage() {
   const [user, setUser] = useState();
   const getMyProfile = async () => {
-    const { data } = await axios.get(`/api/users/1`);
+    const { data } = await axios.get(`/api/users/2`);
     console.log(data);
     setUser(data);
   };
@@ -21,10 +24,17 @@ function ProfilePage() {
           <Tab>{user.firstName}</Tab>
           <Tab>{user.lastName}</Tab>
           <Tab>{user.address}</Tab>
-          <Tab>{user.phoneNumber}</Tab>
+          <Tab>
+            {user.phoneNumber}
+            <ReactWhatsapp
+              number={"+972" + user.phoneNumber.slice(1)}
+              message="."
+              element={WhatsAppIcon}
+            />
+          </Tab>
           <Tab>{user.email}</Tab>
-          <Tab>{user.Platoon ? user.Platoon.platoonName : ''}</Tab>
-          <Tab>{user.Class ? user.Class.className : ''}</Tab>
+          <Tab>{user.Platoon ? user.Platoon.platoonName : ""}</Tab>
+          <Tab>{user.Class ? user.Class.className : ""}</Tab>
         </Tabs>
       )}
     </ProfileCon>
