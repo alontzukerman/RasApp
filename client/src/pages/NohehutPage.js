@@ -12,8 +12,8 @@ const currentDate =
     (new Date().getDate());
     
 function NohehutPage() {
-    const [soldiers,setSoldiers] = useState([]);
-    const [missings,setMissings] = useState([]);
+    const [soldiers,setSoldiers] = useState();
+    const [missings,setMissings] = useState();
     const [filledSoldiers,setFilledSoldiers] = useState([])
     const [bool,setBool] = useState(false);
     const [nohehut,setNohehut] = useState(new Map());
@@ -57,7 +57,7 @@ function NohehutPage() {
     return (
         <NohPage>
             {
-                soldiers && missings &&
+                soldiers && missings && 
                 soldiers.map((soldier,i)=>{
                     return <NohehutRow 
                         key={i} 

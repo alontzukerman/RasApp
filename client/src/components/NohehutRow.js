@@ -27,11 +27,10 @@ function NohehutRow({soldier,missings,handleChange,isFilled}) {
         selectCurrent.current.value && 
         handleChange(soldier.id,Number(selectCurrent.current.value));
     }
-    const getFirstOption = async () => {
-        const chosenMissing = await missings.filter((missing)=>{ 
+    const getFirstOption = () => {
+        const chosenMissing = missings.filter((missing)=>{ 
             return missing.id === isFilled[0].missingId ;
         })
-        console.log(chosenMissing);
         chosenMissing[0] && setFirstOption({id:chosenMissing[0].id,name: chosenMissing[0].missingName})
     }
     useEffect(()=>{

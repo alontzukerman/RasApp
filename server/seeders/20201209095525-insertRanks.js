@@ -27,7 +27,7 @@ module.exports = {
         },
         {
           id: 6,
-          rank_name: "סגם"
+          rank_name: "סגן"
         },
         {
           id:7,
