@@ -12,7 +12,7 @@ function LoginPage() {
         username: usernameRef.current.value,
         password: passwordRef.current.value,
       };
-      const {data} = await network.post(`/api/users/login`, user);
+      const {data} = await network.post(`/api/auth/login`, user);
       console.log(data);
       localStorage.setItem('refreshToken',data.refreshToken);
       localStorage.setItem('accessToken',data.accessToken);

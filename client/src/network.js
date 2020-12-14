@@ -30,7 +30,7 @@ network.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       return axios
-        .post(`api/users/token`, { refreshToken: refreshToken })
+        .post(`api/auth/token`, { refreshToken: refreshToken })
         .then((res) => {
           console.log("res", res);
           if (res.status === 200) {

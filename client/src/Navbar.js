@@ -14,7 +14,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     const refreshToken = localStorage.getItem('refreshToken');
-    const response = await network.delete(`/api/users/logout/${refreshToken}`)
+    const response = await network.delete(`/api/auth/logout/${refreshToken}`)
     console.log(response);
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
