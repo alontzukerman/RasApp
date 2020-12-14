@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
+const {authenticateToken} = require("./authServer");
+// const jwt = require("jsonwebtoken");
 
 
 app.use(express.json());
 app.use('/api/users',require('./routes/api/users'));
-app.use('/api/soldiers',require('./routes/api/soldiers'));
+app.use('/api/soldiers',authenticateToken,require('./routes/api/soldiers'));
 app.use('/api/platoons', require('./routes/api/platoons'));
 app.use('/api/classes', require('./routes/api/classes'));
 app.use('/api/certifications', require('./routes/api/certifications'));
@@ -17,4 +19,8 @@ app.use('/api/missings', require('./routes/api/missings'));
 
 
 
-module.exports = app ;
+const PORT = process.env.PORT || 8080
+
+app.listen(PORT, () => {
+  console.log(`Server is listening at http://localhost:${PORT}`)
+})

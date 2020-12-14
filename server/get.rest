@@ -1,6 +1,35 @@
-patch http://localhost:8080/api/notes/3
+GET http://localhost:8080/api/soldiers
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiWWFpciIsImlhdCI6MTYwNzk0NjMyNywiZXhwIjoxNjA3OTQ2MzUyfQ.7Gytlt-nxvKc4q0kmWpPWq7UYMvbE7mZp2qxx0vOhR4
 
+###
+POST http://localhost:4000/token
+Content-type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiWWFpciIsImlhdCI6MTYwNzk0NjI5OH0.LNg6dnzmIJXmHYMqlMJ_bK_tWTg8u3NrADuHSasunU4"
+}
+###
+POST http://localhost:4000/login
+Content-type: application/json
+
+{
+    "username":"Yair" 
+}
+
+###
+
+patch http://localhost:8080/api/notes/3
 Content-Type: application/json
+
 {
     "title":"exercesice"
+}
+
+###
+
+DELETE http://localhost:4000/logout
+content-type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiWWFpciIsImlhdCI6MTYwNzk0NjE5MX0.jDVpO09HdSceof01i9udy3WeRKqUHaGGiE1eV5uqczw"
 }

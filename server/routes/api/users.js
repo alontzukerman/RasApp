@@ -1,5 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router() ;
+
+const jwt = require('jsonwebtoken')
 
 const { User,Role,Rank,Class,Platoon } = require('../../models');
 
@@ -46,5 +49,7 @@ router.get("/:userId", async (req, res) => {
     await user.destroy();
     res.json({ deleted: true });
   });
+
+
 
 module.exports = router ;
