@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
-const {authenticateToken} = require("./authServer");
+const {authenticateToken} = require("./authFunction");
 // const jwt = require("jsonwebtoken");
+let proxy = require('http-proxy-middleware');
 
+// app.use(proxy('/login', {target: 'http://localhost:4000/login'}))
 
 app.use(express.json());
 app.use('/api/users',require('./routes/api/users'));
