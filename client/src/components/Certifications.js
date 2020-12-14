@@ -1,7 +1,7 @@
 import React , { useEffect, useState , useRef } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import axios from 'axios';
+import network from '../network';
 import styled from 'styled-components';
 import CertificationRow from './CertificationRow';
 
@@ -32,7 +32,7 @@ function Certifications({soldierId}) {
         setIsOpen(false);
     }
     const getCertificationsBySoldierId = async () => {
-        const { data } = await axios.get(`/api/certifications/soldier/${soldierId}`);
+        const { data } = await network.get(`/api/certifications/soldier/${soldierId}`);
         console.log(data);
         setMyCertifications(data);
     }
@@ -42,11 +42,11 @@ function Certifications({soldierId}) {
             certificationId: certificationId,
             soldierId: soldierId
     }
-        const response = await axios.post(`/api/certifications`,newCertification);
+        const response = await network.post(`/api/certifications`,newCertification);
         console.log(response);
     }
     const getInfoAbout = async () => {
-        const { data } = await axios.get(`/api/certifications`);
+        const { data } = await network.get(`/api/certifications`);
         setCertifications(data);
     }
     useEffect(()=>{

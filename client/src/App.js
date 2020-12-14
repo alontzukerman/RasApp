@@ -8,12 +8,16 @@ import OneSoldierPage from './pages/OneSoldierPage';
 import NotesPage from './pages/NotesPage';
 import NohehutPage from './pages/NohehutPage';
 import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/LoginPage';
 function App() {
   return (
     <Router>
       <AppContainer>
         <Navbar />
         <Switch>
+          <Route path="/login" exact>
+            <LoginPage />
+          </Route>
           <Route path="/" exact>
             <HomePage />
           </Route>

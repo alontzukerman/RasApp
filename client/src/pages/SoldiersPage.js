@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import axios from 'axios';
+import network from '../network';
 import SoldierRow from '../components/SoldierRow';
 function SoldiersPage() {
 
@@ -8,15 +8,15 @@ function SoldiersPage() {
     const [soldiers,setSoldiers] = useState([]);
 
     const getPlatoons = async () => {
-        const { data } = await axios.get('/api/platoons');
+        const { data } = await network.get('/api/platoons');
         setPlatoons(data)
     }
     // const getSoldiers = async () => {
-    //     const { data } = await axios.get('/api/soldiers');
+    //     const { data } = await network.get('/api/soldiers');
     //     setSoldiers(data);
     // }
     const getPlatoonSoldiers = async (platoonId) => {
-        const { data } = await axios.get(`/api/platoons/soldiers/${platoonId}`);
+        const { data } = await network.get(`/api/platoons/soldiers/${platoonId}`);
         setSoldiers(data);
     }
     useEffect(()=>{
@@ -33,7 +33,7 @@ function SoldiersPage() {
             {
                 platoons && 
                 platoons.map((platoon,i)=>{
-                    return <button onClick={()=>getPlatoonSoldiers(platoon.id)}>{platoon.platoonName}</button>
+                    return <button onClick={()=>getPlatoonSoldiers(platoon.id)} key={i}>{platoon.platoonName}</button>
                 })
             }
             </ButtonsCon>

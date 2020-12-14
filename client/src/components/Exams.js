@@ -1,7 +1,7 @@
 import React , { useEffect, useState , useRef } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import axios from 'axios';
+import network from '../network';
 import styled from 'styled-components';
 import ExamRow from './ExamRow';
 
@@ -33,7 +33,7 @@ function Exams({soldierId}) {
         setIsOpen(false);
     }
     const getExamsBySoldierId = async () => {
-        const { data } = await axios.get(`/api/exams/soldier/${soldierId}`);
+        const { data } = await network.get(`/api/exams/soldier/${soldierId}`);
         setMyExams(data);
     }
     const createExams = async (examId,mark) => {
@@ -43,11 +43,11 @@ function Exams({soldierId}) {
             soldierId: soldierId,
             mark: mark
     }
-        const response = await axios.post(`/api/exams`,newExam);
+        const response = await network.post(`/api/exams`,newExam);
         console.log(response);
     }
     const getInfoAbout = async () => {
-        const { data } = await axios.get(`/api/exams`);
+        const { data } = await network.get(`/api/exams`);
         setExams(data);
     }
     useEffect(()=>{

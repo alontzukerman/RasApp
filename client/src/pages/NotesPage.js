@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
+import network from '../network';
 import Modal from "react-modal";
 import styled from "styled-components";
 import NoteRow from "../components/NoteRow";
@@ -31,7 +31,7 @@ function NotesPage({ userId }) {
     setIsOpen(false);
   }
   const getNotesByUserId = async () => {
-    const { data } = await axios.get(`/api/notes/user/1`);
+    const { data } = await network.get(`/api/notes/user/1`);
     setMyNotes(data);
   };
   const createNote = async (title, noteContent) => {
@@ -41,7 +41,7 @@ function NotesPage({ userId }) {
       title: title,
       noteContent: noteContent,
     };
-    const response = await axios.post(`/api/notes`, newNote);
+    const response = await network.post(`/api/notes`, newNote);
     console.log(response);
   };
   useEffect(() => {

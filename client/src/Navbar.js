@@ -1,14 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import "./NavBar.css";
+import network from "./network";
 
 function Navbar() {
   const style = {
     color: "white",
     textDecoration: "none",
   };
+  const history = useHistory();
+
+  const handleLogout = async () => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    const response = await network.delete(`/api/users/logout/${refreshToken}`)
+    console.log(response);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    history.push('/login');
+
+  }
 
   return (
     <nav>
@@ -30,6 +42,7 @@ function Navbar() {
       <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/profile">
         <div className="homenav">פרופיל</div>
       </NavLink>
+        <button onClick={()=>handleLogout()} className="homenav">התנתק</button>
     </nav>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import network from '../network';
 import styled from "styled-components";
 import Certifications from "../components/Certifications";
 import Exams from "../components/Exams";
@@ -14,7 +14,7 @@ function OneSoldierPage() {
   const [soldier, setSoldier] = useState([]);
 
   const getSoldierById = async () => {
-    const { data } = await axios.get(`/api/soldiers/${soldierId}`);
+    const { data } = await network.get(`/api/soldiers/${soldierId}`);
     setSoldier(data);
   };
   useEffect(() => {

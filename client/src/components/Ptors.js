@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
-import axios from "axios";
+import network from "../network";
 import styled from "styled-components";
 import PtorRow from './PtorRow';
 
@@ -34,7 +34,7 @@ function Ptors({ soldierId }) {
     setIsOpen(false);
   }
   const getPtorsBySoldierId = async () => {
-    const { data } = await axios.get(`/api/ptors/soldier/${soldierId}`);
+    const { data } = await network.get(`/api/ptors/soldier/${soldierId}`);
     setMyPtors(data);
   };
   const createPtor = async (ptorId,start,days) => {
@@ -46,11 +46,11 @@ function Ptors({ soldierId }) {
       givenDays: days,
       userId: 1,
     };
-    const response = await axios.post(`/api/ptors`, newPtor);
+    const response = await network.post(`/api/ptors`, newPtor);
     console.log(response);
   };
   const getInfoAbout = async () => {
-    const { data } = await axios.get(`/api/ptors`);
+    const { data } = await network.get(`/api/ptors`);
     setPtors(data);
   };
   useEffect(() => {

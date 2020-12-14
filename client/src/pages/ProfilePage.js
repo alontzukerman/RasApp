@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import network from '../network';
 import ReactWhatsapp from "react-whatsapp";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import styled from "styled-components";
@@ -7,7 +7,7 @@ import styled from "styled-components";
 function ProfilePage() {
   const [user, setUser] = useState();
   const getMyProfile = async () => {
-    const { data } = await axios.get(`/api/users/2`);
+    const { data } = await network.get(`/api/users/2`);
     console.log(data);
     setUser(data);
   };

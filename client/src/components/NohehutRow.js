@@ -1,4 +1,4 @@
-import axios from 'axios';
+import network from '../network';
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 
@@ -11,12 +11,13 @@ const currentDate =
     (new Date().getDate());
     
 function NohehutRow({soldier,missings,handleChange,isFilled}) {
+    // console.log(soldier);
     const selectCurrent = useRef(null);
     const [firstOption,setFirstOption] = useState(null);
 
     const updateMissing = async () => {
         let updatedMissing = {soldierId: soldier.id,missingId: selectCurrent.current.value,date:currentDate}
-        const response = await axios.patch(`/api/missings/daily`,updatedMissing)
+        const response = await network.patch(`/api/missings/daily`,updatedMissing)
         console.log(response);
     }
     const handle = () => {

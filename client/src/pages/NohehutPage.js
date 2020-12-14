@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import axios from 'axios';
+import network from '../network' ;
 import NohehutRow from '../components/NohehutRow';
 
 
@@ -19,22 +19,22 @@ function NohehutPage() {
     const [nohehut,setNohehut] = useState(new Map());
 
     const isFilled = async () => {
-        const { data } = await axios.get(`/api/missings/daily/${currentDate}`);
+        const { data } = await network.get(`/api/missings/daily/${currentDate}`);
         // console.log(data);
         setFilledSoldiers(data);
     }
     const getSoldiers = async () => {
-        const { data } = await axios.get(`/api/soldiers`);
+        const { data } = await network.get(`/api/soldiers`);
         setSoldiers(data);
     }
     const getMissings = async () => {
-        const { data } = await axios.get(`/api/missings`)
+        const { data } = await network.get(`/api/missings`)
         setMissings(data);
     }
     const sendNohehut = async () => {
         let nohehutArray = Array.from(nohehut).map(([name,value])=>(value));
         console.log(nohehutArray);
-        const response = await axios.post(`/api/missings/daily`,nohehutArray);
+        const response = await network.post(`/api/missings/daily`,nohehutArray);
         console.log(response);
     }
     const handleChange = (soldierId,missingId) => {
