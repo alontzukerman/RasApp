@@ -8,8 +8,8 @@ function NoteRow({note}) {
     // const history = useHistory();
     return (
         <NotRow>
-            <NotCol>{note.title}</NotCol>
-            <NotCol>{note.noteContent}</NotCol>
+            <NotTitle>{note.title}</NotTitle>
+            <NotContent>{note.noteContent}</NotContent>
         </NotRow>
             
     
@@ -18,22 +18,23 @@ function NoteRow({note}) {
 
 const NotRow = styled.div`
     height: 10vh ;
-    width: 90vw ;
     background-color: #fff ;
     border: 2px solid black ;
     display: flex ;
-    flex-direction: row ;
+    flex-direction: column ;
     justify-content: space-between ;
-    align-items: center ;
+    align-items: flex-start ;
     padding: 0.5em ;
     &:hover {
         background-color: #777 ;
     }
 `;
-const NotCol = styled.div`
+const NotTitle = styled.div`
     width: 25vw ;
-    display: flex ;
-    justify-content: center ;
-    align-items: center ;
+
+`;
+const NotContent = styled.div`
+    width: 25vw ;
+
 `;
 export default NoteRow

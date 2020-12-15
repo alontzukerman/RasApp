@@ -1,7 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import network from '../network';
+import network from "../network";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { PageContainer, FormContainer } from "../styledComponents/containers";
+import { Title } from "../styledComponents/elements";
+
+import { Button} from "@material-ui/core";
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import NoteRow from "../components/NoteRow";
 
 const customStyles = {
@@ -48,33 +53,32 @@ function NotesPage({ userId }) {
     getNotesByUserId();
   }, []);
   return (
-    <NotesCon>
-      {myNotes.map((note, i) => {
-        return <NoteRow note={note} key={i} />;
-      })}
-      <Button onClick={openModal}>+</Button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="CreateNote"
-      >
-        <h2>Create New Note</h2>
-        <button onClick={() => closeModal(false)}>CLOSE</button>
-        <button onClick={() => closeModal(true)}>SUBMIT</button>
-        <form>
-          <input ref={titleRef} placeholder="title"></input>
-          <input ref={contentRef} placeholder="content"></input>
-        </form>
-      </Modal>
-    </NotesCon>
+    <PageContainer>
+      <Title>פתקים</Title>
+      <FormContainer>
+        <Button onClick={openModal}>
+          <NoteAddIcon />
+          הוסף פתק חדש
+        </Button>
+        {myNotes.map((note, i) => {
+          return <NoteRow note={note} key={i} />;
+        })}
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="CreateNote"
+        >
+          <h2>Create New Note</h2>
+          <button onClick={() => closeModal(false)}>CLOSE</button>
+          <button onClick={() => closeModal(true)}>SUBMIT</button>
+          <form>
+            <input ref={titleRef} placeholder="title"></input>
+            <input ref={contentRef} placeholder="content"></input>
+          </form>
+        </Modal>
+      </FormContainer>
+    </PageContainer>
   );
 }
-
-const NotesCon = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const Button = styled.button``;
 export default NotesPage;

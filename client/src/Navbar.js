@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import "./NavBar.css";
+import { Button } from "@material-ui/core";
 import network from "./network";
-
+import { Nav } from './styledComponents/elements';
 function Navbar() {
   const style = {
     color: "white",
@@ -23,27 +23,27 @@ function Navbar() {
   }
 
   return (
-    <nav>
+    <Nav>
       <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/">
-        <div className="homenav">
+        <Button color="primary">
           <span>בית</span>
           <HomeIcon />
-        </div>
+        </Button>
       </NavLink>
       <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/soldiers">
-        <div className="homenav">חיילים</div>
+        <Button color="primary">חיילים</Button>
       </NavLink>
       <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/notes">
-        <div className="homenav">פתקים</div>
+        <Button color="primary">פתקים</Button>
       </NavLink>
       <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/nohehut">
-        <div className="homenav">נוכחות</div>
+        <Button color="primary">נוכחות</Button>
       </NavLink>
       <NavLink activeStyle={{ color: "#ee5050" }} style={style} to="/profile">
-        <div className="homenav">פרופיל</div>
+        <Button color="primary">פרופיל</Button>
       </NavLink>
-        <button onClick={()=>handleLogout()} className="homenav">התנתק</button>
-    </nav>
+        <Button color="primary" onClick={()=>handleLogout()} className="homenav">התנתק</Button>
+    </Nav>
   );
 }
 
