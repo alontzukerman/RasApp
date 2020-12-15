@@ -51,7 +51,7 @@ function App() {
         <User.Provider value={{ user, setUser }}>
           <ErrorBoundary>
             <Switch>
-              <Route path="/">
+              <Route path="/" exact>
                 <Navbar />
                 <HomePage />
               </Route>
