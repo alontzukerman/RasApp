@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import network from "./network";
 import { Nav } from './styledComponents/elements';
+import Cookies from 'js-cookie';
+import { User } from './context';
 function Navbar() {
   const style = {
     color: "white",
     textDecoration: "none",
   };
-  const history = useHistory();
+  const location = useHistory();
+  const gUser = useContext(User);
 
   const handleLogout = async () => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    const response = await network.delete(`/api/auth/logout/${refreshToken}`)
+    const response = await network.post(`/api/auth/logout`,{token: Cookies.get('refreshToken')});
     console.log(response);
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    history.push('/login');
-
+    Cookies.remove('refreshToken');
+    gUser.setUser(null);
+    location.push('/login');
   }
 
   return (

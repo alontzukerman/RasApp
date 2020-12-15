@@ -7,7 +7,7 @@ import styled from "styled-components";
 function ProfilePage() {
   const [user, setUser] = useState();
   const getMyProfile = async () => {
-    const { data } = await network.get(`/api/users/2`);
+    const { data } = await network.get(`/api/users/profile`);
     console.log(data);
     setUser(data);
   };

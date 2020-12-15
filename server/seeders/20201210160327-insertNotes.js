@@ -29,6 +29,18 @@ module.exports = {
           title:'weed',
           note_content:'i need to buy weed too like the rasap'
         },
+        {
+          id:5,
+          user_id:2,
+          title:'amen',
+          note_content:'shhhhhh'
+        },
+        {
+          id:6,
+          user_id:3,
+          title:'refaelWon',
+          note_content:'nadaling'
+        },
       ],
       {}
     );

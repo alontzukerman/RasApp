@@ -5,7 +5,9 @@ const { Note, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const notes = await Note.findAll({});
+    const notes = await Note.findAll({
+      where: { userId: req.user.userId },
+    });
     res.json(notes);
   } catch (e) {
     res.json({ error: e.message });
@@ -34,11 +36,11 @@ router.get("/user/:userId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const newnote = await Note.create(req.body);
-    res.json(newnote);
- });
+  const newnote = await Note.create(req.body);
+  res.json(newnote);
+});
 
- router.patch("/:noteId", async (req, res) => {
+router.patch("/:noteId", async (req, res) => {
   const note = await Note.findByPk(req.params.noteId);
   await note.update(req.body);
   res.json(note);
@@ -49,7 +51,5 @@ router.delete("/:noteId", async (req, res) => {
   await note.destroy();
   res.json({ deleted: true });
 });
-
-
 
 module.exports = router;

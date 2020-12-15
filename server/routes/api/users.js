@@ -28,11 +28,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:userId", async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
+    console.log('req',req.user);
     // const user = await User.findByPk( req.params.userId);
     const user = await User.findOne({
-      where: { id: req.params.userId },
+      where: { id: req.user.userId },
       attributes: [
         "id",
         "firstName",

@@ -31,7 +31,7 @@ module.exports = {
         },
         {
           id:7,
-          rank_name: "רסן"
+          rank_name: "סרן"
         },
       ],
       {}

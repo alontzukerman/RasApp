@@ -9,6 +9,7 @@ function SoldiersPage() {
 
     const getPlatoons = async () => {
         const { data } = await network.get('/api/platoons');
+        console.log(data);
         setPlatoons(data)
     }
     // const getSoldiers = async () => {

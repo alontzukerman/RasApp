@@ -4,10 +4,11 @@ import Modal from "react-modal";
 import styled from "styled-components";
 import { PageContainer, FormContainer } from "../styledComponents/containers";
 import { Title } from "../styledComponents/elements";
-
+import { User } from '../context';
 import { Button} from "@material-ui/core";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import NoteRow from "../components/NoteRow";
+import { useContext } from "react";
 
 const customStyles = {
   content: {
@@ -28,6 +29,8 @@ function NotesPage({ userId }) {
   const [myNotes, setMyNotes] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
 
+  const gUser = useContext(User);
+  console.log('gUser',gUser);
   function openModal() {
     setIsOpen(true);
   }
@@ -36,13 +39,13 @@ function NotesPage({ userId }) {
     setIsOpen(false);
   }
   const getNotesByUserId = async () => {
-    const { data } = await network.get(`/api/notes/user/1`);
+    const { data } = await network.get(`/api/notes`);
     setMyNotes(data);
   };
   const createNote = async (title, noteContent) => {
     console.log("creating new note");
     const newNote = {
-      userId: 1,
+      userId: gUser.user.id,
       title: title,
       noteContent: noteContent,
     };

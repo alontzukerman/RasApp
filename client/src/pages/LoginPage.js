@@ -1,15 +1,19 @@
 import network from "../network";
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { PageContainer, FormContainer } from "../styledComponents/containers";
 import { Input } from "../styledComponents/elements";
 import { Button, TextField, InputAdornment } from "@material-ui/core";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import LockIcon from "@material-ui/icons/Lock";
+import { User } from '../context';
 function LoginPage() {
-  let history = useHistory();
+  const location = useHistory();
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const gUser = useContext(User);
+  
   const handleLogin = async () => {
     try {
       const user = {
@@ -18,9 +22,10 @@ function LoginPage() {
       };
       const { data } = await network.post(`/api/auth/login`, user);
       console.log(data);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.setItem("accessToken", data.accessToken);
-      history.push("/");
+      gUser.setUser(data);
+      // localStorage.setItem("refreshToken", data.refreshToken);
+      // localStorage.setItem("accessToken", data.accessToken);
+      location.push("/");
     } catch (e) {
       console.log("err", e);
     }
