@@ -91,7 +91,5 @@ function App() {
 const AppContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  overflow-y: scroll;
-  background-color: #888;
 `;
 export default App;

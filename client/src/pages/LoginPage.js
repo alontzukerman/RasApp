@@ -1,9 +1,9 @@
 import network from "../network";
 import React, { useRef, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { PageContainer, FormContainer } from "../styledComponents/containers";
-import { Input } from "../styledComponents/elements";
-import { Button, TextField, InputAdornment } from "@material-ui/core";
+import { LoginPageContainer, FormContainer , InnerFormContainer } from "../styledComponents/containers";
+import { Input, Button } from "../styledComponents/elements";
+// import { Button, TextField, InputAdornment } from "@material-ui/core";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import LockIcon from "@material-ui/icons/Lock";
 import { User } from '../context';
@@ -31,11 +31,12 @@ function LoginPage() {
     }
   };
   return (
-    <PageContainer>
+    <LoginPageContainer>
       <FormContainer>
+        <InnerFormContainer>
         {/* <TextField inputRef={usernameRef} placeholder="מספר אישי"></TextField> */}
         {/* <TextField ref={passwordRef} placeholder="סיסמא"></TextField> */}
-        <TextField
+        {/* <TextField
           // className={classes.margin}
           inputRef={usernameRef}
           placeholder="מספר אישי"
@@ -60,12 +61,15 @@ function LoginPage() {
               </InputAdornment>
             ),
           }}
-        />
-        <Button color="primary" variant="outlined" onClick={() => handleLogin()}>
-          login
+        /> */}
+        <Input ref={usernameRef} placeholder="מספר אישי"></Input>
+        <Input type="password" ref={passwordRef} placeholder="סיסמא"></Input>
+        <Button onClick={() => handleLogin()}>
+          התחבר
         </Button>
+        </InnerFormContainer>
       </FormContainer>
-    </PageContainer>
+    </LoginPageContainer>
   );
 }
 
