@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import network from "./network";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,13 +23,25 @@ function App() {
   const [user, setUser] = useState(null);
 
   // const location = useHistory();
-  // useEffect(()=>{
+  const checkValidateToken = async () => {
+    if (Cookies.get("refreshToken")) {
+      try {
+        const { data } = await network.get("/api/auth/validate-token");
+        console.log(data.user);
+        setUser(data.user);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+  useEffect(() => {
+    checkValidateToken();
+  }, []);
 
-  // },[])
-  const getRoutes = () => {
-    if (!user) {
-      console.log("user");
-      return (
+  return (
+    <Router>
+      {/* <AppContainer>{getRoutes()}</AppContainer> */}
+      {!user ? (
         <User.Provider value={{ user, setUser }}>
           <ErrorBoundary>
             <Route
@@ -45,9 +58,7 @@ function App() {
             />
           </ErrorBoundary>
         </User.Provider>
-      );
-    } else {
-      return (
+      ) : (
         <User.Provider value={{ user, setUser }}>
           <ErrorBoundary>
             <Switch>
@@ -75,15 +86,13 @@ function App() {
                 <Navbar />
                 <ProfilePage />
               </Route>
+              <Route path="*" exact>
+                <Redirect to="/" />
+              </Route>
             </Switch>
           </ErrorBoundary>
         </User.Provider>
-      );
-    }
-  };
-  return (
-    <Router>
-      <AppContainer>{getRoutes()}</AppContainer>
+      )}
     </Router>
   );
 }
