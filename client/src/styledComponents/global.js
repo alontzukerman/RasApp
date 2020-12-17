@@ -45,3 +45,6 @@ export const FormName = styled.div`
   justify-content: flex-start;
   font-size: 1.2em;
 `;
+export const Logo = styled.img`
+  height: 100% ;
+`;

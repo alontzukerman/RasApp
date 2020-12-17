@@ -13,10 +13,12 @@ import {
   NavTag,
   LogOutButton,
 } from "../styledComponents/navbar";
+import { Logo } from '../styledComponents/global'; 
 import ChildCareIcon from "@material-ui/icons/ChildCare";
 import Cookies from "js-cookie";
 import { User } from "../context";
 import MenuIcon from '@material-ui/icons/Menu';
+import RassAppLogo_Horizontal from '../files/RassAppLogo_Horizontal.png' ;
 function Navbar() {
   const location = useHistory();
   const gUser = useContext(User);
@@ -47,7 +49,7 @@ function Navbar() {
           </InnerNavContainer>
           <LogOutButton onClick={() => handleLogout()}>התנתק</LogOutButton>
         </NavContainer>
-        <ChildCareIcon />
+        <Logo src={RassAppLogo_Horizontal} alt="Logo" />
       </InnerHeaderContainer>
     </HeaderContainer>
   );

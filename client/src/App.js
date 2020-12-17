@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, lazy } from "react";
 import network from "./network";
 import {
   BrowserRouter as Router,
@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./components/Navbar";
+import NotFoundPage from './pages/NotFoundPage';
 import HomePage from "./pages/HomePage";
 import SoldiersPage from "./pages/SoldiersPage";
 import OneSoldierPage from "./pages/OneSoldierPage";
@@ -19,6 +20,15 @@ import LoginPage from "./pages/LoginPage";
 import Cookies from "js-cookie";
 import { User } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
+// const NotFoundPage = lazy(()=> import('./pages/NotFoundPage'))
+// const HomePage = lazy(()=> import('./pages/HomePage'));
+// const SoldiersPage = lazy(()=> import('./pages/SoldiersPage'));
+// const OneSoldierPage = lazy(()=> import('./pages/OneSoldierPage'));
+// const NotesPage = lazy(()=> import('./pages/NotesPage'));
+// const NohehutPage = lazy(()=> import('./pages/NohehutPage'));
+// const ProfilePage = lazy(()=> import('./pages/ProfilePage'));
+
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -86,8 +96,12 @@ function App() {
                 <Navbar />
                 <ProfilePage />
               </Route>
+              <Route path="/notfound" exact>
+                <NotFoundPage />
+              </Route>
               <Route path="*" exact>
-                <Redirect to="/" />
+                {/* <NotFoundPage /> */}
+                <Redirect to="/notfound" />
               </Route>
             </Switch>
           </ErrorBoundary>
