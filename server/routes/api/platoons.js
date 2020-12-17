@@ -7,15 +7,15 @@ router.get("/", async (req, res) => {
   try {
     const user = await User.findOne({ where: { id: req.user.userId } });
     let platoons;
-    if (user.roleId === 7 || user.roleId === 6 || user.roleId === 5) {
-      // סמל / מ"מ / מ"כ
-      platoons = await Platoon.findAll({ where: { id: user.platoonId } });
-      return res.json(platoons);
+    switch (user.roleId) {
+      case 5 || 6 || 7:
+        platoons = await Platoon.findAll({ where: { id: user.platoonId } });
+      default:
+        platoons = await Platoon.findAll({ where: { plugaId: user.plugaId } });
     }
-    platoons = await Platoon.findAll({where: {plugaId: user.plugaId}});
-    return res.json(platoons);
+    res.json(platoons);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 router.get("/soldiers/:platoonId", async (req, res) => {
@@ -25,25 +25,37 @@ router.get("/soldiers/:platoonId", async (req, res) => {
     });
     res.json(platoonSoldiers);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.post("/", async (req, res) => {
-  const newPlatoon = await Platoon.create(req.body);
-  res.json(newPlatoon);
+  try {
+    const newPlatoon = await Platoon.create(req.body);
+    res.json(newPlatoon);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.patch("/:platoonId", async (req, res) => {
-  const platoon = await Platoon.findByPk(req.params.platoonId);
-  await platoon.update(req.body);
-  res.json(platoon);
+  try {
+    const platoon = await Platoon.findByPk(req.params.platoonId);
+    await platoon.update(req.body);
+    res.json(platoon);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.delete("/:platoonId", async (req, res) => {
-  const platoon = await Platoon.findByPk(req.params.platoonId);
-  await platoon.destroy();
-  res.json({ deleted: true });
+  try {
+    const platoon = await Platoon.findByPk(req.params.platoonId);
+    await platoon.destroy();
+    res.json({ deleted: true });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 module.exports = router;

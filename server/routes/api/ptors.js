@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const ptors = await Ptor.findAll({});
     res.json(ptors);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
@@ -17,31 +17,43 @@ router.get("/soldier/:soldierId", async (req, res) => {
     const ptorPerSoldier = await PtorPerSoldier.findAll({
       where: { soldierId: req.params.soldierId },
       include: [
-        {model:Ptor},
-        {model:User, attributes: ["id", "firstName", "lastName"]},
+        { model: Ptor },
+        { model: User, attributes: ["id", "firstName", "lastName"] },
       ],
     });
     res.json(ptorPerSoldier);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.post("/", async (req, res) => {
-  const newPtor = await PtorPerSoldier.create(req.body);
-  res.json(newPtor);
+  try {
+    const newPtor = await PtorPerSoldier.create(req.body);
+    res.json(newPtor);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.patch("/:ptorId", async (req, res) => {
-  const ptor = await User.findByPk(req.params.ptorId);
-  await ptor.update(req.body);
-  res.json(ptor);
+  try {
+    const ptor = await User.findByPk(req.params.ptorId);
+    await ptor.update(req.body);
+    res.json(ptor);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.delete("/:ptorId", async (req, res) => {
-  const ptor = await PtorPerSoldier.findByPk(req.params.ptorId);
-  await ptor.destroy();
-  res.json({ deleted: true });
+  try {
+    const ptor = await PtorPerSoldier.findByPk(req.params.ptorId);
+    await ptor.destroy();
+    res.json({ deleted: true });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 module.exports = router;

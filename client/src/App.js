@@ -8,7 +8,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import styled from "styled-components";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import SoldiersPage from "./pages/SoldiersPage";
 import OneSoldierPage from "./pages/OneSoldierPage";
@@ -97,8 +97,4 @@ function App() {
   );
 }
 
-const AppContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
-`;
 export default App;
