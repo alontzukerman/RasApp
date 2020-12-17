@@ -1,5 +1,7 @@
-GET http://localhost:8080/api/soldiers
-Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiWWFpciIsImlhdCI6MTYwNzk0NjMyNywiZXhwIjoxNjA3OTQ2MzUyfQ.7Gytlt-nxvKc4q0kmWpPWq7UYMvbE7mZp2qxx0vOhR4
+GET http://localhost:8080/api/calendar
+Content-type: application/json
+# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYwODIyMzkzNiwiZXhwIjoxNjA4MjIzOTU2fQ.02BwkN5XjSbHQYZvGKXIsfxeTRZKTgEs2RL_qo1qSKI
+
 
 ###
 POST http://localhost:4000/token

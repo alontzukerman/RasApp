@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./components/Navbar";
+
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from "./pages/HomePage";
 import SoldiersPage from "./pages/SoldiersPage";
@@ -20,7 +21,7 @@ import LoginPage from "./pages/LoginPage";
 import Cookies from "js-cookie";
 import { User } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
-import Calendar from './components/Calendar'
+import CalendarPage from './pages/CalendarPage';
 
 // const NotFoundPage = lazy(()=> import('./pages/NotFoundPage'))
 // const HomePage = lazy(()=> import('./pages/HomePage'));
@@ -103,7 +104,7 @@ function App() {
                 </Route>
               <Route path="/calendar" exact>
                 <Navbar />
-                <Calendar />
+                <CalendarPage />
               </Route>
               <Route path="*" exact>
                 {/* <NotFoundPage /> */}

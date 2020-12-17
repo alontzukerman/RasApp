@@ -3,9 +3,10 @@ const app = express();
 const {authenticateToken} = require("./authFunction");
 // const jwt = require("jsonwebtoken");
 let proxy = require('http-proxy-middleware');
+const path = require('path');
 
 // app.use(proxy('/login', {target: 'http://localhost:4000/login'}))
-
+app.use(express.static("../client/build"))
 app.use(express.json());
 app.use('/api/auth', require('./routes/api/auth'))
 app.use('/api/users',authenticateToken,require('./routes/api/users'));
@@ -19,8 +20,11 @@ app.use('/api/classes',authenticateToken, require('./routes/api/classes'));
 app.use('/api/notes',authenticateToken, require('./routes/api/notes'));
 app.use('/api/missings',authenticateToken, require('./routes/api/missings'));
 app.use('/api/equipments',authenticateToken, require('./routes/api/equipments'));
+app.use('/api/calendar', require('./routes/api/calendar'));
 
-
+app.get("*",(req, res) => {
+    res.sendFile(path.resolve(__dirname,"../client/build","index.html"))
+})
 
 
 module.exports = app ;
