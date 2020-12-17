@@ -22,7 +22,7 @@ function HomePage() {
           <HomePageBoxTitle>פתקים</HomePageBoxTitle>
           <NoteIcon className="iconsStyle" />
         </HomePageBox>
-        <HomePageBox>
+        <HomePageBox onClick={() => history.push("/calendar")}>
           <HomePageBoxTitle>יומן</HomePageBoxTitle>
 
           <EventNoteIcon className="iconsStyle" />

@@ -20,6 +20,8 @@ import LoginPage from "./pages/LoginPage";
 import Cookies from "js-cookie";
 import { User } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Calendar from './components/Calendar'
+
 // const NotFoundPage = lazy(()=> import('./pages/NotFoundPage'))
 // const HomePage = lazy(()=> import('./pages/HomePage'));
 // const SoldiersPage = lazy(()=> import('./pages/SoldiersPage'));
@@ -95,9 +97,13 @@ function App() {
               <Route path="/profile" exact>
                 <Navbar />
                 <ProfilePage />
-              </Route>
+                </Route>
               <Route path="/notfound" exact>
                 <NotFoundPage />
+                </Route>
+              <Route path="/calendar" exact>
+                <Navbar />
+                <Calendar />
               </Route>
               <Route path="*" exact>
                 {/* <NotFoundPage /> */}
