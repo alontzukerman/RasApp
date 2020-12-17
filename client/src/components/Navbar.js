@@ -3,7 +3,7 @@ import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
-import network from "./network";
+import network from "../network";
 import {
   HeaderContainer,
   InnerHeaderContainer,
@@ -12,10 +12,11 @@ import {
   NavTagList,
   NavTag,
   LogOutButton,
-} from "./styledComponents/navbar";
+} from "../styledComponents/navbar";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
 import Cookies from "js-cookie";
-import { User } from "./context";
+import { User } from "../context";
+import MenuIcon from '@material-ui/icons/Menu';
 function Navbar() {
   const location = useHistory();
   const gUser = useContext(User);
@@ -35,6 +36,7 @@ function Navbar() {
       <InnerHeaderContainer>
         <NavContainer>
           <InnerNavContainer>
+            <MenuIcon />
             <NavTagList>
               <NavTag onClick={() => location.push("/")}>בית</NavTag>
               <NavTag onClick={() => location.push("/soldiers")}>חיילים</NavTag>

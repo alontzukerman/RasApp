@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     });
     res.json(notes);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
@@ -19,7 +19,7 @@ router.get("/:noteId", async (req, res) => {
     const noteById = await Note.findByPk(req.params.noteId);
     res.json(noteById);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
@@ -31,25 +31,37 @@ router.get("/user/:userId", async (req, res) => {
     });
     res.json(notesPerUser);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.post("/", async (req, res) => {
-  const newnote = await Note.create(req.body);
-  res.json(newnote);
+  try {
+    const newnote = await Note.create(req.body);
+    res.json(newnote);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.patch("/:noteId", async (req, res) => {
-  const note = await Note.findByPk(req.params.noteId);
-  await note.update(req.body);
-  res.json(note);
+  try {
+    const note = await Note.findByPk(req.params.noteId);
+    await note.update(req.body);
+    res.json(note);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.delete("/:noteId", async (req, res) => {
-  const note = await Note.findByPk(req.params.noteId);
-  await note.destroy();
-  res.json({ deleted: true });
+  try {
+    const note = await Note.findByPk(req.params.noteId);
+    await note.destroy();
+    res.json({ deleted: true });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 module.exports = router;

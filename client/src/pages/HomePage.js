@@ -15,9 +15,6 @@ import { useHistory } from "react-router-dom";
 function HomePage() {
   const history = useHistory();
 
-  const style = {
-    fontSize: "80px",
-  };
   return (
     <HomePageContainer>
       <HomePageInnerContainer>

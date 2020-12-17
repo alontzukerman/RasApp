@@ -1,6 +1,9 @@
 import network from '../network';
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
+import { NohRowContainer } from '../styledComponents/nohehutpage';
+import { Select , FormName } from '../styledComponents/global';
+
 
 
 const currentDate = 
@@ -38,10 +41,10 @@ function NohehutRow({soldier,missings,handleChange,isFilled}) {
         isFilled.length > 0 && getFirstOption();
     },[])
     return (
-        <NohRow>
-            <Firstname>{soldier.firstName}</Firstname>
-            <Lastname>{soldier.lastName}</Lastname>
-            <select ref={selectCurrent} onChange={()=>handle()}>
+        <NohRowContainer>
+            <FormName>{soldier.firstName}</FormName>
+            <FormName>{soldier.lastName}</FormName>
+            <Select ref={selectCurrent} onChange={()=>handle()}>
                 {
                     firstOption !== null 
                     ?
@@ -54,25 +57,9 @@ function NohehutRow({soldier,missings,handleChange,isFilled}) {
                         return <option key={i} value={missing.id}>{missing.missingName}</option>
                     })
                 }
-            </select>
-        </NohRow>
+            </Select>
+        </NohRowContainer>
     )
 }
 
-const NohRow = styled.div`
-    width: 100% ;
-    display: flex ;
-    flex-direction: row ;
-    justify-content: center;
-    border: 1px solid black ;
-    padding: .5em ;
-`;
-
-const Firstname = styled.div`
-    width: 30% ;
-    float: right ;
-`;
-const Lastname = styled.div`
-    width: 30% ;
-`;
 export default NohehutRow

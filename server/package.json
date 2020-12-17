@@ -6,7 +6,7 @@
   "scripts": {
     "up": "npm run down && npx sequelize db:migrate && npx sequelize db:seed:all",
     "down": "npx sequelize db:migrate:undo:all",
-    "dev": "nodemon app.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

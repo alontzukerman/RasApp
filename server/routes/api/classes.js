@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const classes = await Class.findAll({});
     res.json(classes);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
@@ -17,38 +17,48 @@ router.get("/:classId", async (req, res) => {
     const specificClass = await Class.findByPk(req.params.classId);
     res.json(specificClass);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.get("/soldier/:classId", async (req, res) => {
   try {
     const classSoldiers = await Class.findByPk(req.params.classId, {
-      include: [
-        {model:Soldier}
-      ],
+      include: [{ model: Soldier }],
     });
     res.json(classSoldiers);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.post("/", async (req, res) => {
-  const newClass = await User.create(req.body);
-  res.json(newClass);
+  try {
+    const newClass = await User.create(req.body);
+    res.json(newClass);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.patch("/:", async (req, res) => {
-  const soldier = await Soldier.findByPk(req.params.soldierId);
-  await soldier.update(req.body);
-  res.json(soldier);
+  try {
+    const soldier = await Soldier.findByPk(req.params.soldierId);
+    await soldier.update(req.body);
+    res.json(soldier);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.delete("/:soldierId", async (req, res) => {
-  const soldier = await Soldier.findByPk(req.params.soldierId);
-  await soldier.destroy();
-  res.json({ deleted: true });
+  try {
+    const soldier = await Soldier.findByPk(req.params.soldierId);
+    await soldier.destroy();
+    res.json({ deleted: true });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 module.exports = router;

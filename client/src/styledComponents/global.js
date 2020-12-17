@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Input = styled.input`
   font-family: "Assistant", sans-serif;
@@ -35,6 +35,13 @@ export const Button = styled.button`
 `;
 
 export const Error = styled.div`
-  color:  #f37474;
-  font-size: 0.8em ;
+  color: #f37474;
+  font-size: 0.8em;
+`;
+
+export const Select = styled.select``;
+export const FormName = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.2em;
 `;
