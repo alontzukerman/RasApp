@@ -96,9 +96,12 @@ function App() {
                 <Navbar />
                 <ProfilePage />
               </Route>
+              <Route path="/notfound" exact>
+                <NotFoundPage />
+              </Route>
               <Route path="*" exact>
                 {/* <NotFoundPage /> */}
-                <Redirect to="/" />
+                <Redirect to="/notfound" />
               </Route>
             </Switch>
           </ErrorBoundary>
