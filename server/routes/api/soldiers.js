@@ -7,22 +7,23 @@ router.get("/", async (req, res) => {
   try {
     const user = await User.findOne({ where: { id: req.user.userId } });
     let allSoldiers;
-    if (user.roleId === 7) {
-      // מ"כ
-      allSoldiers = await Soldier.findAll({ where: { classId: user.classId } });
-      return res.json(allSoldiers);
+    switch (user.roleId) {
+      case 7: // מ"כ
+        allSoldiers = await Soldier.findAll({
+          where: { classId: user.classId },
+        });
+      case 6 || 5: // סמל מ"מ
+        allSoldiers = await Soldier.findAll({
+          where: { platoonId: user.platoonId },
+        });
+      default:
+        // תפקיד פלוגתי
+        allSoldiers = await Soldier.findAll({});
     }
-    if (user.roleId === 6 || user.roleId === 5) {
-      // סמל / מ"מ
-      allSoldiers = await Soldier.findAll({
-        where: { platoonId: user.platoonId },
-      });
-      return res.json(allSoldiers);
-    }
-    allSoldiers = await Soldier.findAll({});
-    return res.json(allSoldiers);
+
+    res.json(allSoldiers);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
@@ -31,25 +32,37 @@ router.get("/:id", async (req, res) => {
     const specificSoldier = await Soldier.findByPk(req.params.id);
     res.json(specificSoldier);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.post("/", async (req, res) => {
-  const newSoldier = await Soldier.create(req.body);
-  res.json(newSoldier);
+  try {
+    const newSoldier = await Soldier.create(req.body);
+    res.json(newSoldier);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.patch("/:soldierId", async (req, res) => {
-  const soldier = await Soldier.findByPk(req.params.soldierId);
-  await soldier.update(req.body);
-  res.json(soldier);
+  try {
+    const soldier = await Soldier.findByPk(req.params.soldierId);
+    await soldier.update(req.body);
+    res.json(soldier);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.delete("/:soldierId", async (req, res) => {
-  const soldier = await Soldier.findByPk(req.params.soldierId);
-  await soldier.destroy();
-  res.json({ deleted: true });
+  try {
+    const soldier = await Soldier.findByPk(req.params.soldierId);
+    await soldier.destroy();
+    res.json({ deleted: true });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 module.exports = router;

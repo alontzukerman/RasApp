@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 
-
 const {
   User,
   Role,
@@ -12,11 +11,6 @@ const {
   RefreshTokens,
 } = require("../../models");
 
-// router.get('/', async (req,res)=> {
-//     const allUsers = await User.findAll();
-//     res.json(allUsers);
-// })
-
 router.get("/", async (req, res) => {
   try {
     const allUsers = await User.findAll({
@@ -24,13 +18,13 @@ router.get("/", async (req, res) => {
     });
     res.json(allUsers);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.get("/profile", async (req, res) => {
   try {
-    console.log('req',req.user);
+    console.log("req", req.user);
     // const user = await User.findByPk( req.params.userId);
     const user = await User.findOne({
       where: { id: req.user.userId },
@@ -46,29 +40,37 @@ router.get("/profile", async (req, res) => {
     });
     res.json(user);
   } catch (e) {
-    res.json({ error: e.message });
+    res.status(400).json({ message: "Cannot process request" });
   }
 });
 
 router.post("/", async (req, res) => {
-  const newUser = await User.create(req.body);
-  res.json(newUser);
+  try {
+    const newUser = await User.create(req.body);
+    res.json(newUser);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.patch("/:userId", async (req, res) => {
-  const user = await User.findByPk(req.params.userId);
-  await user.update(req.body);
-  res.json(user);
+  try {
+    const user = await User.findByPk(req.params.userId);
+    await user.update(req.body);
+    res.json(user);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
 
 router.delete("/:userId", async (req, res) => {
-  const user = await User.findByPk(req.params.userId);
-  await user.destroy();
-  res.json({ deleted: true });
+  try {
+    const user = await User.findByPk(req.params.userId);
+    await user.destroy();
+    res.json({ deleted: true });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
 });
-
-// JWT
-
-
 
 module.exports = router;

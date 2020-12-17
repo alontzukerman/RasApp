@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import network from '../network' ;
 import NohehutRow from '../components/NohehutRow';
+import { NohehutPageContainer , NohehutPageInnerContainer} from '../styledComponents/nohehutpage';
+import { Button , Error } from '../styledComponents/global' ;
 
 
 const currentDate = 
@@ -15,7 +17,7 @@ function NohehutPage() {
     const [soldiers,setSoldiers] = useState();
     const [missings,setMissings] = useState();
     const [filledSoldiers,setFilledSoldiers] = useState([])
-    const [bool,setBool] = useState(false);
+    const [isError,setIsError] = useState(false);
     const [nohehut,setNohehut] = useState(new Map());
 
     const isFilled = async () => {
@@ -42,11 +44,11 @@ function NohehutPage() {
     }
     const handleSubmit = () => {
         if(nohehut.size === soldiers.length){
-            setBool(false);
+            setIsError(false);
             setNohehut(nohehut);
             sendNohehut();
         } else {    
-            setBool(true);        
+            setIsError(true);        
         }
     }
     useEffect(()=>{
@@ -55,7 +57,8 @@ function NohehutPage() {
         getMissings();
     },[]);
     return (
-        <NohPage>
+        <NohehutPageContainer>
+            <NohehutPageInnerContainer>
             {
                 soldiers && missings && 
                 soldiers.map((soldier,i)=>{
@@ -68,24 +71,11 @@ function NohehutPage() {
                         />
                 })
             }
+            </NohehutPageInnerContainer>
             <Button onClick={()=>handleSubmit()}>שלח</Button>
-            {
-                bool && <div>{'חייב למלא את כל החיילים'}</div>
-            }
-        </NohPage>
+            <Error>{isError && '*חייב למלא כלל החיילים'}</Error>
+        </NohehutPageContainer>
     )
 }
 
-const NohPage = styled.div`
-
-    width: 100% ;
-    display: flex ;
-    flex-direction: column ;
-    justify-content: center ;
-    align-items: center ;
-
-`;
-const Button = styled.button`
-
-`;
 export default NohehutPage

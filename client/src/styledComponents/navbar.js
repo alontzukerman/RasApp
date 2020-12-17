@@ -7,6 +7,7 @@ export const HeaderContainer = styled.header`
   top: 0 ;
   right: 0 ;
   left: 0 ;
+
 `;
 export const InnerHeaderContainer = styled.div`
   height: 100%;
@@ -25,6 +26,17 @@ export const InnerNavContainer = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media(min-width: 769px){
+    & svg {
+      cursor: pointer;
+      display: none ;
+    }
+  }
+  @media(max-width: 768px){
+    & ul {
+      display: none ;
+    }
+  }
 `;
 export const NavTagList = styled.ul`
   height: 100%;
@@ -50,4 +62,8 @@ cursor: pointer;
 export const LogOutButton = styled.button`
   cursor: pointer;
   margin-right: 30px;
+  background-color: #c7bf32 ;
+  border: 0 ;
+  padding: 5px ;
+  color: #f9f9f9 ;
 `;

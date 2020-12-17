@@ -22,8 +22,4 @@ app.use('/api/missings',authenticateToken, require('./routes/api/missings'));
 
 
 
-const PORT = process.env.PORT || 8080
-
-app.listen(PORT, () => {
-  console.log(`Server is listening at http://localhost:${PORT}`)
-})
+module.exports = app ;
