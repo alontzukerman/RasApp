@@ -48,3 +48,5 @@ export const FormName = styled.div`
 export const Logo = styled.img`
   height: 100% ;
 `;
+
+export const Title = styled.h1``;

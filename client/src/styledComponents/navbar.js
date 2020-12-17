@@ -33,13 +33,29 @@ export const InnerNavContainer = styled.nav`
     }
   }
   @media(max-width: 768px){
+    & {
+      width: 90% ;
+      position: absolute ;
+
+    }
     & ul {
-      display: none ;
+      width: 100vw ;
+      display: block ;
+      position: absolute ;
+      top: 0 ;
+      }
+    & ul li {
+      background-color: #333333 ;
+      width: 100% ;
+      color: #fff;
+      z-index: 100 ;
+      margin: 0 ;
+      
     }
   }
 `;
 export const NavTagList = styled.ul`
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   list-style-type: none;
 `;

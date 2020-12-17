@@ -13,12 +13,12 @@ import {
   NavTag,
   LogOutButton,
 } from "../styledComponents/navbar";
-import { Logo } from '../styledComponents/global'; 
+import { Logo } from "../styledComponents/global";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
 import Cookies from "js-cookie";
 import { User } from "../context";
-import MenuIcon from '@material-ui/icons/Menu';
-import RassAppLogo_Horizontal from '../files/RassAppLogo_Horizontal.png' ;
+import MenuIcon from "@material-ui/icons/Menu";
+import RassAppLogo_Horizontal from "../files/RassAppLogo_Horizontal.png";
 function Navbar() {
   const location = useHistory();
   const gUser = useContext(User);
@@ -37,13 +37,15 @@ function Navbar() {
     <HeaderContainer>
       <InnerHeaderContainer>
         <NavContainer>
+          <MenuIcon />
           <InnerNavContainer>
-            <MenuIcon />
             <NavTagList>
               <NavTag onClick={() => location.push("/")}>בית</NavTag>
               <NavTag onClick={() => location.push("/soldiers")}>חיילים</NavTag>
               <NavTag onClick={() => location.push("/notes")}>פתקים</NavTag>
               <NavTag onClick={() => location.push("/nohehut")}>נוכחות</NavTag>
+              <NavTag onClick={() => location.push("/calendar")}>יומן</NavTag>
+              <NavTag onClick={() => location.push("/equipments")}>ציוד</NavTag>
               <NavTag onClick={() => location.push("/profile")}>פרופיל</NavTag>
             </NavTagList>
           </InnerNavContainer>
