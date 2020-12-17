@@ -15,6 +15,7 @@ import SoldiersPage from "./pages/SoldiersPage";
 import OneSoldierPage from "./pages/OneSoldierPage";
 import NotesPage from "./pages/NotesPage";
 import NohehutPage from "./pages/NohehutPage";
+import EquipmentsPage from "./pages/EquipmentsPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import Cookies from "js-cookie";
@@ -105,9 +106,13 @@ function App() {
                 <Navbar />
                 <Calendar />
               </Route>
+              <Route path="/equipments" exact>
+                <Navbar />
+                <EquipmentsPage />
+              </Route>
               <Route path="*" exact>
                 {/* <NotFoundPage /> */}
-                <Redirect to="/notfound" />
+                <Redirect to="/" />
               </Route>
             </Switch>
           </ErrorBoundary>

@@ -6,8 +6,7 @@ import {
   NotesPageContainer,
   NotesPageInnerContainer,
 } from "../styledComponents/notespage";
-import { Button } from "../styledComponents/global";
-import { Title } from "../styledComponents/elements";
+import { Button, Title } from "../styledComponents/global";
 import { User } from "../context";
 // import { Button} from "@material-ui/core";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";

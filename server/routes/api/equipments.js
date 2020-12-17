@@ -5,11 +5,11 @@ const { Equipment, EquipmentPerUser } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.user.userId } });
     const equipments = await EquipmentPerUser.findAll({
-      where: { userId: user.id },
+      where: { userId: req.user.userId },
       include: [Equipment],
     });
+    console.log("equipments",equipments)
     res.json(equipments);
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });
