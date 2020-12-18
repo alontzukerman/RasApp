@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   background-color: #333333;
   height: 10vh;
-  position: sticky ;
-  top: 0 ;
-  right: 0 ;
-  left: 0 ;
-
+  width: 100%;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
 `;
 export const InnerHeaderContainer = styled.div`
   height: 100%;
-  width: 95%;
+  width: 100%;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -21,36 +21,31 @@ export const NavContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  @media (min-width: 869px) {
+    & div {
+      cursor: pointer;
+      display: none;
+    }
+  }
 `;
 export const InnerNavContainer = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media(min-width: 769px){
-    & svg {
-      cursor: pointer;
-      display: none ;
-    }
-  }
-  @media(max-width: 768px){
+  @media (max-width: 868px) {
     & {
-      width: 90% ;
-      position: absolute ;
-
+      display: ${props => props.isOpen ? 'block' : 'none'} ;
+      width: 100%;
+      position: absolute;
+      top: 0;
     }
     & ul {
-      width: 100vw ;
-      display: block ;
-      position: absolute ;
-      top: 0 ;
-      }
-    & ul li {
-      background-color: #333333 ;
-      width: 100% ;
-      color: #fff;
-      z-index: 100 ;
-      margin: 0 ;
-      
+      width: 100%;
+      display: block;
+      position: absolute;
+      top: 10vh;
+      margin: 0;
+      padding: 0;
     }
   }
 `;
@@ -60,26 +55,46 @@ export const NavTagList = styled.ul`
   list-style-type: none;
 `;
 export const NavTag = styled.li`
-cursor: pointer;
+  cursor: pointer;
   color: #ffffff;
-  display: block ;
-  height: 100% ;
-  padding: 10px 15px ;
-  font-weight: bold ;
-  transition: 0.2s background ease ;
+  display: block;
+  height: 100%;
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: 0.2s background ease;
   &:not(:last-child) {
-    margin-left: 30px;
+    margin-left: 5px ;
   }
   &:hover {
     background-color: #ede43b;
-    color: #333333 ;
+    color: #333333;
+  }
+  @media (max-width: 868px) {
+    & {
+      background-color: #444444;
+      width: 100%;
+      color: #fff;
+      z-index: 100;
+      position: relative;
+      top: 0;
+      margin: 0 ;
+      padding: 10px 0 ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 1px;
+    }
   }
 `;
 export const LogOutButton = styled.button`
   cursor: pointer;
   margin-right: 30px;
-  background-color: #c7bf32 ;
-  border: 0 ;
-  padding: 5px ;
-  color: #f9f9f9 ;
+  background-color: #c7bf32;
+  border: 0;
+  padding: 5px;
+  color: #f9f9f9;
+`;
+
+export const IconBox = styled.div`
+  cursor: pointer;
 `;

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link, NavLink, useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
   NavTagList,
   NavTag,
   LogOutButton,
+  IconBox,
 } from "../styledComponents/navbar";
 import { Logo } from "../styledComponents/global";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
@@ -23,22 +24,30 @@ function Navbar() {
   const location = useHistory();
   const gUser = useContext(User);
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleLogout = async () => {
     const response = await network.post(`/api/auth/logout`, {
       token: Cookies.get("refreshToken"),
     });
+
     console.log(response);
     Cookies.remove("refreshToken");
     gUser.setUser(null);
     location.push("/login");
+  };
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <HeaderContainer>
       <InnerHeaderContainer>
         <NavContainer>
-          <MenuIcon />
-          <InnerNavContainer>
+          <IconBox onClick={() => handleMenuClick()}>
+            <MenuIcon />
+          </IconBox>
+          <InnerNavContainer isOpen={menuOpen}>
             <NavTagList>
               <NavTag onClick={() => location.push("/")}>בית</NavTag>
               <NavTag onClick={() => location.push("/soldiers")}>חיילים</NavTag>
