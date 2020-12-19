@@ -1,58 +1,53 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components';
-import network from '../network';
-import SoldierRow from '../components/SoldierRow';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import network from "../network";
+import SoldierRow from "../components/SoldierRow";
+import {
+  SoldiersPageContainer,
+  ButtonsCon,
+} from "../styledComponents/soldierspage";
+import { GlobalTable, Button , Title } from "../styledComponents/global";
 function SoldiersPage() {
+  const [platoons, setPlatoons] = useState();
+  const [soldiers, setSoldiers] = useState([]);
 
-    const [platoons,setPlatoons] = useState() ;
-    const [soldiers,setSoldiers] = useState([]);
+  const getPlatoons = async () => {
+    const { data } = await network.get("/api/platoons");
+    console.log(data);
+    setPlatoons(data);
+  };
+  const getPlatoonSoldiers = async (platoonId) => {
+    const { data } = await network.get(`/api/platoons/soldiers/${platoonId}`);
+    setSoldiers(data);
+  };
+  useEffect(() => {
+    getPlatoons();
+  }, []);
 
-    const getPlatoons = async () => {
-        const { data } = await network.get('/api/platoons');
-        console.log(data);
-        setPlatoons(data)
-    }
-    // const getSoldiers = async () => {
-    //     const { data } = await network.get('/api/soldiers');
-    //     setSoldiers(data);
-    // }
-    const getPlatoonSoldiers = async (platoonId) => {
-        const { data } = await network.get(`/api/platoons/soldiers/${platoonId}`);
-        setSoldiers(data);
-    }
-    useEffect(()=>{
-        getPlatoons();
-    },[]);
+  useEffect(() => {
+    platoons && getPlatoonSoldiers(platoons[0].platoonId);
+  }, [platoons]);
+  return (
+    <SoldiersPageContainer>
+      <Title>חיילים</Title>
 
-    useEffect(()=>{
-        platoons &&
-        getPlatoonSoldiers(platoons[0].platoonId);
-    },[platoons])
-    return (
-        <SoldiersContainer>
-            <ButtonsCon>
-            {
-                platoons && 
-                platoons.map((platoon,i)=>{
-                    return <button onClick={()=>getPlatoonSoldiers(platoon.id)} key={i}>{platoon.platoonName}</button>
-                })
-            }
-            </ButtonsCon>
-            {
-                soldiers.map((soldier,i)=>{
-                    return <SoldierRow soldier={soldier} key={i} /> ;
-                })
-            }
-        </SoldiersContainer>
-    )
+      <ButtonsCon>
+        {platoons &&
+          platoons.map((platoon, i) => {
+            return (
+              <Button onClick={() => getPlatoonSoldiers(platoon.id)} key={i}>
+                {platoon.platoonName}
+              </Button>
+            );
+          })}
+      </ButtonsCon>
+      <GlobalTable>
+        {soldiers.map((soldier, i) => {
+          return <SoldierRow soldier={soldier} key={i} />;
+        })}
+      </GlobalTable>
+    </SoldiersPageContainer>
+  );
 }
 
-const SoldiersContainer = styled.div`
-    display: flex ;
-    flex-direction: column ;
-    align-items: center ;
-`;
-
-const ButtonsCon = styled.div``;
-
-export default SoldiersPage
+export default SoldiersPage;

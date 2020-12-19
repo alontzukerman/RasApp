@@ -9,11 +9,14 @@ export const NohehutPageContainer = styled.div`
   align-items: center;
 `;
 export const NohehutPageInnerContainer = styled.div`
-  width: 80% ;
+  width: 80%;
   display: flex;
   flex-direction: column;
 `;
 export const NohRowContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 150px) ;
+  display: flex;
+  padding: 5px;
+  &:hover {
+    background-color: #ede43b;
+  }
 `;

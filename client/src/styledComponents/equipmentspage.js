@@ -10,13 +10,14 @@ export const EquipmentsPageContainer = styled.div`
   align-items: center;
 `;
 export const EquipmentsPageInnerContainer = styled.div`
-height: 100% ;
-width: 400px  ;
-
+  height: 100%;
+  width: 400px;
 `;
 export const EquipmentContainer = styled.div`
-border: 1px solid black ;
-display: flex ;
-justify-content: space-between ;
-
+  display: flex;
+  padding: 5px;
+  justify-content: space-between ;
+  &:hover {
+    background-color: #ede43b;
+  }
 `;

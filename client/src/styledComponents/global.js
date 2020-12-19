@@ -41,12 +41,18 @@ export const Error = styled.div`
 
 export const Select = styled.select``;
 export const FormName = styled.div`
+  width: 25vw;
   display: flex;
   justify-content: flex-start;
   font-size: 1.2em;
 `;
 export const Logo = styled.img`
-  height: 100% ;
+  height: 100%;
 `;
 
 export const Title = styled.h1``;
+
+export const GlobalTable = styled.div`
+  width: 500px;
+  box-shadow: 0 0 5px 2px rgba(50,50,50,0.5) ;
+`;

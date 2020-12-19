@@ -7,7 +7,7 @@ import {
   EquipmentsPageContainer,
   EquipmentsPageInnerContainer,
 } from "../styledComponents/equipmentspage";
-import { Button, Title } from "../styledComponents/global";
+import { GlobalTable , Button, Title } from "../styledComponents/global";
 
 const customStyles = {
   content: {
@@ -38,12 +38,12 @@ function EquipmentsPage() {
     <EquipmentsPageContainer>
       <Title>ציוד</Title>
       {/* <Button onClick={openModal}>הוסף פתק חדש</Button> */}
-      <EquipmentsPageInnerContainer>
+      <GlobalTable>
         {equipments &&
           equipments.map((equipment, i) => {
             return <EquipmentRow equipment={equipment} key={i} />;
           })}
-      </EquipmentsPageInnerContainer>
+      </GlobalTable>
     </EquipmentsPageContainer>
   );
 }
