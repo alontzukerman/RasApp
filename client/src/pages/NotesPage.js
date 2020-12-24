@@ -5,8 +5,19 @@ import styled from "styled-components";
 import {
   NotesPageContainer,
   NotesPageInnerContainer,
+  AddNoteButton
 } from "../styledComponents/notespage";
-import { Button, Title } from "../styledComponents/global";
+import {
+  Button,
+  Title,
+  ModalContainer,
+  ModalTitle,
+  ModalButtons,
+  ModalButton,
+  Input,
+  Select,
+  ModalForm,
+} from "../styledComponents/global";
 import { User } from "../context";
 // import { Button} from "@material-ui/core";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
@@ -54,6 +65,16 @@ function NotesPage({ userId }) {
     };
     const response = await network.post(`/api/notes`, newNote);
     console.log(response);
+    getNotesByUserId();
+  };
+  const handleUpdate = (id) => {
+    console.log(id);
+  };
+  const handleDelete = async (id) => {
+    console.log(id);
+    const response = await network.delete(`/api/notes/${id}`);
+    console.log(response);
+    getNotesByUserId();
   };
   useEffect(() => {
     getNotesByUserId();
@@ -61,10 +82,17 @@ function NotesPage({ userId }) {
   return (
     <NotesPageContainer>
       <Title>פתקים</Title>
-      <Button onClick={openModal}>הוסף פתק חדש</Button>
+      <AddNoteButton onClick={()=>openModal()}>{`+ הוסף פתק חדש `}</AddNoteButton>
       <NotesPageInnerContainer>
         {myNotes.map((note, i) => {
-          return <OneNote note={note} key={i} />;
+          return (
+            <OneNote
+              note={note}
+              key={i}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+            />
+          );
         })}
       </NotesPageInnerContainer>
       <Modal
@@ -73,13 +101,17 @@ function NotesPage({ userId }) {
         style={customStyles}
         contentLabel="CreateNote"
       >
-        <h2>Create New Note</h2>
-        <button onClick={() => closeModal(false)}>CLOSE</button>
-        <button onClick={() => closeModal(true)}>SUBMIT</button>
-        <form>
-          <input ref={titleRef} placeholder="title"></input>
-          <input ref={contentRef} placeholder="content"></input>
-        </form>
+        <ModalContainer>
+          <ModalTitle>פתק חדש</ModalTitle>
+          <ModalForm>
+            <Input ref={titleRef} placeholder="כותרת"></Input>
+            <Input ref={contentRef} placeholder="תוכן"></Input>
+            <ModalButtons>
+              <ModalButton onClick={() => closeModal(true)}>שלח</ModalButton>
+              <ModalButton onClick={() => closeModal(false)}>בטל</ModalButton>
+            </ModalButtons>
+          </ModalForm>
+        </ModalContainer>
       </Modal>
     </NotesPageContainer>
   );

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import network from "../network";
 import SoldierRow from "../components/SoldierRow";
+import { SoldiersPageContainer } from "../styledComponents/soldierspage";
 import {
-  SoldiersPageContainer,
+  GlobalTable,
+  Button,
+  Title,
   ButtonsCon,
-} from "../styledComponents/soldierspage";
-import { GlobalTable, Button , Title } from "../styledComponents/global";
+} from "../styledComponents/global";
 function SoldiersPage() {
   const [platoons, setPlatoons] = useState();
   const [soldiers, setSoldiers] = useState([]);

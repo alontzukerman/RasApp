@@ -1,18 +1,21 @@
-import React from 'react'
-import styled from 'styled-components';
-function CertificationRow({certification}) {
-    console.log(certification);
-    return (
-        <Row>
-            <div>{certification.Certification.certificationName}</div>
-        </Row>
-    )
+import React from "react";
+import styled from "styled-components";
+import { ParaRow, ParaDeleteButton } from "../styledComponents/global";
+import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
+
+function CertificationRow({ certification ,handleDelete}) {
+  console.log(certification);
+  return (
+    <ParaRow>
+      <div>
+        <strong>שם ההסמכה : </strong>
+        {certification.Certification.certificationName}
+      </div>
+      <ParaDeleteButton onClick={()=>handleDelete(certification.id)}>
+        <DeleteOutlineOutlinedIcon />
+      </ParaDeleteButton>
+    </ParaRow>
+  );
 }
-const Row = styled.div`
-    display: flex ;
-    flex-direction: row;
-    justify-content: space-between;
-`;
 
-
-export default CertificationRow
+export default CertificationRow;

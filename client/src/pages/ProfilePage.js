@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import network from '../network';
+import network from "../network";
 import ReactWhatsapp from "react-whatsapp";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import styled from "styled-components";
-
+import {
+  TabsContainer,
+  Tab,
+  InnerTab,
+  Label,
+} from "../styledComponents/global";
 function ProfilePage() {
   const [user, setUser] = useState();
   const getMyProfile = async () => {
@@ -15,45 +20,63 @@ function ProfilePage() {
     getMyProfile();
   }, []);
   return (
-    <ProfileCon>
+    <ProfileContainer>
       {user && (
-        <Tabs>
-          <Tab>{user.id}</Tab>
-          <Tab>{user.Rank.rankName}</Tab>
-          <Tab>{user.Role.roleShort}</Tab>
-          <Tab>{user.firstName}</Tab>
-          <Tab>{user.lastName}</Tab>
-          <Tab>{user.address}</Tab>
+        <TabsContainer>
           <Tab>
-            {user.phoneNumber}
-            <ReactWhatsapp
-              number={"+972" + user.phoneNumber.slice(1)}
-              message="."
-              element={WhatsAppIcon}
-            />
+            <Label>שם פרטי</Label>
+            <InnerTab>{user.firstName}</InnerTab>
           </Tab>
-          <Tab>{user.email}</Tab>
-          <Tab>{user.Platoon ? user.Platoon.platoonName : ""}</Tab>
-          <Tab>{user.Class ? user.Class.className : ""}</Tab>
-        </Tabs>
+          <Tab>
+            <Label>שם משפחה</Label>
+            <InnerTab>{user.lastName}</InnerTab>
+          </Tab>
+          <Tab>
+            <Label>מספר אישי</Label>
+            <InnerTab>{user.id}</InnerTab>
+          </Tab>
+          <Tab>
+            <Label>פלאפון</Label>
+            <InnerTab>
+              {user.phoneNumber}
+              <ReactWhatsapp
+                number={"+972" + user.phoneNumber.slice(1)}
+                message="."
+                element={WhatsAppIcon}
+              />
+            </InnerTab>
+          </Tab>
+          <Tab>
+            <Label>דרגה</Label>
+            <InnerTab>{user.Rank.rankName}</InnerTab>
+          </Tab>
+          <Tab>
+            <Label>תפקיד</Label>
+            <InnerTab>{user.Role.roleShort}</InnerTab>
+          </Tab>
+
+          <Tab>
+            <Label>כתובת</Label>
+            <InnerTab>{user.address}</InnerTab>
+          </Tab>
+
+          <Tab>
+            <Label>אימייל</Label>
+            <InnerTab>{user.email}</InnerTab>
+          </Tab>
+          <Tab>
+            <Label>מחלקה</Label>
+            <InnerTab>{user.Platoon ? user.Platoon.platoonName : ""}</InnerTab>
+          </Tab>
+          <Tab>
+            <Label>כיתה</Label>
+            <InnerTab>{user.Class ? user.Class.className : ""}</InnerTab>
+          </Tab>
+        </TabsContainer>
       )}
-    </ProfileCon>
+    </ProfileContainer>
   );
 }
-const ProfileCon = styled.div``;
-const Tabs = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1em;
-  margin: 0.5em;
-`;
-const Tab = styled.div`
-  height: 5vh;
-  width: 40vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #555;
-  padding: 0.5em;
-`;
+const ProfileContainer = styled.div``;
+
 export default ProfilePage;

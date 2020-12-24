@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1000 ;
 `;
 export const InnerHeaderContainer = styled.div`
   height: 100%;

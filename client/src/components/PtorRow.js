@@ -1,27 +1,35 @@
-import React from 'react'
-import styled from 'styled-components';
-function PtorRow({ptor}) {
-    console.log(ptor)
-    return (
-        <Row>
-            <div>{ptor.Ptor.ptorName}</div>
-            <div>{ptor.startDate}</div>
-            <div>{ptor.givenDays}</div>
-            <UserDetails>
-                <div>{ptor.User.firstName}</div>
-                <div>{ptor.User.lastName}</div>
-            </UserDetails>
-        </Row>
-    )
-}
-const Row = styled.div`
-    display: flex ;
-    flex-direction: row;
-    justify-content: space-between;
-`;
+import React from "react";
+import styled from "styled-components";
+import { ParaRow , ParaDeleteButton} from "../styledComponents/global";
+import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 
-const UserDetails = styled.div`
-    display: flex ;
-    
-`;
-export default PtorRow
+function PtorRow({ ptor , handleDelete }) {
+  console.log(ptor);
+
+
+  return (
+    <ParaRow>
+      <div>
+        <strong>שם הפטור : </strong>
+        {ptor.Ptor.ptorName}
+      </div>
+      <div>
+        <strong>תאריך התחלה : </strong>
+        {ptor.startDate}
+      </div>
+      <div>
+        <strong>תוקף : </strong>
+        {ptor.givenDays}
+      </div>
+      <div>
+        <strong>ניתן על ידי : </strong>
+        {`${ptor.User.firstName} ${ptor.User.lastName}`}
+      </div>
+      <ParaDeleteButton onClick={()=>handleDelete(ptor.id)}>
+        <DeleteOutlineOutlinedIcon />
+      </ParaDeleteButton>
+    </ParaRow>
+  );
+}
+
+export default PtorRow;

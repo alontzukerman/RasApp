@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import network from '../network';
+import network from "../network";
 import styled from "styled-components";
 import Certifications from "../components/Certifications";
 import Exams from "../components/Exams";
@@ -8,7 +8,16 @@ import Ptors from "../components/Ptors";
 import { render } from "react-dom";
 import ReactWhatsapp from "react-whatsapp";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
-
+import {
+  OneSoldierPageContainer,
+  OneSoldierPageInnerContainer,
+} from "../styledComponents/onesoldierpage";
+import {
+  TabsContainer,
+  Tab,
+  InnerTab,
+  Label,
+} from "../styledComponents/global";
 function OneSoldierPage() {
   const { soldierId } = useParams();
   const [soldier, setSoldier] = useState([]);
@@ -24,50 +33,49 @@ function OneSoldierPage() {
   return (
     <>
       {soldier.phoneNumber && (
-        <SoldierContainer>
-          <Tabs>
-            <Tab>{soldier.id}</Tab>
-            <Tab>
-              {soldier.phoneNumber}
-              <ReactWhatsapp
-                number={"+972" + soldier.phoneNumber.slice(1)}
-                message="."
-                element={WhatsAppIcon}
-              />
-            </Tab>
-            <Tab>{soldier.firstName}</Tab>
-            <Tab>{soldier.lastName}</Tab>
-            <Tab>{soldier.birthday}</Tab>
-            <Tab>{soldier.address}</Tab>
-          </Tabs>
-          <Certifications soldierId={soldierId} />
-          <Exams soldierId={soldierId} />
-          <Ptors soldierId={soldierId} />
-        </SoldierContainer>
+        <OneSoldierPageContainer>
+          <OneSoldierPageInnerContainer>
+            <TabsContainer>
+              <Tab>
+                <Label>שם פרטי</Label>
+                <InnerTab>{soldier.firstName}</InnerTab>
+              </Tab>
+              <Tab>
+                <Label>שם משפחה</Label>
+                <InnerTab>{soldier.lastName}</InnerTab>
+              </Tab>
+              <Tab>
+                <Label>מספר אישי</Label>
+                <InnerTab>{soldier.id}</InnerTab>
+              </Tab>
+              <Tab>
+                <Label>פלאפון</Label>
+                <InnerTab>
+                  {soldier.phoneNumber}
+                  <ReactWhatsapp
+                    number={"+972" + soldier.phoneNumber.slice(1)}
+                    message="."
+                    element={WhatsAppIcon}
+                  />
+                </InnerTab>
+              </Tab>
+              <Tab>
+                <Label>תאריך לידה</Label>
+                <InnerTab>{soldier.birthday}</InnerTab>
+              </Tab>
+              <Tab>
+                <Label>כתובת</Label>
+                <InnerTab>{soldier.address}</InnerTab>
+              </Tab>
+            </TabsContainer>
+            <Certifications soldierId={soldierId} />
+            <Exams soldierId={soldierId} />
+            <Ptors soldierId={soldierId} />
+          </OneSoldierPageInnerContainer>
+        </OneSoldierPageContainer>
       )}
     </>
   );
 }
-
-const SoldierContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const Tabs = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1em;
-  margin: 0.5em;
-`;
-const Tab = styled.div`
-  height: 5vh;
-  width: 40vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #555;
-  padding: 0.5em;
-`;
 
 export default OneSoldierPage;
