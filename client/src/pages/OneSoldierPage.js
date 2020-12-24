@@ -19,7 +19,7 @@ function OneSoldierPage() {
   };
   useEffect(() => {
     getSoldierById();
-  }, []);
+  }, [soldier]);
 
   return (
     <>

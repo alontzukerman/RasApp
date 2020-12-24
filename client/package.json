@@ -5,11 +5,13 @@
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
+    "@syncfusion/ej2-react-buttons": "^18.4.30",
     "@syncfusion/ej2-react-schedule": "^18.4.30",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
+    "cldr-data": "^36.0.0",
     "framer": "^1.2.11",
     "framer-motion": "^2.9.5",
     "js-cookie": "^2.2.1",
@@ -46,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "systemjs-plugin-json": "^0.3.0"
   }
 }
