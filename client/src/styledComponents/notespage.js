@@ -11,11 +11,11 @@ export const NotesPageContainer = styled.div`
 `;
 export const NotesPageInnerContainer = styled.div`
   height: 100%;
-  width: 80%;
+  width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
-  align-items: center;
+  justify-items: center ;
 `;
 export const NoteContainer = styled.div`
   cursor: pointer;
@@ -23,6 +23,7 @@ export const NoteContainer = styled.div`
   box-shadow: 3px 3px 3px 1px rgba(50, 50, 50, 0.5);
   background-color: #ede43b;
   height: 150px;
+  width: 300px ;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -57,7 +58,7 @@ cursor: pointer;
   align-items: center ;
   background-color: rgba(50, 50, 50, 0.5) ;
   box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.6);
-  /* justify-content: center ; */
+  justify-content: center ;
   padding: 5px 10px ;
   font-size: 1.2em ;
   margin-bottom: 20px ;

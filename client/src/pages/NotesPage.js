@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   NotesPageContainer,
   NotesPageInnerContainer,
-  AddNoteButton
+  AddNoteButton,
 } from "../styledComponents/notespage";
 import {
   Button,
@@ -39,18 +39,30 @@ Modal.setAppElement("#root");
 function NotesPage({ userId }) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
-  const [notes, setNotes] = useState([]);
+  const titleERef = useRef(null);
+  const contentERef = useRef(null);
+  const [noteToUpdate, setNoteToUpdate] = useState(null);
   const [myNotes, setMyNotes] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalEIsOpen, setEIsOpen] = useState(false);
 
   const gUser = useContext(User);
   console.log("gUser", gUser);
   function openModal() {
     setIsOpen(true);
   }
+  function openEModal() {
+    setEIsOpen(true);
+    // titleERef.current.value = noteToUpdate ? noteToUpdate.title : "" ;
+    // contentERef.current.value = noteToUpdate ? noteToUpdate.noteContent : "" ;
+  }
   function closeModal(bool) {
     bool && createNote(titleRef.current.value, contentRef.current.value);
     setIsOpen(false);
+  }
+  function closeEModal(bool) {
+    bool && updateNote(titleERef.current.value, contentERef.current.value);
+    setEIsOpen(false);
   }
   const getNotesByUserId = async () => {
     const { data } = await network.get(`/api/notes`);
@@ -67,8 +79,25 @@ function NotesPage({ userId }) {
     console.log(response);
     getNotesByUserId();
   };
-  const handleUpdate = (id) => {
+  const updateNote = async (title, noteContent) => {
+    console.log("updating note");
+    const updateNote = {
+      title: title,
+      noteContent: noteContent,
+    };
+    const response = await network.patch(
+      `/api/notes/${noteToUpdate.id}`,
+      updateNote
+    );
+    console.log(response);
+    getNotesByUserId();
+  };
+  const handleUpdate = async (id) => {
     console.log(id);
+    const { data } = await network.get(`/api/notes/${id}`);
+    console.log(data);
+    setNoteToUpdate(data);
+    openEModal();
   };
   const handleDelete = async (id) => {
     console.log(id);
@@ -82,7 +111,9 @@ function NotesPage({ userId }) {
   return (
     <NotesPageContainer>
       <Title>פתקים</Title>
-      <AddNoteButton onClick={()=>openModal()}>{`+ הוסף פתק חדש `}</AddNoteButton>
+      <AddNoteButton
+        onClick={() => openModal()}
+      >{`+ הוסף פתק חדש `}</AddNoteButton>
       <NotesPageInnerContainer>
         {myNotes.map((note, i) => {
           return (
@@ -109,6 +140,24 @@ function NotesPage({ userId }) {
             <ModalButtons>
               <ModalButton onClick={() => closeModal(true)}>שלח</ModalButton>
               <ModalButton onClick={() => closeModal(false)}>בטל</ModalButton>
+            </ModalButtons>
+          </ModalForm>
+        </ModalContainer>
+      </Modal>
+      <Modal
+        isOpen={modalEIsOpen}
+        onRequestClose={closeEModal}
+        style={customStyles}
+        contentLabel="UpdateNote"
+      >
+        <ModalContainer>
+          <ModalTitle>עדכן פתק</ModalTitle>
+          <ModalForm>
+            <Input ref={titleERef} placeholder="כותרת"></Input>
+            <Input ref={contentERef} placeholder="תוכן"></Input>
+            <ModalButtons>
+              <ModalButton onClick={() => closeEModal(true)}>עדכן</ModalButton>
+              <ModalButton onClick={() => closeEModal(false)}>בטל</ModalButton>
             </ModalButtons>
           </ModalForm>
         </ModalContainer>

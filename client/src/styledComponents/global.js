@@ -88,7 +88,7 @@ export const TabsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 20px;
-  align-items: center;
+  justify-items: center ;
 `;
 
 export const Tab = styled.div`

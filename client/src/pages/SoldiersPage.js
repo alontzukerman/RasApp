@@ -9,6 +9,7 @@ import {
   Title,
   ButtonsCon,
 } from "../styledComponents/global";
+import AddSoldierForm from "../components/AddSoldierForm";
 function SoldiersPage() {
   const [platoons, setPlatoons] = useState();
   const [soldiers, setSoldiers] = useState([]);
@@ -32,7 +33,7 @@ function SoldiersPage() {
   return (
     <SoldiersPageContainer>
       <Title>חיילים</Title>
-
+      <AddSoldierForm />
       <ButtonsCon>
         {platoons &&
           platoons.map((platoon, i) => {
