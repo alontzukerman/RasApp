@@ -9,10 +9,7 @@ export const SoldiersPageContainer = styled.div`
   align-items: center;
 `;
 
-export const ButtonsCon = styled.div`
-display: flex ;
 
-`;
 
 export const SoldierRowContainer = styled.div`
 display: flex ;

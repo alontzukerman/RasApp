@@ -3,8 +3,20 @@ import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import network from "../network";
 import styled from "styled-components";
-import PtorRow from './PtorRow';
-
+import PtorRow from "./PtorRow";
+import {
+  ParaContainer,
+  ParaTitle,
+  ParaAddButton,
+  ParaRows,
+  ModalContainer,
+  ModalTitle,
+  ModalButtons,
+  ModalButton,
+  Input,
+  Select,
+  ModalForm,
+} from "../styledComponents/global";
 const customStyles = {
   content: {
     top: "50%",
@@ -30,14 +42,19 @@ function Ptors({ soldierId }) {
   }
   function closeModal(bool) {
     //   console.log()
-    bool && createPtor(selectCurrent.current.value,inputDate.current.value,inputDays.current.value);
+    bool &&
+      createPtor(
+        selectCurrent.current.value,
+        inputDate.current.value,
+        inputDays.current.value
+      );
     setIsOpen(false);
   }
   const getPtorsBySoldierId = async () => {
     const { data } = await network.get(`/api/ptors/soldier/${soldierId}`);
     setMyPtors(data);
   };
-  const createPtor = async (ptorId,start,days) => {
+  const createPtor = async (ptorId, start, days) => {
     console.log("creating new ptor");
     const newPtor = {
       ptorId: ptorId,
@@ -48,21 +65,30 @@ function Ptors({ soldierId }) {
     };
     const response = await network.post(`/api/ptors`, newPtor);
     console.log(response);
+    getPtorsBySoldierId();
   };
   const getInfoAbout = async () => {
     const { data } = await network.get(`/api/ptors`);
     setPtors(data);
   };
+  const handleDelete = async (id) => {
+    const response = await network.delete(`/api/ptors/${id}`);
+    console.log(response);
+    getPtorsBySoldierId();
+  };
+
   useEffect(() => {
     getPtorsBySoldierId();
   }, []);
   return (
-    <ParaCon>
-      <Title>פטורים</Title>
-      <Button onClick={openModal}>+</Button>
-      {myPtors.map((ptor, i) => {
-        return <PtorRow ptor={ptor} />
-      })}
+    <ParaContainer>
+      <ParaTitle>פטורים</ParaTitle>
+      <ParaAddButton onClick={openModal}>+</ParaAddButton>
+      <ParaRows>
+        {myPtors.map((ptor, i) => {
+          return <PtorRow ptor={ptor} handleDelete={handleDelete} />;
+        })}
+      </ParaRows>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={() => getInfoAbout()}
@@ -70,44 +96,33 @@ function Ptors({ soldierId }) {
         style={customStyles}
         contentLabel="CreatePtor"
       >
-        <h2>Create New Ptor</h2>
-        <button onClick={()=>closeModal(false)}>CLOSE</button>
-        <button onClick={()=>closeModal(true)}>SUBMIT</button>
-        <form>
-          <select ref={selectCurrent}>
-            {ptors.map((ptor, i) => {
-              return (
-                <option value={`${ptor.id}`}>{ptor.ptorName}</option>
-              );
-            })}
-          </select>
-          <input
-            ref={inputDate}
-            type="date"
-            placeholder="starting date"
-          ></input>
-          <input ref={inputDays} placeholder="given days"></input>
-        </form>
+        <ModalContainer>
+          <ModalTitle>פטור חדש</ModalTitle>
+          <ModalForm>
+            <Select ref={selectCurrent}>
+              {ptors.map((ptor, i) => {
+                return <option value={`${ptor.id}`}>{ptor.ptorName}</option>;
+              })}
+            </Select>
+            <Input
+              ref={inputDate}
+              type="date"
+              placeholder="תחילת הפטור"
+            ></Input>
+            <Input
+              ref={inputDays}
+              type="number"
+              placeholder="תוקף הפטור"
+            ></Input>
+            <ModalButtons>
+              <ModalButton onClick={() => closeModal(true)}>שלח</ModalButton>
+              <ModalButton onClick={() => closeModal(false)}>בטל</ModalButton>
+            </ModalButtons>
+          </ModalForm>
+        </ModalContainer>
       </Modal>
-    </ParaCon>
+    </ParaContainer>
   );
 }
-const ParaCon = styled.div`
-  min-height: 15vh;
-  width: 90vw;
-  margin-top: 2vh;
-  border: 1px solid white;
-`;
-const Title = styled.div`
-  width: 100%;
-  height: 3vh;
-  background-color: #444;
-  padding: 0.5em 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const Button = styled.button``;
 
 export default Ptors;

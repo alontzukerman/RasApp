@@ -8,38 +8,38 @@ module.exports = {
         {
           id:1,
           user_id:1,
-          title:'420',
-          note_content:'i need to buy ganja'
+          title:'מסדר',
+          note_content:'לתאם מסדר עם הרסר'
         },
         {
           id:2,
           user_id:2,
-          title:'chips',
-          note_content:'i need to buy food'
+          title:'שטח אש',
+          note_content:'לחתום על שטח אש לאימון'
         },
         {
           id:3,
           user_id:1,
-          title:'train',
-          note_content:'i need to do exercesice'
+          title:'יעד',
+          note_content:'שכל החיילים ירוצו 10 קילומטר'
         },
         {
           id:4,
           user_id:1,
-          title:'weed',
-          note_content:'i need to buy weed too like the rasap'
+          title:'מנקים',
+          note_content:'למשוך 50 מנקים לשבוע הבא'
         },
         {
           id:5,
           user_id:2,
-          title:'amen',
-          note_content:'shhhhhh'
+          title:'אמן',
+          note_content:'לא לשכוח להניח תפילין'
         },
         {
           id:6,
           user_id:3,
-          title:'refaelWon',
-          note_content:'nadaling'
+          title:'אליפות',
+          note_content:'להוסיף עוד אליפות'
         },
       ],
       {}

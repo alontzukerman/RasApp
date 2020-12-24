@@ -20,18 +20,73 @@ export const NotesPageInnerContainer = styled.div`
 export const NoteContainer = styled.div`
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px 1px rgba(50,50,50,0.5) ;
+  box-shadow: 3px 3px 3px 1px rgba(50, 50, 50, 0.5);
   background-color: #ede43b;
   height: 150px;
   display: flex;
   flex-direction: column;
-  padding: 10px ;
+  padding: 10px;
+  position: relative;
 `;
-export const NoteTitle = styled.h2`
-letter-spacing: 1px ;
-padding-bottom: 5px ;
-border-bottom: 1px solid black ;
+export const NoteTitle = styled.div`
+  position: absolute;
+  background-color: rgba(50, 50, 50, 0.5) ;
+  box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.6);
+  top: 0;
+  right: 10;
+  left: 10;
+  padding: 5px 10px;
+  margin-top: -30px;
+  font-size: 1.1em ;
+
+  letter-spacing: 1px;
 `;
 export const NoteContent = styled.div`
-font-size: 0.9em ;
+  font-size: 0.9em;
+`;
+export const NoteButtons = styled.div`
+display: flex ;
+position: absolute ;
+left: 0 ;
+bottom: 0 ;
+`;
+export const AddNoteButton = styled.div`
+cursor: pointer; 
+  height: 40px ;
+  display: flex ;
+  align-items: center ;
+  background-color: rgba(50, 50, 50, 0.5) ;
+  box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.6);
+  /* justify-content: center ; */
+  padding: 5px 10px ;
+  font-size: 1.2em ;
+  margin-bottom: 20px ;
+`;
+export const NoteDeleteButton = styled.div`
+cursor: pointer; 
+/* position: absolute ; */
+/* left: 0 ; */
+display: flex ;
+justify-content: center ;
+align-items: center ;
+height: 100% ;
+width: 40px ;
+&:hover {
+  background-color: #eb6d6d ;
+}
+
+`;
+export const NoteUpdateButton = styled.div`
+cursor: pointer; 
+/* position: absolute ; */
+/* left: 0 ; */
+display: flex ;
+justify-content: center ;
+align-items: center ;
+height: 100% ;
+width: 40px ;
+&:hover {
+  background-color: #c7bf32 ;
+}
+
 `;
