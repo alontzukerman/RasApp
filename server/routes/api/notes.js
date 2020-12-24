@@ -37,7 +37,7 @@ router.get("/user/:userId", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    req.body.userId = req.user.userId ;
+    req.body.userId = req.user.userId
     const newnote = await Note.create(req.body);
     res.json(newnote);
   } catch (e) {

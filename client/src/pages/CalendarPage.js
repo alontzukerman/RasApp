@@ -34,19 +34,18 @@ import * as numbers from "../../node_modules/cldr-data/main/he/numbers.json";
 import * as timeZoneNames from "../../node_modules/cldr-data/main/he/timeZoneNames.json";
 loadCldr(numberingSystems, gregorian, numbers, timeZoneNames);
 setCulture("he");
-setCurrencyCode("ILS");
 
-// L10n.load({
-//   'he': {
-//       'schedule': {
-//           'saveButton': 'הוסף',
-//           'cancelButton': 'סגור',
-//           'deleteButton': 'מחק',
-//           'newEvent': 'הוסף אירוע',
-//       },
-//   }
-// });
-// setLocale('he');
+L10n.load({
+  'he': {
+      'schedule': {
+          'saveButton': 'הוסף',
+          'cancelButton': 'סגור',
+          'deleteButton': 'מחק',
+          'newEvent': 'הוסף אירוע',
+          'e-float-text e-label-top':'dscskdckskcsks'
+      },
+  }
+});
 
 function Calendar() {
   const [calendar, setCalendar] = useState([]);
@@ -108,12 +107,13 @@ function Calendar() {
             actionComplete={onActionComplete}
           >
             <ViewsDirective>
+              <ViewDirective option="TODAY" displayName="יוםv" />
               <ViewDirective option="Day" displayName="יום" />
-              <ViewDirective option="Week" />
-              <ViewDirective option="WorkWeek" />
-              <ViewDirective option="Month" />
+              <ViewDirective option="Week" displayName="שבוע" />
+              <ViewDirective option="Month" displayName="חודש"/>
+              <ViewDirective option="Agenda" displayName="לוז יומי"/>
             </ViewsDirective>
-            <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+            <Inject services={[Day, Week, Month, Agenda]} />
           </ScheduleComponent>
         </>
       )}

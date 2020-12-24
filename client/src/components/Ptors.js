@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import network from "../network";
 import styled from "styled-components";
 import PtorRow from "./PtorRow";
+import { useContext } from "react";
+import { User } from "../context";
 import {
   ParaContainer,
   ParaTitle,
@@ -37,6 +39,8 @@ function Ptors({ soldierId }) {
   const [myPtors, setMyPtors] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
 
+  const gUser = useContext(User);
+  console.log(gUser);
   function openModal() {
     setIsOpen(true);
   }
@@ -61,7 +65,7 @@ function Ptors({ soldierId }) {
       soldierId: soldierId,
       startDate: start,
       givenDays: days,
-      userId: 1,
+      userId: gUser.user.userId,
     };
     const response = await network.post(`/api/ptors`, newPtor);
     console.log(response);
@@ -83,7 +87,9 @@ function Ptors({ soldierId }) {
   return (
     <ParaContainer>
       <ParaTitle>פטורים</ParaTitle>
-      <ParaAddButton onClick={openModal}>+</ParaAddButton>
+      {gUser.user.roleId == 2 && (
+        <ParaAddButton onClick={openModal}>+</ParaAddButton>
+      )}
       <ParaRows>
         {myPtors.map((ptor, i) => {
           return <PtorRow ptor={ptor} handleDelete={handleDelete} />;

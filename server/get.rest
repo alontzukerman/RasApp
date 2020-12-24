@@ -1,14 +1,15 @@
-GET http://localhost:8080/api/calendar
+GET http://localhost:8080/api/equipments/user
 Content-type: application/json
-# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYwODIyMzkzNiwiZXhwIjoxNjA4MjIzOTU2fQ.02BwkN5XjSbHQYZvGKXIsfxeTRZKTgEs2RL_qo1qSKI
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYwODIyMzkzNiwiZXhwIjoxNjA4MjIzOTU2fQ.02BwkN5XjSbHQYZvGKXIsfxeTRZKTgEs2RL_qo1qSKI
 
 
 ###
-POST http://localhost:4000/token
+POST http://localhost:8080/login
 Content-type: application/json
 
 {
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiWWFpciIsImlhdCI6MTYwNzk0NjI5OH0.LNg6dnzmIJXmHYMqlMJ_bK_tWTg8u3NrADuHSasunU4"
+    "id":2,
+    "password":123456
 }
 ###
 POST http://localhost:8080/api/calendar
