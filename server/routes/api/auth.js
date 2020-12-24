@@ -67,11 +67,12 @@ router.post("/login", async (req, res) => {
         id: Number(req.body.username),
         password: Number(req.body.password),
       },
-      attributes: ["id", "firstName", "lastName"],
+      attributes: ["id", "firstName", "lastName",'roleId'],
     });
     if (!user) return res.status(404).json({ message: "No User Found" });
     const info = {
       userId: user.dataValues.id,
+      roleId: user.dataValues.roleId
     };
     // const user = { name: username };
     const accessToken = generateAccessToken(info);

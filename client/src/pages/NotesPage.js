@@ -18,11 +18,12 @@ import {
   Select,
   ModalForm,
 } from "../styledComponents/global";
-import { User } from "../context";
 // import { Button} from "@material-ui/core";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import OneNote from "../components/OneNote";
 import { useContext } from "react";
+import { User } from "../context";
+
 
 const customStyles = {
   content: {
