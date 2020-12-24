@@ -24,6 +24,15 @@ import { User } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CalendarPage from './pages/CalendarPage';
 
+
+import { loadCldr} from '@syncfusion/ej2-base';
+
+loadCldr(
+    require('cldr-data/supplemental/numberingSystems.json'),
+    require('cldr-data/main/he/ca-gregorian.json'),
+    require('cldr-data/main/he/numbers.json'),
+    require('cldr-data/main/he/timeZoneNames.json')
+    );
 // const NotFoundPage = lazy(()=> import('./pages/NotFoundPage'))
 // const HomePage = lazy(()=> import('./pages/HomePage'));
 // const SoldiersPage = lazy(()=> import('./pages/SoldiersPage'));
