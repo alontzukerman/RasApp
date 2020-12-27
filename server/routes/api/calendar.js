@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const newCalendar = await Calendar.create(req.body);
+    const newCalendar = await Calendar.create({...req.body}); // לעדכן מיגרציות ומודלים רלוונטים
     if (newCalendar.Subject !== null) {
       res.json(newCalendar);
     }

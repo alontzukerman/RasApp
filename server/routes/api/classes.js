@@ -5,7 +5,19 @@ const { Soldier, User, Class } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const classes = await Class.findAll({});
+    const { dataValues: user } = await User.findOne({
+      where: { id: req.user.id },
+    });
+    let classes;
+    switch (user.platoonId) {
+      case null:
+        classes = await Class.findAll({});
+        break;
+      default:
+        classes = await Class.findAll({
+          where: { platoonId: user.platoonId },
+        });
+    }
     res.json(classes);
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });

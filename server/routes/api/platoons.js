@@ -5,11 +5,17 @@ const { Soldier, Platoon, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.user.userId } });
+    const { dataValues: user } = await User.findOne({
+      where: { id: req.user.userId },
+    });
     let platoons;
+    console.log(user);
     switch (user.roleId) {
       case 5 || 6 || 7:
-        platoons = await Platoon.findAll({ where: { id: user.platoonId } });
+        platoons = await Platoon.findAll({
+          where: { id: user.platoonId },
+        });
+       break;
       default:
         platoons = await Platoon.findAll({ where: { plugaId: user.plugaId } });
     }

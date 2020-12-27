@@ -52,7 +52,11 @@ function Navbar() {
               <NavTag onClick={() => location.push("/")}>בית</NavTag>
               <NavTag onClick={() => location.push("/soldiers")}>חיילים</NavTag>
               <NavTag onClick={() => location.push("/notes")}>פתקים</NavTag>
-              <NavTag onClick={() => location.push("/nohehut")}>נוכחות</NavTag>
+              {(gUser.user.roleId === 2 || gUser.user.roleId === 6) && (
+                <NavTag onClick={() => location.push("/nohehut")}>
+                  נוכחות
+                </NavTag>
+              )}
               <NavTag onClick={() => location.push("/calendar")}>יומן</NavTag>
               <NavTag onClick={() => location.push("/equipments")}>ציוד</NavTag>
               <NavTag onClick={() => location.push("/profile")}>פרופיל</NavTag>

@@ -8,17 +8,17 @@ module.exports = {
         {
           id: 1,
           pluga_id:1,
-          platoon_name: "א",
+          platoon_name: "1",
         },
         {
           id: 2,
           pluga_id: 1,
-          platoon_name: "ב",
+          platoon_name: "2",
         },
         {
           id: 3,
           pluga_id: 1,
-          platoon_name: "ג",
+          platoon_name: "3",
         },
       ],
       {}

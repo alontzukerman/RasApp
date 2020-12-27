@@ -23,9 +23,10 @@ import Cookies from "js-cookie";
 import { User } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
 import CalendarPage from './pages/CalendarPage';
-
-
 import { loadCldr} from '@syncfusion/ej2-base';
+
+
+
 
 loadCldr(
     require('cldr-data/supplemental/numberingSystems.json'),
@@ -45,6 +46,7 @@ loadCldr(
 function App() {
   const [user, setUser] = useState(null);
 
+
   // const location = useHistory();
   const checkValidateToken = async () => {
     if (Cookies.get("refreshToken")) {
@@ -60,7 +62,7 @@ function App() {
   useEffect(() => {
     checkValidateToken();
   }, []);
-
+console.log(user)
   return (
     <Router>
       {/* <AppContainer>{getRoutes()}</AppContainer> */}
@@ -101,10 +103,11 @@ function App() {
                 <Navbar />
                 <NotesPage />
               </Route>
-              <Route path="/nohehut" exact>
+              {(user.roleId === 2 || user.roleId === 6) &&
+                <Route path="/nohehut" exact>
                 <Navbar />
                 <NohehutPage />
-              </Route>
+              </Route>}
               <Route path="/profile" exact>
                 <Navbar />
                 <ProfilePage />
