@@ -1,21 +1,24 @@
 import styled from "styled-components";
+import { Theme } from '../theme';
+
+const theme = Theme();
 
 export const SoldiersPageContainer = styled.div`
   height: 90vh;
   width: 100%;
-  background-color: #f9f9f9;
+  background-color: ${theme.background};
+  color: ${theme.text};
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-
 `;
 
 export const SoldierRowContainer = styled.div`
   display: flex;
   padding: 5px;
   &:hover {
-    background-color: #ede43b;
+    background-color: ${theme.main};
   }
 `;
 
@@ -28,20 +31,21 @@ export const AddSoldierContainer = styled.div`
   height: 100%;
   width: 100%;
   background-color: rgba(220, 220, 220, 0.8);
-  transform: ${props=>props.open ? "translateX(0)" : "translateX(100%)"};
+  transition: 1s transform ease;
+  transform: ${(props) => (props.open ? "translateX(0)" : "translateX(100%)")};
 `;
 
 export const AddSoldierFormContainer = styled.form`
   height: 80%;
   width: 90%;
   display: grid;
-  justify-items: center ;
+  justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 10px;
 `;
 
 export const DivForm = styled.div`
-  background: linear-gradient(#ede43b, #e4df8b);
+  background: linear-gradient(${theme.main},${theme.bright});
   position: relative;
   width: 220px;
   height: 60px;
@@ -86,31 +90,48 @@ export const SelectForm = styled.select`
   }
 `;
 export const ButtonsForm = styled.div`
-position: absolute ;
-left: 0 ;
-height: 100px ;
-width: 100px ;
-margin-left: -50px ;
+  position: absolute;
+  left: 0;
+  height: 100px;
+  width: 100px;
+  margin-left: -50px;
 `;
 export const ButtonOpenForm = styled.button`
-position: absolute ;
-left: 0 ;
-top: 0 ;
-bottom: 0 ;
-width: 45px ;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #f9f9f900;
 `;
 export const ButtonSubmitForm = styled.button`
-position: absolute ;
-top: 0 ;
-right: 0 ;
-width: 45px ;
-height: 45px ;
-
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #f9f9f900;
 `;
 export const ButtonCancelForm = styled.button`
-position: absolute ;
-bottom: 0 ;
-right: 0 ;
-width: 45px ;
-height: 45px ;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #f9f9f900;
 `;

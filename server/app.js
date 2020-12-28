@@ -16,11 +16,13 @@ app.use('/api/classes',authenticateToken, require('./routes/api/classes'));
 app.use('/api/certifications',authenticateToken, require('./routes/api/certifications'));
 app.use('/api/exams',authenticateToken, require('./routes/api/exams'));
 app.use('/api/ptors',authenticateToken, require('./routes/api/ptors'));
-app.use('/api/classes', require('./routes/api/classes'));
+app.use('/api/classes',authenticateToken, require('./routes/api/classes'));
 app.use('/api/notes',authenticateToken, require('./routes/api/notes'));
 app.use('/api/missings',authenticateToken, require('./routes/api/missings'));
 app.use('/api/equipments',authenticateToken, require('./routes/api/equipments'));
 app.use('/api/calendar', require('./routes/api/calendar'));
+app.use('/api/ranks',authenticateToken, require('./routes/api/ranks'));
+app.use('/api/pakals',authenticateToken, require('./routes/api/pakals'));
 
 app.get("*",(req, res) => {
     res.sendFile(path.resolve(__dirname,"../client/build","index.html"))

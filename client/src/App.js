@@ -10,7 +10,7 @@ import {
 import styled from "styled-components";
 import Navbar from "./components/Navbar";
 
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage";
 import SoldiersPage from "./pages/SoldiersPage";
 import OneSoldierPage from "./pages/OneSoldierPage";
@@ -20,20 +20,17 @@ import EquipmentsPage from "./pages/EquipmentsPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import Cookies from "js-cookie";
-import { User } from "./context";
+import { User , DarkMode } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
-import CalendarPage from './pages/CalendarPage';
-import { loadCldr} from '@syncfusion/ej2-base';
-
-
-
+import CalendarPage from "./pages/CalendarPage";
+import { loadCldr } from "@syncfusion/ej2-base";
 
 loadCldr(
-    require('cldr-data/supplemental/numberingSystems.json'),
-    require('cldr-data/main/he/ca-gregorian.json'),
-    require('cldr-data/main/he/numbers.json'),
-    require('cldr-data/main/he/timeZoneNames.json')
-    );
+  require("cldr-data/supplemental/numberingSystems.json"),
+  require("cldr-data/main/he/ca-gregorian.json"),
+  require("cldr-data/main/he/numbers.json"),
+  require("cldr-data/main/he/timeZoneNames.json")
+);
 // const NotFoundPage = lazy(()=> import('./pages/NotFoundPage'))
 // const HomePage = lazy(()=> import('./pages/HomePage'));
 // const SoldiersPage = lazy(()=> import('./pages/SoldiersPage'));
@@ -42,11 +39,9 @@ loadCldr(
 // const NohehutPage = lazy(()=> import('./pages/NohehutPage'));
 // const ProfilePage = lazy(()=> import('./pages/ProfilePage'));
 
-
 function App() {
   const [user, setUser] = useState(null);
-
-
+  const [darkMode,setDarkMode] = useState(false);
   // const location = useHistory();
   const checkValidateToken = async () => {
     if (Cookies.get("refreshToken")) {
@@ -62,9 +57,10 @@ function App() {
   useEffect(() => {
     checkValidateToken();
   }, []);
-console.log(user)
+  console.log(user);
   return (
     <Router>
+      <DarkMode.Provider value={{ darkMode, setDarkMode }}>
       {/* <AppContainer>{getRoutes()}</AppContainer> */}
       {!user ? (
         <User.Provider value={{ user, setUser }}>
@@ -103,18 +99,19 @@ console.log(user)
                 <Navbar />
                 <NotesPage />
               </Route>
-              {(user.roleId === 2 || user.roleId === 6) &&
+              {(user.roleId === 2 || user.roleId === 6) && (
                 <Route path="/nohehut" exact>
-                <Navbar />
-                <NohehutPage />
-              </Route>}
+                  <Navbar />
+                  <NohehutPage />
+                </Route>
+              )}
               <Route path="/profile" exact>
                 <Navbar />
                 <ProfilePage />
-                </Route>
+              </Route>
               <Route path="/notfound" exact>
                 <NotFoundPage />
-                </Route>
+              </Route>
               <Route path="/calendar" exact>
                 <Navbar />
                 <CalendarPage />
@@ -131,6 +128,7 @@ console.log(user)
           </ErrorBoundary>
         </User.Provider>
       )}
+      </DarkMode.Provider>
     </Router>
   );
 }

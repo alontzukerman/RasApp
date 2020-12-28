@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { Theme } from '../theme';
 
+const theme = Theme();
 export const Input = styled.input`
   font-family: "Assistant", sans-serif;
   margin-bottom: 1.8rem;
@@ -16,7 +18,7 @@ export const Input = styled.input`
   }
 `;
 export const ButtonsCon = styled.div`
-  background-color: rgba(50, 50, 50, 0.25);
+  background-color: rgba(100, 100, 100, 0.25);
   box-shadow: 0 0 3px 1px rgba(50, 50, 50, 0.5);
   display: flex;
   width: 90%;
@@ -28,10 +30,9 @@ export const Button = styled.button`
   cursor: pointer;
   border: none;
   border: 0;
-  background-color: #ede43b;
-  box-shadow: -2px 0px 3px 0px rgba(50, 50, 50, 0.6);
-  border-left: 5px solid #c7bf32;
-  color: #333333;
+  background-color: ${theme.bright};
+  box-shadow: 0px 0px 3px 0px rgba(50, 50, 50, 0.4);
+  color: ${theme.text};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +45,7 @@ export const Button = styled.button`
   font-weight: 700;
   transition: 0.2s background ease;
   &:hover {
-    background-color: #f3ed74;
+    background-color: ${theme.dark};
   }
 `;
 
@@ -78,6 +79,7 @@ export const Title = styled.h1``;
 
 export const GlobalTable = styled.div`
   width: 500px;
+  background-color: ${theme.bright};
   box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
   margin: 30px;
 `;
@@ -92,7 +94,7 @@ export const TabsContainer = styled.div`
 `;
 
 export const Tab = styled.div`
-  background-color: rgba(50, 50, 50, 0.25);
+  background-color: ${theme.bright};
   box-shadow: 0 0 3px 1px rgba(50, 50, 50, 0.5);
   display: flex;
   align-items: center;
@@ -103,9 +105,9 @@ export const Tab = styled.div`
 `;
 
 export const Label = styled.div`
-  background-color: #ede43b;
+  background-color: ${theme.main};
   box-shadow: -2px 0px 3px 0px rgba(50, 50, 50, 0.6);
-  border-left: 5px solid #c7bf32;
+  border-left: 5px solid ${theme.dark};
   position: relative;
   right: 0;
   height: 50px;
@@ -125,7 +127,7 @@ export const InnerTab = styled.div`
 
 export const ParaContainer = styled.div`
   box-shadow: 0 0 3px 1px rgba(50, 50, 50, 0.5);
-  background-color: rgba(50, 50, 50, 0.25);
+  background: linear-gradient(${theme.main},${theme.bright});
   width: 95%;
   margin-top: 50px;
   min-height: 150px;
@@ -133,9 +135,8 @@ export const ParaContainer = styled.div`
 `;
 
 export const ParaTitle = styled.div`
-  background-color: #ede43b;
+  background-color: ${theme.bright};
   box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.6);
-  border-bottom: 5px solid #c7bf32;
   position: absolute;
   top: 0;
   right: 10px;
@@ -150,9 +151,8 @@ export const ParaTitle = styled.div`
 export const ParaAddButton = styled.button`
 cursor: pointer; 
   border: 0;
-  background-color: #ede43b;
+  background-color: ${theme.main};
   box-shadow: 0px -2px 3px 0px rgba(50, 50, 50, 0.6);
-  border-top: 5px solid #c7bf32;
   position: absolute;
   bottom: 0;
   left: 10px;
@@ -168,7 +168,7 @@ export const ParaRows = styled.div`
 
 export const ParaRow = styled.div`
 position: relative ;
-  background-color: rgba(100, 100, 100, 0.2);
+  background-color: rgba(200, 200, 200, 0.3);
   display: flex;
   align-items: center;
   padding: 5px 10px;
