@@ -90,6 +90,23 @@ module.exports = {
           release_date: "2020-03-12",
           address: "כינרת 0, טבריה",
         },
+        {
+          id: 6,
+          first_name: "רון",
+          last_name: "מזרחי",
+          email: "ronmizrahi@gmail.com",
+          password: "123456",
+          pluga_id: 1,
+          platoon_id: 2,
+          // class_id: ,
+          phone_number: "050-2554767",
+          birthday: "1998-10-04",
+          role_id: 5,
+          rank_id: 5,
+          draft_date: "2017-07-23",
+          release_date: "2021-03-12",
+          address: "ארי 3, רמת גן",
+        },
       ],
       {}
     );

@@ -36,29 +36,28 @@ loadCldr(numberingSystems, gregorian, numbers, timeZoneNames);
 setCulture("he");
 
 L10n.load({
-  'he': {
-      'schedule': {
-          'saveButton': 'הוסף',
-          'cancelButton': 'סגור',
-          'deleteButton': 'מחק',
-          'newEvent': 'הוסף אירוע',
-          'e-float-text e-label-top':'dscskdckskcsks'
-      },
-  }
+  he: {
+    schedule: {
+      saveButton: "הוסף",
+      cancelButton: "סגור",
+      deleteButton: "מחק",
+      newEvent: "הוסף אירוע",
+      "e-float-text e-label-top": "dscskdckskcsks",
+    },
+  },
 });
 
 function Calendar() {
   const [calendar, setCalendar] = useState([]);
 
   const gUser = useContext(User);
-
+  console.log(gUser);
   const getAllCalendar = async () => {
     const { data } = await network.get(`/api/calendar`);
     setCalendar(data);
   };
 
   const onActionComplete = async (e) => {
-    console.log(e);
     if (e.requestType === "eventRemoved") {
       const response = await network.delete(`/api/calendar/${e.data[0].Id}`);
       console.log(response);
@@ -90,6 +89,32 @@ function Calendar() {
     }
   };
 
+  const onSmp = async () => {
+    const { data } = await network.get(`/api/calendar/smp`);
+    console.log(data);
+    setCalendar(data);
+  };
+  const onMm = async () => {
+    const { data } = await network.get(`/api/calendar/mm`);
+    console.log(data);
+    setCalendar(data);
+  };
+  const onMp = async () => {
+    const { data } = await network.get(`/api/calendar/mp`);
+    console.log(data);
+    setCalendar(data);
+  };
+  const onSamal = async () => {
+    const { data } = await network.get(`/api/calendar/samal`);
+    console.log(data);
+    setCalendar(data);
+  };
+  const onMac = async () => {
+    const { data } = await network.get(`/api/calendar/mac`);
+    console.log(data);
+    setCalendar(data);
+  };
+
   useEffect(() => {
     getAllCalendar();
   }, []);
@@ -97,6 +122,61 @@ function Calendar() {
     <div>
       {calendar && (
         <>
+          מיין על פי:{" "}
+          <ButtonComponent
+            id="add"
+            title="sort"
+            //  ref={t => this.buttonObj = t}
+            onClick={() => getAllCalendar()}
+          >
+            הכל
+          </ButtonComponent>
+
+          <ButtonComponent
+            id="add"
+            title="sort"
+            //  ref={t => this.buttonObj = t}
+            onClick={() => onMp()}
+          >
+            מ"פ
+          </ButtonComponent>
+
+          <ButtonComponent
+            id="add"
+            title="sort"
+            //  ref={t => this.buttonObj = t}
+            onClick={() => onSmp()}
+          >
+            סמ"פ
+          </ButtonComponent>
+
+          <ButtonComponent
+            id="add"
+            title="sort"
+            //  ref={t => this.buttonObj = t}
+            onClick={() => onMm()}
+          >
+            מ"מ
+          </ButtonComponent>
+
+          <ButtonComponent
+            id="add"
+            title="sort"
+            //  ref={t => this.buttonObj = t}
+            onClick={() => onSamal()}
+          >
+            סמל
+          </ButtonComponent>
+
+          <ButtonComponent
+            id="add"
+            title="sort"
+            //  ref={t => this.buttonObj = t}
+            onClick={() => onMac()}
+          >
+            מ"כ
+          </ButtonComponent>
+          
           <ScheduleComponent
             dateFormat="yyyy/MM/dd"
             locale="he"
@@ -107,11 +187,11 @@ function Calendar() {
             actionComplete={onActionComplete}
           >
             <ViewsDirective>
-              <ViewDirective option="TODAY" displayName="יוםv" />
+              <ViewDirective option="TODAY" displayName="יום" />
               <ViewDirective option="Day" displayName="יום" />
               <ViewDirective option="Week" displayName="שבוע" />
-              <ViewDirective option="Month" displayName="חודש"/>
-              <ViewDirective option="Agenda" displayName="לוז יומי"/>
+              <ViewDirective option="Month" displayName="חודש" />
+              <ViewDirective option="Agenda" displayName="לוז יומי" />
             </ViewsDirective>
             <Inject services={[Day, Week, Month, Agenda]} />
           </ScheduleComponent>

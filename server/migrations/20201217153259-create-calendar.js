@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         field:'user_id'
       },
+      plugaId: {
+        type: Sequelize.INTEGER,
+        field:'pluga_id'
+      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,

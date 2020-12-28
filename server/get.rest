@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/equipments/user
+GET http://localhost:8080/api/calendar/smp
 Content-type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYwODIyMzkzNiwiZXhwIjoxNjA4MjIzOTU2fQ.02BwkN5XjSbHQYZvGKXIsfxeTRZKTgEs2RL_qo1qSKI
 

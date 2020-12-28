@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         field: "user_id",
       },
+      plugaId: {
+        type: DataTypes.INTEGER,
+        field: "pluga_id",
+      },
       createdAt: {
         field: "created_at",
         type: DataTypes.DATE,
