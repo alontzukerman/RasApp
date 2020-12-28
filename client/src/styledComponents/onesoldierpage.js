@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { Theme } from '../theme';
 
+const theme = Theme();
 export const OneSoldierPageContainer = styled.div`
   height: 90vh;
   width: 100%;
-  background-color: #f9f9f9;
+  background-color: ${theme.background};
+  color: ${theme.text};
   display: flex;
   justify-content: center;
   align-items: center;

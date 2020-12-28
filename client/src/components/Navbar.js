@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import Toggle from "./Toggle";
 import network from "../network";
 import {
   HeaderContainer,
@@ -12,7 +13,10 @@ import {
   NavTagList,
   NavTag,
   LogOutButton,
+  ProfileButton,
   IconBox,
+  AvatarNav,
+  ProfileMenu,
 } from "../styledComponents/navbar";
 import { Logo } from "../styledComponents/global";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
@@ -21,10 +25,11 @@ import { User } from "../context";
 import MenuIcon from "@material-ui/icons/Menu";
 import RassAppLogo_Horizontal from "../files/RassAppLogo_Horizontal.png";
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
   const location = useHistory();
   const gUser = useContext(User);
-
-  const [menuOpen, setMenuOpen] = useState(false);
+  console.log(gUser);
 
   const handleLogout = async () => {
     const response = await network.post(`/api/auth/logout`, {
@@ -37,7 +42,16 @@ function Navbar() {
     location.push("/login");
   };
   const handleMenuClick = () => {
+    !menuOpen && setProfileMenu(false)
     setMenuOpen(!menuOpen);
+  };
+  const handleProfileMenuClick = () => {
+    !profileMenu && setMenuOpen(false);
+    setProfileMenu(!profileMenu);
+  }
+  const handleTagClick = (path) => {
+    setMenuOpen(false);
+    location.push(`${path}`);
   };
 
   return (
@@ -49,30 +63,35 @@ function Navbar() {
           </IconBox>
           <InnerNavContainer isOpen={menuOpen}>
             <NavTagList>
-              <NavTag onClick={() => location.push("/")}>בית</NavTag>
-              <NavTag onClick={() => location.push("/soldiers")}>חיילים</NavTag>
-              <NavTag onClick={() => location.push("/notes")}>פתקים</NavTag>
+              <NavTag onClick={() => handleTagClick("/")}>בית</NavTag>
+              <NavTag onClick={() => handleTagClick("/soldiers")}>
+                חיילים
+              </NavTag>
+              <NavTag onClick={() => handleTagClick("/notes")}>פתקים</NavTag>
               {(gUser.user.roleId === 2 || gUser.user.roleId === 6) && (
-                <NavTag onClick={() => location.push("/nohehut")}>
+                <NavTag onClick={() => handleTagClick("/nohehut")}>
                   נוכחות
                 </NavTag>
               )}
-              <NavTag onClick={() => location.push("/calendar")}>יומן</NavTag>
-              <NavTag onClick={() => location.push("/equipments")}>ציוד</NavTag>
-              <NavTag onClick={() => location.push("/profile")}>פרופיל</NavTag>
+              <NavTag onClick={() => handleTagClick("/calendar")}>יומן</NavTag>
+              <NavTag onClick={() => handleTagClick("/equipments")}>
+                ציוד
+              </NavTag>
             </NavTagList>
           </InnerNavContainer>
-          <LogOutButton onClick={() => handleLogout()}>התנתק</LogOutButton>
         </NavContainer>
-        <Logo src={RassAppLogo_Horizontal} alt="Logo" />
+        <AvatarNav onClick={() => handleProfileMenuClick()}></AvatarNav>
+        <ProfileMenu open={profileMenu}>
+          <Toggle />
+          <ProfileButton onClick={() => handleTagClick("/profile")}>
+            פרופיל
+          </ProfileButton>
+          <LogOutButton onClick={() => handleLogout()}>התנתק</LogOutButton>
+          {/* <Logo src={RassAppLogo_Horizontal} alt="Logo" /> */}
+        </ProfileMenu>
       </InnerHeaderContainer>
     </HeaderContainer>
   );
 }
 
-// const Nav = styled.div`
-//     background-color: #333 ;
-//     position: sticky ;
-//     top: 0 ;
-// `;
 export default Navbar;

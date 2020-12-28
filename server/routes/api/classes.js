@@ -6,12 +6,15 @@ const { Soldier, User, Class } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const { dataValues: user } = await User.findOne({
-      where: { id: req.user.id },
+      where: { id: req.user.userId },
     });
     let classes;
+    console.log(user);
     switch (user.platoonId) {
       case null:
-        classes = await Class.findAll({});
+        classes = await Class.findAll({
+          where: { plugaId: user.plugaId },
+        });
         break;
       default:
         classes = await Class.findAll({

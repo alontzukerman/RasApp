@@ -10,7 +10,7 @@ import { Input, Button , Error} from "../styledComponents/global";
 // import { Button, TextField, InputAdornment } from "@material-ui/core";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import LockIcon from "@material-ui/icons/Lock";
-import { User } from "../context";
+import { User , DarkMode } from "../context";
 function LoginPage() {
   const location = useHistory();
 
@@ -19,7 +19,8 @@ function LoginPage() {
   const passwordRef = useRef(null);
 
   const gUser = useContext(User);
-
+  const gDarkMode = useContext(DarkMode);
+  
   const handleLogin = async () => {
     try {
       const user = {

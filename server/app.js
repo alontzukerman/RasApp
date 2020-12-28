@@ -21,6 +21,9 @@ app.use('/api/notes',authenticateToken, require('./routes/api/notes'));
 app.use('/api/missings',authenticateToken, require('./routes/api/missings'));
 app.use('/api/equipments',authenticateToken, require('./routes/api/equipments'));
 app.use('/api/calendar',authenticateToken, require('./routes/api/calendar'));
+app.use('/api/calendar',authenticateToken, require('./routes/api/calendar'));
+app.use('/api/ranks',authenticateToken, require('./routes/api/ranks'));
+app.use('/api/pakals',authenticateToken, require('./routes/api/pakals'));
 
 app.get("*",(req, res) => {
     res.sendFile(path.resolve(__dirname,"../client/build","index.html"))

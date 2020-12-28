@@ -38,7 +38,9 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const newSoldier = await Soldier.create(req.body);
+    const {dataValues: user} = await User.findOne({ where: { id: req.user.userId } });
+
+    const newSoldier = await Soldier.create({...req.body,plugaId: user.plugaId});
     res.json(newSoldier);
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });
