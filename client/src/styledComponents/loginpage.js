@@ -50,7 +50,7 @@ export const CircleXXL = styled.div`
   position: absolute;
   
   border-radius: 50%;
-  background: white;
+  background: ${theme.bright};
   animation: ripple 15s infinite;
   box-shadow: 0px 0px 1px 0px #508fb9;
   width: 1000px;
@@ -63,7 +63,7 @@ export const CircleXXL = styled.div`
 export const CircleXL = styled.div`
   position: absolute;
   border-radius: 50%;
-  background: white;
+  background: ${theme.bright};
   animation: ripple 15s infinite;
   box-shadow: 0px 0px 1px 0px #508fb9;
   width: 800px;
@@ -76,7 +76,7 @@ export const CircleXL = styled.div`
 export const CircleL = styled.div`
   position: absolute;
   border-radius: 50%;
-  background: white;
+  background: ${theme.bright};
   animation: ripple 15s infinite;
   box-shadow: 0px 0px 1px 0px #508fb9;
   width: 600px;
@@ -89,7 +89,7 @@ export const CircleL = styled.div`
 export const CircleM = styled.div`
   position: absolute;
   border-radius: 50%;
-  background: white;
+  background: ${theme.bright};
   animation: ripple 15s infinite;
   box-shadow: 0px 0px 1px 0px #508fb9;
   width: 400px;
@@ -102,7 +102,7 @@ export const CircleM = styled.div`
 export const CircleS = styled.div`
   position: absolute;
   border-radius: 50%;
-  background: white;
+  background: ${theme.bright};
   animation: ripple 15s infinite;
   box-shadow: 0px 0px 1px 0px #508fb9;
   width: 200px;

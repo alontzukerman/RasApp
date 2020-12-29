@@ -97,7 +97,7 @@ function App() {
               </Route>
               <Route path="/notes" exact>
                 <Navbar />
-                <NotesPage />
+                <NotesPage/>
               </Route>
               {(user.roleId === 2 || user.roleId === 6) && (
                 <Route path="/nohehut" exact>

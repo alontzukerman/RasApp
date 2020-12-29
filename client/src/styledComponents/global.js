@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Theme } from '../theme';
 
 const theme = Theme();
+
 export const Input = styled.input`
   font-family: "Assistant", sans-serif;
   margin-bottom: 1.8rem;
