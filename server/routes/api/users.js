@@ -22,16 +22,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:userId", async (req, res) => {
-  try {
-    const allUsers = await User.findOne(req.params.userId,{
-      include: [Role],
-    });
-    res.json(allUsers);
-  } catch (e) {
-    res.status(400).json({ message: "Cannot process request" });
-  }
-});
+// router.get("/:userId", async (req, res) => {
+//   try {
+//     const allUsers = await User.findOne(req.params.userId,{
+//       include: [Role],
+//     });
+//     res.json(allUsers);
+//   } catch (e) {
+//     res.status(400).json({ message: "Cannot process request" });
+//   }
+// });
 
 router.get("/profile", async (req, res) => {
   try {

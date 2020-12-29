@@ -117,14 +117,14 @@ function Calendar() {
     setCalendar(data);
   };
 
-//   const eventTemplate= (props)=> {
-//     console.log(props)
-//     return (<div className="e-appointment" style={{ backgroundColor: 'black' }}>
-// <div className="e-appointment" style={{backgroundColor:'black'}}>{props.Subject}</div>
-// {/* <div className="time" style={{ background: props.PrimaryColor }}> */}
-// {/* Time: {(props.StartTime)} - {(props.EndTime)}</div> */}
-// </div>);
-// }
+  const eventTemplate= (props)=> {
+    console.log(props)
+    return (<div className="template-wrap" style={{backgroundColor: "#808000" }}>{props.Subject}
+{/* <div className="e-appointment-details" style={{backgroundColor:"#808000" }}></div> */}
+{/* <div className="time" style={{ background: props.PrimaryColor }}> */}
+{/* Time: {(props.StartTime)} - {(props.EndTime)}</div> */}
+</div>);
+}
   useEffect(() => {
     getAllCalendar();
   }, []);
@@ -187,7 +187,7 @@ function Calendar() {
             locale="he"
             enableRtl={true}
             eventSettings={{ dataSource: calendar,
-              //  template:eventTemplate
+               template:eventTemplate
               }}
             currentView="Month"
             actionComplete={onActionComplete}
