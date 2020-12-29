@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const newEquipmentPerUser = await EquipmentPerUser.create(req.body);
+    const newEquipmentPerUser = await EquipmentPerUser.create({...req.body,userId: req.user.userId});
     res.json(newEquipmentPerUser);
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });

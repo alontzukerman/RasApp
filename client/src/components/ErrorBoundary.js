@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <div style={{ marginTop: "100px" }}>Cannot get the page</div>;
+      return <NotFoundPage />;
     }
     return this.props.children;
   }

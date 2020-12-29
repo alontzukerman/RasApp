@@ -5,10 +5,11 @@ const theme = Theme();
 export const OneSoldierPageContainer = styled.div`
   height: 90vh;
   width: 100%;
+  /* overflow-y: scroll ; */
   background-color: ${theme.background};
   color: ${theme.text};
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 `;
 export const OneSoldierPageInnerContainer = styled.div`

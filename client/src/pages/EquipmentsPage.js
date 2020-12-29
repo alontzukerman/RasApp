@@ -59,14 +59,12 @@ function EquipmentsPage() {
   };
   const createEquipment = async (equipment, amount) => {
     const newEquipment = {
-      userId: gUser.user.userId,
       equipmentId: equipment,
       amount: amount,
     };
     const response = await network.post("/api/equipments", newEquipment);
-    console.log(response)
+    console.log(response);
     getEquipments();
-
   };
 
   const getAllEquipment = async () => {
@@ -93,7 +91,8 @@ function EquipmentsPage() {
     //       })}
     //   </GlobalTable>
     // </EquipmentsPageContainer>
-    <>
+    <EquipmentsPageContainer>
+      <Title>ציוד</Title>
       <ParaContainer>
         <ParaTitle>ציוד</ParaTitle>
         <ParaAddButton onClick={openModal}>+</ParaAddButton>
@@ -138,7 +137,7 @@ function EquipmentsPage() {
           </ModalContainer>
         </Modal>
       </ParaContainer>
-    </>
+    </EquipmentsPageContainer>
   );
 }
 

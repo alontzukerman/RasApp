@@ -10,14 +10,14 @@ import {
   ButtonOpenForm,
   ButtonSubmitForm,
   ButtonCancelForm,
+  ErrorForm,
 } from "../styledComponents/soldierspage";
-import { Error } from "../styledComponents/global";
 import CreateIcon from "@material-ui/icons/Create";
 import CloseIcon from "@material-ui/icons/Close";
 import SendIcon from "@material-ui/icons/Send";
 function AddSoldierForm() {
   const [open, setOpen] = useState(false);
-  const [isError,setIsError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [myPlatoons, setPlatoons] = useState([]);
   const [myClasses, setClasses] = useState([]);
   const [ranks, setRanks] = useState([]);
@@ -102,16 +102,18 @@ function AddSoldierForm() {
   };
   return (
     <AddSoldierContainer open={open}>
+      <ErrorForm>{isError && `אנא מלאו את כל שדות החובה`}</ErrorForm>
+
       <AddSoldierFormContainer>
-        <DivForm>
+        <DivForm isError={isError && idInputRef.current.value === ""}>
           {"מספר אישי *"}
           <InputForm ref={idInputRef} />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && firstNameInputRef.current.value === ""}>
           {"שם פרטי *"}
           <InputForm ref={firstNameInputRef} type="text" />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && lastNameInputRef.current.value === ""}>
           {"שם משפחה *"}
           <InputForm ref={lastNameInputRef} type="text" />
         </DivForm>
@@ -119,7 +121,7 @@ function AddSoldierForm() {
           {"אימייל"}
           <InputForm ref={emailInputRef} type="email" value={null} />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && phoneNumberInputRef.current.value === ""}>
           {"מספר טלפון *"}
           <InputForm
             ref={phoneNumberInputRef}
@@ -127,23 +129,23 @@ function AddSoldierForm() {
             pattern="0[0-9]{2}-[0-9]{7}"
           />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && birthdayInputRef.current.value === ""}>
           {"תאריך לידה *"}
           <InputForm ref={birthdayInputRef} type="date" />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && addressInputRef.current.value === ""}>
           {"כתובת *"}
           <InputForm ref={addressInputRef} type="address" />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && draftDateRef.current.value === ""}>
           {"תאריך גיוס *"}
           <InputForm ref={draftDateRef} type="date" />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && releaseDateRef.current.value === ""}>
           {"תאריך שחרור *"}
           <InputForm ref={releaseDateRef} type="date" />
         </DivForm>
-        <DivForm>
+        <DivForm isError={isError && platoonRef.current.value === ""}>
           {"מחלקה *"}
           <SelectForm ref={platoonRef}>
             <option value={null}></option>
@@ -157,7 +159,7 @@ function AddSoldierForm() {
           </SelectForm>
         </DivForm>
 
-        <DivForm>
+        <DivForm isError={isError && classRef.current.value === ""}>
           {"כיתה *"}
           <SelectForm ref={classRef}>
             <option value={null}></option>
@@ -172,7 +174,7 @@ function AddSoldierForm() {
           </SelectForm>
         </DivForm>
 
-        <DivForm>
+        <DivForm isError={isError && rankRef.current.value === ""}>
           {"דרגה *"}
           <SelectForm ref={rankRef}>
             <option value={null}></option>
@@ -212,7 +214,6 @@ function AddSoldierForm() {
           <CloseIcon fontSize="large" />
         </ButtonCancelForm>
       </ButtonsForm>
-            <Error>{isError && `אנא מלאו את כל שדות החובה`}</Error>
     </AddSoldierContainer>
   );
 }

@@ -17,4 +17,4 @@ export const darkTheme = {
 
 export const Theme = () => {
   // const gDarkMode = useContext(DarkMode);
-  return true ? darkTheme : lightTheme };
+  return !true ? darkTheme : lightTheme };

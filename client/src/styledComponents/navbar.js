@@ -119,15 +119,26 @@ export const LogOutButton = styled.div`
 
 export const IconBox = styled.div`
   cursor: pointer;
+  margin-right: 10px ;
 `;
 
 export const AvatarNav = styled.div`
   cursor: pointer;
-  background-color: #777;
+  background-color: ${theme.main};
   height: 40px;
   width: 40px;
   margin-left: 20px;
   border-radius: 50%;
+  display: flex ;
+  justify-content: center ;
+  align-items : center ;
+  font-weight: bold ;
+  letter-spacing: 1px ;
+  font-size: 1.2em ;
+  transition: 0.2s background ease ;
+  &:hover {
+    background-color: ${theme.bright};
+  }
 `;
 export const ProfileMenu = styled.div`
   position: absolute;

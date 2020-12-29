@@ -78,7 +78,7 @@ export const Logo = styled.img`
 export const Title = styled.h1``;
 
 export const GlobalTable = styled.div`
-  width: 500px;
+  width: 330px;
   background-color: ${theme.bright};
   box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
   margin: 30px;
@@ -91,6 +91,7 @@ export const TabsContainer = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 20px;
   justify-items: center ;
+  align-items: center ;
 `;
 
 export const Tab = styled.div`
@@ -193,7 +194,7 @@ width: 40px ;
 
 `;
 export const ModalContainer = styled.div`
-  height: 400px;
+  height: 300px;
   width: 300px;
 `;
 export const ModalTitle = styled.h2``;

@@ -23,6 +23,7 @@ import ChildCareIcon from "@material-ui/icons/ChildCare";
 import Cookies from "js-cookie";
 import { User } from "../context";
 import MenuIcon from "@material-ui/icons/Menu";
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import RassAppLogo_Horizontal from "../files/RassAppLogo_Horizontal.png";
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -59,7 +60,7 @@ function Navbar() {
       <InnerHeaderContainer>
         <NavContainer>
           <IconBox onClick={() => handleMenuClick()}>
-            <MenuIcon />
+            {menuOpen ? <MenuOpenIcon fontSize="large" /> : <MenuIcon fontSize="large"/>}
           </IconBox>
           <InnerNavContainer isOpen={menuOpen}>
             <NavTagList>
@@ -80,7 +81,7 @@ function Navbar() {
             </NavTagList>
           </InnerNavContainer>
         </NavContainer>
-        <AvatarNav onClick={() => handleProfileMenuClick()}></AvatarNav>
+        <AvatarNav onClick={() => handleProfileMenuClick()}>{`${gUser.user.firstName[0]}${gUser.user.lastName[0]}`}</AvatarNav>
         <ProfileMenu open={profileMenu}>
           <Toggle />
           <ProfileButton onClick={() => handleTagClick("/profile")}>
