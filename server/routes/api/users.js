@@ -22,6 +22,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:userId", async (req, res) => {
+  try {
+    const allUsers = await User.findOne(req.params.userId,{
+      include: [Role],
+    });
+    res.json(allUsers);
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
+});
+
 router.get("/profile", async (req, res) => {
   try {
     console.log("req", req.user);
@@ -35,6 +46,7 @@ router.get("/profile", async (req, res) => {
         "address",
         "phoneNumber",
         "email",
+        "roleId"
       ],
       include: [Role, Rank, Class, Platoon],
     });

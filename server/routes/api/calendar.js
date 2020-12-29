@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
         ["subject", "Subject"],
         ["start_time", "StartTime"],
         ["end_time", "EndTime"],
+        ["user_id",'UserId']
       ],
     });
     res.json(calendars);
