@@ -1,5 +1,6 @@
 import { React, useState, useEffect, useContext } from "react";
 import { setCulture, setCurrencyCode } from "@syncfusion/ej2-base";
+import "./calendarPage.css";
 import {
   ViewDirective,
   ViewsDirective,
@@ -58,6 +59,7 @@ function Calendar() {
   };
 
   const onActionComplete = async (e) => {
+    console.log(e);
     if (e.requestType === "eventRemoved") {
       const response = await network.delete(`/api/calendar/${e.data[0].Id}`);
       console.log(response);
@@ -115,9 +117,18 @@ function Calendar() {
     setCalendar(data);
   };
 
+//   const eventTemplate= (props)=> {
+//     console.log(props)
+//     return (<div className="e-appointment" style={{ backgroundColor: 'black' }}>
+// <div className="e-appointment" style={{backgroundColor:'black'}}>{props.Subject}</div>
+// {/* <div className="time" style={{ background: props.PrimaryColor }}> */}
+// {/* Time: {(props.StartTime)} - {(props.EndTime)}</div> */}
+// </div>);
+// }
   useEffect(() => {
     getAllCalendar();
   }, []);
+  console.log(calendar);
   return (
     <div>
       {calendar && (
@@ -131,7 +142,6 @@ function Calendar() {
           >
             הכל
           </ButtonComponent>
-
           <ButtonComponent
             id="add"
             title="sort"
@@ -140,7 +150,6 @@ function Calendar() {
           >
             מ"פ
           </ButtonComponent>
-
           <ButtonComponent
             id="add"
             title="sort"
@@ -149,7 +158,6 @@ function Calendar() {
           >
             סמ"פ
           </ButtonComponent>
-
           <ButtonComponent
             id="add"
             title="sort"
@@ -158,7 +166,6 @@ function Calendar() {
           >
             מ"מ
           </ButtonComponent>
-
           <ButtonComponent
             id="add"
             title="sort"
@@ -167,7 +174,6 @@ function Calendar() {
           >
             סמל
           </ButtonComponent>
-
           <ButtonComponent
             id="add"
             title="sort"
@@ -176,18 +182,19 @@ function Calendar() {
           >
             מ"כ
           </ButtonComponent>
-          
           <ScheduleComponent
             dateFormat="yyyy/MM/dd"
             locale="he"
             enableRtl={true}
-            eventSettings={{ dataSource: calendar }}
+            eventSettings={{ dataSource: calendar,
+              //  template:eventTemplate
+              }}
             currentView="Month"
-            // dataBinding={onDataBinding}
             actionComplete={onActionComplete}
+
           >
             <ViewsDirective>
-              <ViewDirective option="TODAY" displayName="יום" />
+              <ViewDirective option="TODAY" displayName="יום"  />
               <ViewDirective option="Day" displayName="יום" />
               <ViewDirective option="Week" displayName="שבוע" />
               <ViewDirective option="Month" displayName="חודש" />
