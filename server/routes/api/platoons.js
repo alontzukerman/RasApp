@@ -9,16 +9,16 @@ router.get("/", async (req, res) => {
       where: { id: req.user.userId },
     });
     let platoons;
-    console.log(user);
-    switch (user.roleId) {
-      case 5 || 6 || 7:
+    switch (user.platoonId) {
+      case null:
+        platoons = await Platoon.findAll({ where: { plugaId: user.plugaId } });
+        break;
+      default:
         platoons = await Platoon.findAll({
           where: { id: user.platoonId },
         });
-       break;
-      default:
-        platoons = await Platoon.findAll({ where: { plugaId: user.plugaId } });
     }
+
     res.json(platoons);
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });

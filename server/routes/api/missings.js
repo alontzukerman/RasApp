@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { Missing, MissingPerSoldier } = require("../../models");
+const { Missing, MissingPerSoldier, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {

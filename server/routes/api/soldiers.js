@@ -5,17 +5,19 @@ const { Soldier, User } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.user.userId } });
+    const {dataValues:user} = await User.findOne({ where: { id: req.user.userId } });
     let allSoldiers;
     switch (user.roleId) {
       case 7: // מ"כ
         allSoldiers = await Soldier.findAll({
           where: { classId: user.classId },
         });
+        break ;
       case 6 || 5: // סמל מ"מ
         allSoldiers = await Soldier.findAll({
           where: { platoonId: user.platoonId },
         });
+        break ;
       default:
         // תפקיד פלוגתי
         allSoldiers = await Soldier.findAll({});

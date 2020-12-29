@@ -10,7 +10,6 @@ export const EquipmentsPageContainer = styled.div`
   color: ${theme.text};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 export const EquipmentsPageInnerContainer = styled.div`

@@ -5,6 +5,11 @@ import {
   LoginPageContainer,
   LoginFormContainer,
   InnerLoginFormContainer,
+  CircleXXL,
+  CircleXL,
+  CircleL,
+  CircleM,
+  CircleS,
 } from "../styledComponents/loginpage";
 import { Input, Button , Error} from "../styledComponents/global";
 // import { Button, TextField, InputAdornment } from "@material-ui/core";
@@ -38,6 +43,12 @@ function LoginPage() {
   };
   return (
     <LoginPageContainer>
+      <CircleXXL />
+      <CircleXL />
+      <CircleL />
+      <CircleM />
+      <CircleS />
+      
       <LoginFormContainer>
         <InnerLoginFormContainer>
           <Input ref={usernameRef} placeholder="מספר אישי"></Input>

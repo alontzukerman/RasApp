@@ -4,6 +4,7 @@ const theme = Theme();
 export const HomePageContainer = styled.div`
   height: 90vh;
   width: 100%;
+  overflow-y: scroll ;
   background-color: ${theme.background};
   color: ${theme.text};
   display: flex;
@@ -13,7 +14,7 @@ export const HomePageContainer = styled.div`
 `;
 
 export const HomePageInnerContainer = styled.div`
-  height: 100% ;
+  height: 95% ;
   width: 80% ;
   display: grid ;
   grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));

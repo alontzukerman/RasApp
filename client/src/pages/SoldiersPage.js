@@ -12,7 +12,7 @@ import {
 import AddSoldierForm from "../components/AddSoldierForm";
 function SoldiersPage() {
   const [platoons, setPlatoons] = useState();
-  const [soldiers, setSoldiers] = useState([]);
+  const [soldiers, setSoldiers] = useState();
 
   const getPlatoons = async () => {
     const { data } = await network.get("/api/platoons");
@@ -23,12 +23,13 @@ function SoldiersPage() {
     setSoldiers(data);
   };
   useEffect(() => {
+    platoons && getPlatoonSoldiers(platoons[0].id);
+  }, [platoons]);
+
+  useEffect(() => {
     getPlatoons();
   }, []);
 
-  useEffect(() => {
-    platoons && getPlatoonSoldiers(platoons[0].platoonId);
-  }, [platoons]);
   return (
     <SoldiersPageContainer>
       <Title>חיילים</Title>
@@ -43,11 +44,13 @@ function SoldiersPage() {
             );
           })}
       </ButtonsCon>
-      <GlobalTable>
-        {soldiers.map((soldier, i) => {
-          return <SoldierRow soldier={soldier} key={i} />;
-        })}
-      </GlobalTable>
+      {soldiers && (
+        <GlobalTable>
+          {soldiers.map((soldier, i) => {
+            return <SoldierRow soldier={soldier} key={i} />;
+          })}
+        </GlobalTable>
+      )}
     </SoldiersPageContainer>
   );
 }

@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import { Theme } from '../theme';
+import { Theme } from "../theme";
 
 const theme = Theme();
 
 export const SoldiersPageContainer = styled.div`
   height: 90vh;
   width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  /* overflow-x: ${(props) => (props.open ? "hidden" : "")}; */
   background-color: ${theme.background};
   color: ${theme.text};
   display: flex;
@@ -23,13 +26,15 @@ export const SoldierRowContainer = styled.div`
 `;
 
 export const AddSoldierContainer = styled.div`
-  border: 1px solid black;
   position: absolute;
   right: 0;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   height: 100%;
   width: 100%;
+  padding-top: 20px;
+  /* overflow-y: scroll ; */
+  overflow-x: ${(props) => (props.open ? "hidden" : "")};
   background-color: rgba(220, 220, 220, 0.8);
   transition: 1s transform ease;
   transform: ${(props) => (props.open ? "translateX(0)" : "translateX(100%)")};
@@ -40,12 +45,12 @@ export const AddSoldierFormContainer = styled.form`
   width: 90%;
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 10px;
 `;
 
 export const DivForm = styled.div`
-  background: linear-gradient(${theme.main},${theme.bright});
+  background: linear-gradient(${theme.main}, ${theme.bright});
   position: relative;
   width: 220px;
   height: 60px;
@@ -55,6 +60,7 @@ export const DivForm = styled.div`
   font-weight: bold;
   letter-spacing: 1px;
   padding-top: 5px;
+  ${(props) => props.isError && "border: 3px solid #af0000 ;"}
 `;
 
 export const InputForm = styled.input`
@@ -95,6 +101,7 @@ export const ButtonsForm = styled.div`
   height: 100px;
   width: 100px;
   margin-left: -50px;
+  margin-top: -20px;
 `;
 export const ButtonOpenForm = styled.button`
   cursor: pointer;
@@ -134,4 +141,11 @@ export const ButtonCancelForm = styled.button`
   align-items: center;
   border: 0;
   background-color: #f9f9f900;
+`;
+
+export const ErrorForm = styled.div`
+  color: #f37474;
+  font-size: 0.8em;
+  position: absolute ;
+  top: 0 ;
 `;

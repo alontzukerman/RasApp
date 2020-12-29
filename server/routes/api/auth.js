@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
   // const hashPassword = bcrypt.hashSync(req.body.password, 10);
   // console.log('hash',hashPassword);
   try {
-    const user = await User.findOne({
+    const {dataValues:user} = await User.findOne({
       where: {
         id: Number(req.body.username),
         password: Number(req.body.password),
@@ -71,8 +71,10 @@ router.post("/login", async (req, res) => {
     });
     if (!user) return res.status(404).json({ message: "No User Found" });
     const info = {
-      userId: user.dataValues.id,
-      roleId: user.dataValues.roleId,
+      userId: user.id,
+      roleId: user.roleId,
+      firstName: user.firstName,
+      lastName: user.lastName
     };
     // const user = { name: username };
     const accessToken = generateAccessToken(info);
@@ -81,7 +83,7 @@ router.post("/login", async (req, res) => {
     res.cookie("id", info.userId);
     res.cookie("accessToken", accessToken);
     res.cookie("refreshToken", refreshToken);
-    res.json(user.dataValues);
+    res.json(user);
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });
   }
