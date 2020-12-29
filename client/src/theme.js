@@ -17,4 +17,5 @@ export const darkTheme = {
 
 export const Theme = () => {
   // const gDarkMode = useContext(DarkMode);
-  return !true ? darkTheme : lightTheme };
+  const darkOn = localStorage.getItem("darkMode");
+  return darkOn === "true" ? darkTheme : lightTheme };
