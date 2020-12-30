@@ -1,31 +1,29 @@
 import network from "../network";
 import React, { useRef, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
   LoginPageContainer,
   LoginFormContainer,
   InnerLoginFormContainer,
+  LoginTitle,
   CircleXXL,
   CircleXL,
   CircleL,
   CircleM,
   CircleS,
 } from "../styledComponents/loginpage";
-import { Input, Button , Error} from "../styledComponents/global";
-// import { Button, TextField, InputAdornment } from "@material-ui/core";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import LockIcon from "@material-ui/icons/Lock";
-import { User , DarkMode } from "../context";
+import { Input, Button, Error } from "../styledComponents/global";
+import { User, DarkMode } from "../context";
 function LoginPage() {
   const location = useHistory();
 
-  const [isError,setIsError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
   const gUser = useContext(User);
   const gDarkMode = useContext(DarkMode);
-  
+
   const handleLogin = async () => {
     try {
       const user = {
@@ -38,7 +36,7 @@ function LoginPage() {
       location.push("/");
     } catch (e) {
       console.log(e);
-      setIsError(true)
+      setIsError(true);
     }
   };
   return (
@@ -48,16 +46,17 @@ function LoginPage() {
       <CircleL />
       <CircleM />
       <CircleS />
-      
+
       <LoginFormContainer>
+        <LoginTitle>התחבר</LoginTitle>
         <InnerLoginFormContainer>
           <Input ref={usernameRef} placeholder="מספר אישי"></Input>
           <Input type="password" ref={passwordRef} placeholder="סיסמא"></Input>
           <Button onClick={() => handleLogin()}>התחבר</Button>
-          
-            <Error>{isError && '*אחד או יותר מהשדות אינם נכונים'}</Error>
-          
+
+          <Error>{isError && "*אחד או יותר מהשדות אינם נכונים"}</Error>
         </InnerLoginFormContainer>
+        <Link to="/register">עבור אל הרשמה</Link>
       </LoginFormContainer>
     </LoginPageContainer>
   );
