@@ -87,7 +87,7 @@ function Navbar() {
         <AvatarNav onClick={() => handleProfileMenuClick()}>{`${gUser.user.firstName[0]}${gUser.user.lastName[0]}`}</AvatarNav>
         <ProfileMenu open={profileMenu}>
           <Toggle />
-          <ProfileButton onClick={() => handleTagClick(`/profile/${gUser.user.userId}`)}>
+          <ProfileButton onClick={() => handleTagClick(`/profile/${gUser.user.id}`)}>
             פרופיל
           </ProfileButton>
           <LogOutButton onClick={() => handleLogout()}>התנתק</LogOutButton>

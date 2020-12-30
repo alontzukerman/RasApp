@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Rank,{
         foreignKey:'rankId'
       })
+      this.belongsTo(models.Pluga,{
+        foreignKey:'plugaId'
+      })
       this.hasMany(models.PtorPerSoldier,{
         foreignKey:'userId'
       })

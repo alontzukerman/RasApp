@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Pakal, {
         foreignKey: "pakalId",
       });
+      this.belongsTo(models.Pluga, {
+        foreignKey: "plugaId",
+      });
       this.belongsTo(models.Rank, {
         foreignKey: "rankId",
       });
