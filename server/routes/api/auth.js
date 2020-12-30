@@ -13,6 +13,7 @@ const {
   Rank,
   Class,
   Platoon,
+  Pluga,
   RefreshTokens,
 } = require("../../models");
 
@@ -51,8 +52,12 @@ router.post("/logout", async (req, res) => {
     const refreshToken = await RefreshTokens.findOne({
       where: { token: req.body.token },
     });
-    await refreshToken.destroy();
-    res.status(204).json({ message: "User Logged Out" });
+    if(refreshToken){
+
+      await refreshToken.destroy();
+      return res.status(204).json({ message: "User Logged Out" });
+    }
+    throw new Error();
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });
   }
@@ -62,19 +67,19 @@ router.post("/login", async (req, res) => {
   // const hashPassword = bcrypt.hashSync(req.body.password, 10);
   // console.log('hash',hashPassword);
   try {
-    const {dataValues:user} = await User.findOne({
+    const { dataValues: user } = await User.findOne({
       where: {
         id: Number(req.body.username),
         password: Number(req.body.password),
       },
-      attributes: ["id", "firstName", "lastName",'roleId'],
+      attributes: ["id", "firstName", "lastName", "roleId"],
     });
     if (!user) return res.status(404).json({ message: "No User Found" });
     const info = {
       userId: user.id,
       roleId: user.roleId,
       firstName: user.firstName,
-      lastName: user.lastName
+      lastName: user.lastName,
     };
     // const user = { name: username };
     const accessToken = generateAccessToken(info);
@@ -88,5 +93,14 @@ router.post("/login", async (req, res) => {
     res.status(400).json({ message: "Cannot process request" });
   }
 });
-
+router.get("/valid-pluga/:plugaId", async (req, res) => {
+  try {
+    const pluga = await Pluga.findOne({ where: { id: req.params.plugaId } });
+    console.log(pluga);
+    if (pluga) return res.status(200).json({ valid: true });
+    throw new Error();
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
+});
 module.exports = router;

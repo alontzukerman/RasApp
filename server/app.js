@@ -11,6 +11,7 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/api/auth'))
 app.use('/api/users',authenticateToken, require('./routes/api/users'));
 app.use('/api/soldiers',authenticateToken,require('./routes/api/soldiers'));
+app.use('/api/plugas',authenticateToken,require('./routes/api/plugas'));
 app.use('/api/platoons',authenticateToken,require('./routes/api/platoons'));
 app.use('/api/classes',authenticateToken, require('./routes/api/classes'));
 app.use('/api/certifications',authenticateToken, require('./routes/api/certifications'));

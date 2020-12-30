@@ -16,12 +16,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:plugaId", async (req, res) => {
-  try {
-    const pluga = await Pluga.findOne({ where: { id: req.params.plugaId } });
-    res.status(200);
-  } catch (e) {
-    res.status(400).json({ message: "Cannot process request" });
-  }
-});
+// router.get("/:plugaId", async (req, res) => {
+//   try {
+//     const pluga = await Pluga.findOne({ where: { id: req.params.plugaId } });
+//     res.status(200);
+//   } catch (e) {
+//     res.status(400).json({ message: "Cannot process request" });
+//   }
+// });
 module.exports = router;
