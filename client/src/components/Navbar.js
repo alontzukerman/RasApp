@@ -78,13 +78,16 @@ function Navbar() {
               <NavTag onClick={() => handleTagClick("/equipments")}>
                 ציוד
               </NavTag>
+              <NavTag onClick={() => handleTagClick("/users")}>
+                סגל
+              </NavTag>
             </NavTagList>
           </InnerNavContainer>
         </NavContainer>
         <AvatarNav onClick={() => handleProfileMenuClick()}>{`${gUser.user.firstName[0]}${gUser.user.lastName[0]}`}</AvatarNav>
         <ProfileMenu open={profileMenu}>
           <Toggle />
-          <ProfileButton onClick={() => handleTagClick("/profile")}>
+          <ProfileButton onClick={() => handleTagClick(`/profile/${gUser.user.id}`)}>
             פרופיל
           </ProfileButton>
           <LogOutButton onClick={() => handleLogout()}>התנתק</LogOutButton>

@@ -14,6 +14,8 @@ import {
 } from "../styledComponents/loginpage";
 import { Input, Button, Error } from "../styledComponents/global";
 import { User, DarkMode } from "../context";
+import RassAppLogo_Vertical from '../files/RassAppLogo_Vertical.png' ;
+
 function LoginPage() {
   const location = useHistory();
 
@@ -49,6 +51,8 @@ function LoginPage() {
 
       <LoginFormContainer>
         <LoginTitle>התחבר</LoginTitle>
+        <img src={RassAppLogo_Vertical} alt="Logo" />
+
         <InnerLoginFormContainer>
           <Input ref={usernameRef} placeholder="מספר אישי"></Input>
           <Input type="password" ref={passwordRef} placeholder="סיסמא"></Input>
