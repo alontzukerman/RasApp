@@ -13,8 +13,12 @@ const {
 
 router.get("/", async (req, res) => {
   try {
+    const { dataValues: user } = await User.findOne({
+      where: { id: req.user.userId },
+    });
     const allUsers = await User.findAll({
-      include: [Role],
+      where:{plugaId:user.plugaId},
+      include: [Role,Rank,Class,Platoon],
     });
     res.json(allUsers);
   } catch (e) {
@@ -33,12 +37,12 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-router.get("/profile", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
     console.log("req", req.user);
     // const user = await User.findByPk( req.params.userId);
     const user = await User.findOne({
-      where: { id: req.user.userId },
+      where: { id: req.params.userId },
       attributes: [
         "id",
         "firstName",

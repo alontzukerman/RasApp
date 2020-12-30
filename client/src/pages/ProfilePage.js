@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import network from "../network";
 import ReactWhatsapp from "react-whatsapp";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -11,8 +12,12 @@ import {
 } from "../styledComponents/global";
 function ProfilePage() {
   const [user, setUser] = useState();
+
+
+  const {userId} = useParams()
+  console.log(userId)
   const getMyProfile = async () => {
-    const { data } = await network.get(`/api/users/profile`);
+    const { data } = await network.get(`/api/users/${userId}`);
     console.log(data);
     setUser(data);
   };
