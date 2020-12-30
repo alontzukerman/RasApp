@@ -3,7 +3,7 @@ import { Theme } from "../theme";
 
 const theme = Theme();
 
-export const LoginPageContainer = styled.div`
+export const RegisterPageContainer = styled.div`
   height: 100vh;
   width: 100vw;
   overflow-y: hidden ;
@@ -18,11 +18,11 @@ export const LoginPageContainer = styled.div`
   @media (max-width: 768px) {
     & > div {
       width: 330px;
-      height: 330px;
+      /* height: 330px; */
     }
   }
 `;
-export const LoginFormContainer = styled.div`
+export const RegisterFormContainer = styled.div`
   /* border: 1px solid black ; */
   border-radius: 10px;
   background-color: ${theme.main};
@@ -37,9 +37,10 @@ export const LoginFormContainer = styled.div`
   align-items: center;
   z-index: 300 ;
   position: relative ;
+
 `;
 
-export const InnerLoginFormContainer = styled.div`
+export const InnerRegisterFormContainer = styled.div`
   width: 60%;
   height: 100%;
   display: flex;
@@ -48,7 +49,7 @@ export const InnerLoginFormContainer = styled.div`
   align-items: center;
 `;
 
-export const LoginTitle = styled.h2`
+export const RegisterTitle = styled.h2`
 position: absolute ;
 top: 0 ;
 border-bottom: 2px solid ${theme.dark} ;
@@ -62,7 +63,6 @@ justify-content: center ;
 align-items: center ;
 letter-spacing: 1px ;
 `;
-
 export const CircleXXL = styled.div`
   position: absolute;
   

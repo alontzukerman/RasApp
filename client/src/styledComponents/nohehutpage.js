@@ -1,9 +1,15 @@
 import styled from "styled-components";
+import { Theme } from '../theme';
+
+const theme = Theme();
 
 export const NohehutPageContainer = styled.div`
   height: 90vh;
   width: 100%;
-  background-color: #f9f9f9;
+  overflow-y: scroll ;
+
+  background-color: ${theme.background};
+  color: ${theme.text};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +23,6 @@ export const NohRowContainer = styled.div`
   display: flex;
   padding: 5px;
   &:hover {
-    background-color: #ede43b;
+    background-color: ${theme.main};
   }
 `;

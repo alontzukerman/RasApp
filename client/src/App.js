@@ -20,6 +20,7 @@ import UsersPage from "./pages/UsersPage";
 import EquipmentsPage from "./pages/EquipmentsPage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import Cookies from "js-cookie";
 import { User, DarkMode } from "./context";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -70,6 +71,9 @@ function App() {
                   <Switch location={location} key={location.pathname}>
                     <Route exact path="/login">
                       <LoginPage />
+                    </Route>
+                    <Route exact path="/register">
+                      <RegisterPage />
                     </Route>
                     <Route exact path="*">
                       <Redirect to="/login" />

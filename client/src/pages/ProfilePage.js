@@ -10,6 +10,7 @@ import {
   InnerTab,
   Label,
 } from "../styledComponents/global";
+import { ProfilePageContainer } from '../styledComponents/profilepage';
 function ProfilePage() {
   const [user, setUser] = useState();
 
@@ -25,7 +26,7 @@ function ProfilePage() {
     getMyProfile();
   }, []);
   return (
-    <ProfileContainer>
+    <ProfilePageContainer>
       {user && (
         <TabsContainer>
           <Tab>
@@ -79,7 +80,7 @@ function ProfilePage() {
           </Tab>
         </TabsContainer>
       )}
-    </ProfileContainer>
+    </ProfilePageContainer>
   );
 }
 const ProfileContainer = styled.div``;
