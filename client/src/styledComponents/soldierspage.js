@@ -15,6 +15,7 @@ export const SoldiersPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+
 `;
 
 export const SoldierRowContainer = styled.div`

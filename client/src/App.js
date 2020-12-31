@@ -85,7 +85,8 @@ function App() {
           </User.Provider>
         ) : (
           <User.Provider value={{ user, setUser }}>
-            <ErrorBoundary>
+           {user && (
+              <ErrorBoundary>
               <Switch>
                 <Route path="/" exact>
                   <Navbar />
@@ -111,7 +112,7 @@ function App() {
                 )}
                 <Route path="/profile/:userId" exact>
                   <Navbar />
-                  <ProfilePage />
+                  <ProfilePage user={user}/>
                 </Route>
                 <Route path="/notfound" exact>
                   <NotFoundPage />
@@ -133,7 +134,7 @@ function App() {
                   <Redirect to="/" />
                 </Route>
               </Switch>
-            </ErrorBoundary>
+            </ErrorBoundary>)}
           </User.Provider>
         )}
       </DarkMode.Provider>

@@ -15,7 +15,7 @@ import {
   Resize,
   DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
+import { ButtonComponent, } from "@syncfusion/ej2-react-buttons";
 import { User } from "../context";
 import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
@@ -33,6 +33,7 @@ import * as numberingSystems from "../../node_modules/cldr-data/supplemental/num
 import * as gregorian from "../../node_modules/cldr-data/main/he/ca-gregorian.json";
 import * as numbers from "../../node_modules/cldr-data/main/he/numbers.json";
 import * as timeZoneNames from "../../node_modules/cldr-data/main/he/timeZoneNames.json";
+import {CalendarPageContainer,SortByContainer} from '../styledComponents/calendarpage'
 loadCldr(numberingSystems, gregorian, numbers, timeZoneNames);
 setCulture("he");
 
@@ -130,13 +131,15 @@ function Calendar() {
   }, []);
   console.log(calendar);
   return (
-    <div>
+    <CalendarPageContainer>
       {calendar && (
         <>
-          מיין על פי:{" "}
+        <SortByContainer>
+          סנן על פי:{" "}
           <ButtonComponent
             id="add"
             title="sort"
+            color="#808000"
             //  ref={t => this.buttonObj = t}
             onClick={() => getAllCalendar()}
           >
@@ -145,6 +148,7 @@ function Calendar() {
           <ButtonComponent
             id="add"
             title="sort"
+            backgroundColor="#808000"
             //  ref={t => this.buttonObj = t}
             onClick={() => onMp()}
           >
@@ -182,6 +186,7 @@ function Calendar() {
           >
             מ"כ
           </ButtonComponent>
+          </SortByContainer>
           <ScheduleComponent
             dateFormat="yyyy/MM/dd"
             locale="he"
@@ -204,7 +209,7 @@ function Calendar() {
           </ScheduleComponent>
         </>
       )}
-    </div>
+    </CalendarPageContainer>
   );
 }
 

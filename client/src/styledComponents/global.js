@@ -83,6 +83,8 @@ export const GlobalTable = styled.div`
   background-color: ${theme.bright};
   box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
   margin: 30px;
+  background-image: url(${(props)=>props.image});
+  background-size: cover;
 `;
 
 export const TabsContainer = styled.div`

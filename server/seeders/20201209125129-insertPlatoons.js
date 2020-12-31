@@ -20,6 +20,11 @@ module.exports = {
           pluga_id: 1,
           platoon_name: "3",
         },
+      {
+        id:4,
+        pluga_id: 2,
+        platoon_name:'1'
+      }
       ],
       {}
     );

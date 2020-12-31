@@ -59,6 +59,18 @@ module.exports = {
           platoon_id:3,
           class_name: "ג"
         },
+      {
+id:10,
+pluga_id: 2,
+platoon_id:4,
+class_name: "א"
+      },
+      {
+id:11,
+pluga_id: 2,
+platoon_id:4,
+class_name: "ב"
+      },
       ],
       {}
     );

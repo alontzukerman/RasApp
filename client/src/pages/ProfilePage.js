@@ -10,13 +10,12 @@ import {
   InnerTab,
   Label,
 } from "../styledComponents/global";
-import { ProfilePageContainer } from '../styledComponents/profilepage';
+import { ProfilePageContainer } from "../styledComponents/profilepage";
 function ProfilePage() {
   const [user, setUser] = useState();
 
-
-  const {userId} = useParams()
-  console.log(userId)
+  const { userId } = useParams();
+  console.log(userId);
   const getMyProfile = async () => {
     const { data } = await network.get(`/api/users/${userId}`);
     console.log(data);
@@ -70,14 +69,20 @@ function ProfilePage() {
             <Label>אימייל</Label>
             <InnerTab>{user.email}</InnerTab>
           </Tab>
-          <Tab>
-            <Label>מחלקה</Label>
-            <InnerTab>{user.Platoon ? user.Platoon.platoonName : ""}</InnerTab>
-          </Tab>
-          <Tab>
-            <Label>כיתה</Label>
-            <InnerTab>{user.Class ? user.Class.className : ""}</InnerTab>
-          </Tab>
+          {user.Platoon && (
+            <Tab>
+              <Label>מחלקה</Label>
+              <InnerTab>
+                {user.Platoon ? user.Platoon.platoonName : ""}
+              </InnerTab>
+            </Tab>
+          )}
+          {user.Class && (
+            <Tab>
+              <Label>כיתה</Label>
+              <InnerTab>{user.Class ? user.Class.className : ""}</InnerTab>
+            </Tab>
+          )}
         </TabsContainer>
       )}
     </ProfilePageContainer>
