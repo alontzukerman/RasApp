@@ -25,6 +25,7 @@ function LoginPage() {
 
   const gUser = useContext(User);
   const gDarkMode = useContext(DarkMode);
+  
 
   const handleLogin = async () => {
     try {
@@ -34,6 +35,8 @@ function LoginPage() {
       };
       const { data } = await network.post(`/api/auth/login`, user);
       console.log(data);
+      data.userId = data.id
+      delete data.id
       gUser.setUser(data);
       location.push("/");
     } catch (e) {
