@@ -9,6 +9,7 @@ const path = require('path');
 app.use(express.static("../client/build"))
 app.use(express.json());
 app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/register', require('./routes/api/register'))
 app.use('/api/users',authenticateToken, require('./routes/api/users'));
 app.use('/api/soldiers',authenticateToken,require('./routes/api/soldiers'));
 app.use('/api/plugas',authenticateToken,require('./routes/api/plugas'));

@@ -29,6 +29,7 @@ export const RegisterFormContainer = styled.div`
   width: 500px;
   box-shadow: 0px 0px 15px 3px rgba(50, 50, 50, 0.15);
   min-height: 400px ;
+  max-height: 600px ;
   padding-top: 20px ;
   margin-top: 20px ;
   display: flex;
@@ -37,7 +38,6 @@ export const RegisterFormContainer = styled.div`
   align-items: center;
   z-index: 300 ;
   position: relative ;
-
 `;
 
 export const InnerRegisterFormContainer = styled.div`

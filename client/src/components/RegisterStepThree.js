@@ -1,8 +1,13 @@
-import React, { useRef } from "react";
-import { Input, Button } from "../styledComponents/global";
+import React, { useEffect, useRef, useState } from "react";
+import network from "../network";
+import { Input, Button, Select, Error } from "../styledComponents/global";
 
-function RegisterStepThree({ newUser }) {
+function RegisterStepThree({ nextStep, newUser }) {
   console.log(newUser);
+  const [completed, setCompleted] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const [ranks, setRanks] = useState([]);
 
   const firstNameInputRef = useRef(null);
   const lastNameInputRef = useRef(null);
@@ -12,10 +17,43 @@ function RegisterStepThree({ newUser }) {
   const addressInputRef = useRef(null);
   const draftDateRef = useRef(null);
   const releaseDateRef = useRef(null);
-  const platoonRef = useRef(null);
-  const classRef = useRef(null);
   const rankRef = useRef(null);
-  const pakalRef = useRef(null);
+
+  const getRanks = async () => {
+    const { data } = await network.get(`/api/register/ranks`);
+    setRanks(data);
+  };
+
+  useEffect(() => {
+    getRanks();
+  }, []);
+  const handleNext = async () => {
+    if (completed)
+      return nextStep({
+        firstName: firstNameInputRef.current.value,
+        lastName: lastNameInputRef.current.value,
+        email: emailInputRef.current.value,
+        phoneNumber: phoneNumberInputRef.current.value,
+        address: addressInputRef.current.value,
+        birthday: birthdayInputRef.current.value,
+        draftDate: draftDateRef.current.value,
+        releaseDate: releaseDateRef.current.value,
+        rankId: Number(rankRef.current.value),
+      });
+    if (
+      firstNameInputRef.current.value !== "" &&
+      lastNameInputRef.current.value !== "" &&
+      emailInputRef.current.value !== "" &&
+      phoneNumberInputRef.current.value !== "" &&
+      addressInputRef.current.value !== "" &&
+      birthdayInputRef.current.value !== "" &&
+      draftDateRef.current.value !== "" &&
+      releaseDateRef.current.value !== "" &&
+      rankRef.current.value !== ""
+    )
+      setCompleted(true);
+    else setIsError(true);
+  };
   return (
     <>
       <Input ref={firstNameInputRef} type="text" placeholder="שם פרטי"></Input>
@@ -28,11 +66,27 @@ function RegisterStepThree({ newUser }) {
         placeholder="מספר טלפון"
       ></Input>
       <Input ref={addressInputRef} type="text" placeholder="כתובת"></Input>
-      <Input ref={birthdayInputRef} type="date" placeholder="תאריך לידה"></Input>
+      <Input
+        ref={birthdayInputRef}
+        type="date"
+        placeholder="תאריך לידה"
+      ></Input>
       <Input ref={draftDateRef} type="date" placeholder="תאריך גיוס"></Input>
       <Input ref={releaseDateRef} type="date" placeholder="תאריך שחרור"></Input>
-      <Button>צור</Button>
 
+      <Select ref={rankRef}>
+        <option>דרגה</option>
+        {ranks.map((rank, i) => {
+          return (
+            <option value={rank.id} key={i}>
+              {rank.rankName}
+            </option>
+          );
+        })}
+      </Select>
+      <Error>{isError && "וודא שכל השעות מלאים"}</Error>
+
+      <Button onClick={() => handleNext()}>{completed ? "הבא" : "שמור"}</Button>
     </>
   );
 }

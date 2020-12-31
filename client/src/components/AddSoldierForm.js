@@ -15,7 +15,9 @@ import {
 import CreateIcon from "@material-ui/icons/Create";
 import CloseIcon from "@material-ui/icons/Close";
 import SendIcon from "@material-ui/icons/Send";
+import { useHistory } from "react-router-dom";
 function AddSoldierForm() {
+  const location = useHistory();
   const [open, setOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [myPlatoons, setPlatoons] = useState([]);
@@ -83,7 +85,12 @@ function AddSoldierForm() {
       };
       if (newSoldier.email === "") newSoldier.email = null;
       if (newSoldier.pakalId === "") newSoldier.pakalId = null;
-      const response = await network.post(`/api/soldiers`, newSoldier);
+      try {
+        const {data} = await network.post(`/api/soldiers`, newSoldier);
+        location.push(`/soldier/${data.id}`);
+      }catch (e) {
+        setIsError(true);
+      } 
     } else {
       setIsError(true);
     }
@@ -102,7 +109,7 @@ function AddSoldierForm() {
   };
   return (
     <AddSoldierContainer open={open}>
-      <ErrorForm>{isError && `אנא מלאו את כל שדות החובה`}</ErrorForm>
+      <ErrorForm>{isError && `וודא מספר אישי ושכל שדות החובה מלאות`}</ErrorForm>
 
       <AddSoldierFormContainer>
         <DivForm isError={isError && idInputRef.current.value === ""}>
