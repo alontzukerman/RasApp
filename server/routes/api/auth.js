@@ -52,8 +52,7 @@ router.post("/logout", async (req, res) => {
     const refreshToken = await RefreshTokens.findOne({
       where: { token: req.body.token },
     });
-    if(refreshToken){
-
+    if (refreshToken) {
       await refreshToken.destroy();
       return res.status(204).json({ message: "User Logged Out" });
     }
@@ -98,7 +97,17 @@ router.get("/valid-pluga/:plugaId", async (req, res) => {
     const pluga = await Pluga.findOne({ where: { id: req.params.plugaId } });
     console.log(pluga);
     if (pluga) return res.status(200).json({ valid: true });
-    throw new Error();
+    return res.json({ valid: false });
+  } catch (e) {
+    res.status(400).json({ message: "Cannot process request" });
+  }
+});
+router.get("/valid-id/:userId", async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { id: req.params.userId } });
+    console.log(user);
+    if (!user) return res.status(200).json({ valid: true });
+    return res.json({ valid: false });
   } catch (e) {
     res.status(400).json({ message: "Cannot process request" });
   }

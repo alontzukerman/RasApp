@@ -17,6 +17,7 @@ import { User, DarkMode } from "../context";
 import RegisterStepOne from "../components/RegisterStepOne";
 import RegisterStepTwo from "../components/RegisterStepTwo";
 import RegisterStepThree from "../components/RegisterStepThree";
+import RegisterStepFour from "../components/RegisterStepFour";
 function RegisterPage() {
   const [registerStepIndex, setRegisterStepIndex] = useState(0);
   const [newUser, setNewUser] = useState({});
@@ -44,9 +45,17 @@ function RegisterPage() {
     );
   };
   const registerThree = () => {
-    return <RegisterStepThree newUser={newUser} />;
+    return (
+      <RegisterStepThree
+        newUser={newUser}
+        nextStep={(currentNewUser) => handleNextStep(currentNewUser, 3)}
+      />
+    );
   };
-  const registerSteps = [registerOne, registerTwo, registerThree];
+  const registerFour = () => {
+    return <RegisterStepFour newUser={newUser} />;
+  };
+  const registerSteps = [registerOne, registerTwo, registerThree, registerFour];
   return (
     <RegisterPageContainer>
       <CircleXXL />

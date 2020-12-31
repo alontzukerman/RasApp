@@ -8,7 +8,8 @@ function RegisterStepOne({ nextStep }) {
   const plugaIdInputRef = useRef(null);
 
   const handleNext = async () => {
-    if (completed) return nextStep({ plugaId: plugaIdInputRef.current.value });
+    if (completed)
+      return nextStep({ plugaId: Number(plugaIdInputRef.current.value) });
     if (plugaIdInputRef.current.value === "") return;
     const { data } = await network.get(
       `/api/auth/valid-pluga/${plugaIdInputRef.current.value}`
