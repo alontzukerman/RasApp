@@ -6,7 +6,13 @@
   "scripts": {
     "up": "npm run down && npx sequelize db:migrate && npx sequelize db:seed:all",
     "down": "npx sequelize db:migrate:undo:all",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "prod": "node index.js",
+    "seed": "npx sequelize db:seed:all",
+    "undoseed": "npx sequelize db:seed:undo:all",
+    "migrate": "npx sequelize db:migrate",
+    "spinup": "npm run migrate && npm run prod",
+    "spinupseed": "npm run migrate && npm run undoseed && npm run seed && npm run prod"
   },
   "keywords": [],
   "author": "",
